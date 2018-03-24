@@ -13,4 +13,8 @@ public interface ReclamarApi {
 	@GET
     @Path("/isAlive")
     Response isAlive();
+	
+	@GET
+	@Path("/reclamos")
+	Response reclamos();
 }
