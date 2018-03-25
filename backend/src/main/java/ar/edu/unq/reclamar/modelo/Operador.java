@@ -5,11 +5,13 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import ar.edu.unq.reclamar.utils.Localizacion;
@@ -22,7 +24,7 @@ public class Operador extends AbstractPersistable<Long>{
 
 	
 	@JoinColumn(name="reclamos")
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	List<Reclamo> reclamos = new ArrayList<Reclamo>();
 	
 	@Column
