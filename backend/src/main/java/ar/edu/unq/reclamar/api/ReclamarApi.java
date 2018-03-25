@@ -1,12 +1,16 @@
 package ar.edu.unq.reclamar.api;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
+import ar.edu.unq.reclamar.modelo.Reclamo;
 
 @Path("/rest")
 @CrossOriginResourceSharing(allowAllOrigins = true)
@@ -17,14 +21,24 @@ public interface ReclamarApi {
     Response isAlive();
 	
 	@GET
+	@Path("/usuarios")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response usuarios();
+
+	@GET
 	@Path("/reclamos")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response reclamos();
 	
-	@GET
-	@Path("/usuarios")
+	@POST
+	@Path("/reclamos")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response usuarios();
+	Response agregarReclamo(Reclamo reclamo);
+	
+	@GET
+	@Path("/reclamos/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getReclamoById(@PathParam("id") Long id);	
 	
 	
 }

@@ -22,7 +22,6 @@ import ar.edu.unq.reclamar.utils.Telefono;
 public class Operador extends AbstractPersistable<Long>{
 
 
-	
 	@JoinColumn(name="reclamos")
 	@OneToMany(fetch=FetchType.EAGER)
 	List<Reclamo> reclamos = new ArrayList<Reclamo>();
@@ -34,8 +33,8 @@ public class Operador extends AbstractPersistable<Long>{
 	String apellido;
 	
 //	Telefono telefono;
-//	Localizacion direccion;
 	
+	public Operador(){};
 	
 	public List<Reclamo> getReclamos() {
 		return reclamos;

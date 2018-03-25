@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -23,6 +24,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 
 	@JoinColumn(name="autor")
     @ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
 	Operador autor;
 	
 	@Column
@@ -37,7 +39,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	Estado estado;
 	
 	@JoinColumn(name="tipoReclamo")
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	TipoDeReclamo tipoDeReclamo;
 	
 	@JoinColumn(name="lugarDeIncidente")
@@ -46,17 +48,13 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	
 	public Reclamo() {};
 	
-	public Reclamo(Operador autor, String mensaje, TipoDeReclamo tipoDeReclamo, Localizacion lugarDeIncidente) {
+	public Reclamo(Operador autor, String mensaje) {
 	
 		this.autor = autor;
 		this.fechaDeCreacion = LocalDate.now();
 		this.detalle = mensaje;
-		this.estado = new Abierto();
-		this.tipoDeReclamo = tipoDeReclamo;
-		this.lugarDeIncidente = lugarDeIncidente;
 	}
-	
-	
+		
 	public Operador getAutor() {
 		return autor;
 	}
