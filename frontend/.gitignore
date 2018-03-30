@@ -63,3 +63,8 @@ tmp/
 # Mac OSX Finder files.
 **/.DS_Store
 .DS_Store
+
+# User-specific stuff InteliJ
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
