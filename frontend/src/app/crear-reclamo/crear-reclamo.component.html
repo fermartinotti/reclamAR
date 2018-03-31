@@ -1,7 +1,24 @@
-<p>
-  crear-reclamo works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      Mapa
+    </div>
 
-<div class="alert alert-primary" role="alert">
-  Probando angular
+
+    <div class="col">
+      <div class="container">
+        <h1>Crear Reclamo</h1>
+
+        <form action="" *ngIf="reclamo" >
+          <div class="form-group">
+            <label for="mensaje"></label>
+            <textarea name="mensaje" id="mensaje" class="form-control" [(ngModel)]="reclamo.detalle"></textarea>
+          </div>
+          <button class="btn btn-primary" (click)="generarReclamo()">¡ReclamAR!</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
 </div>
