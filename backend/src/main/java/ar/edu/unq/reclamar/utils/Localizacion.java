@@ -11,5 +11,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Localizacion  extends AbstractPersistable<Long> {
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	String latitud;
+	String longitud;
+	
+	public String getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+	public String getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
 }
