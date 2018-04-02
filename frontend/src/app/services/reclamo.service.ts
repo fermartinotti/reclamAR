@@ -14,4 +14,5 @@ export class ReclamoService {
   public generarReclamo(reclamo: Reclamo): Observable<any>{
     return this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo);
   }
+
 }

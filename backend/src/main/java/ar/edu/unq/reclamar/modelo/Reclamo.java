@@ -22,6 +22,11 @@ import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
 @JsonIgnoreProperties(value = {"new"})
 public class Reclamo  extends AbstractPersistable<Long>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@JoinColumn(name="autor")
     @ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
@@ -38,7 +43,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne()
 	Estado estado;
 	
-	@JoinColumn(name="tipoReclamo")
+	@JoinColumn(name="tipoDeReclamo")
 	@ManyToOne(fetch = FetchType.EAGER)
 	TipoDeReclamo tipoDeReclamo;
 	

@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReclamoService} from "./services/reclamo.service";
 import { MisReclamosComponent } from './mis-reclamos/mis-reclamos.component';
 import { LuminariaComponent } from './luminaria/luminaria.component';
+import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclamos.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { LuminariaComponent } from './luminaria/luminaria.component';
     AppComponent,
     CrearReclamoComponent,
     MisReclamosComponent,
-    LuminariaComponent
+    LuminariaComponent,
+    TodosLosReclamosComponent
   ],
   imports: [
     BrowserModule,

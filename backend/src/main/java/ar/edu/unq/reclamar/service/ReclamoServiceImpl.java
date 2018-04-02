@@ -15,6 +15,7 @@ import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.OperadorRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
+import ar.edu.unq.reclamar.repository.TipodDeReclamoRepository;
 
 @Service
 public class ReclamoServiceImpl implements ReclamoService {
@@ -30,6 +31,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private TipodDeReclamoRepository tipoDeReclamoRepository;
 
 	@Override
 	public List<Reclamo> misReclamos() {
@@ -48,6 +52,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 		estadoRepository.save(estado);
 		
 		reclamo.setEstado(estado);		
+		
+		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
 		
 		repository.save(reclamo);
 		opLogeado.getReclamos().add(reclamo);

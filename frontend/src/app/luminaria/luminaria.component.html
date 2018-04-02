@@ -1,4 +1,23 @@
-<div class="container">
+<div class="container-fluid">
+  <div class="col-4 offset-4">
+
+    <form #formulario="ngForm">
+      <div>
+        <input id="problemaPalo" type="checkbox" name="problemaPalo" aria-label="Checkbox for following text input" [(ngModel)]="luminaria.problemaPalo" >
+      </div>
+      Problema en el palo?
+      <div>
+        <input id="problemaFoco" type="checkbox" name="problemaPalo" aria-label="Checkbox for following text input" [(ngModel)]="luminaria.problemaFoco" >
+      </div>
+      Problema con el foco?
+
+      <button type="submit" (click)="generarReclamo()" class="btn btn-primary">guardar</button>
+    </form>
+  </div>
+</div>
+
+
+<!--<div class="container">
   <div class="row">
     <div class="col">
       Mapa
@@ -19,4 +38,4 @@
     </div>
   </div>
 
-</div>
+</div>-->
