@@ -9,12 +9,12 @@ Los principales reclamos que podes generar son:
   * Semaforos
   * Arboleda
 
-#Motivacion
+# Motivacion
 El proyecto comienza con la idea de mejorar la gestion de un simple reclamo, que tal vez, de forma telefonica se pueden tornar muy largos y engorrosos. Es dificil encontrar el numero telefonico para realizar cada reclamo, recordar tu numero de reclamo, tener que volver a llamar para conocer el estado del tramite. De esta forma centralizariamos los reclamos mas importantes que realizan dia a dia los vecinos, y pueden gestionar en tiempo real el estado de su reclamo.
 
-#Objetivo
+# Objetivo
 Generar una herramienta simple y eficiente para la gestion de reclamos de los vecinos a su municipio.
 
-#¿Como instalar el entorno?
+# ¿Como instalar el entorno?
 
 
