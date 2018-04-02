@@ -1,24 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      Mapa
-    </div>
 
-
-    <div class="col">
-      <div class="container">
-        <h1>Crear Reclamo</h1>
-
-        <form action="" *ngIf="reclamo" >
-          <div class="form-group">
-            <label for="mensaje"></label>
-            <textarea name="mensaje" id="mensaje" class="form-control" [(ngModel)]="reclamo.detalle"></textarea>
-          </div>
-          <button class="btn btn-primary" (click)="generarReclamo()">¡ReclamAR!</button>
-        </form>
-
-      </div>
+<div class="container h-100">
+  <div class="row align-items-center ">
+    <div class="col-6 mx-auto">
+        <button type="button" class="btn btn-outline-primary" (click)="goCrearLuminaria()">Luminaria</button>
+        <button type="button" class="btn btn-outline-secondary">Baches</button>
+        <button type="button" class="btn btn-outline-success">Arboleda</button>
+        <button type="button" class="btn btn-outline-danger">Semaforos</button>
     </div>
   </div>
-
 </div>

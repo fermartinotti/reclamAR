@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Reclamo} from "../model/reclamo";
-import {ReclamoService} from "../services/reclamo.service";
+import { Router } from '@Angular/router';
 
 @Component({
   selector: 'app-crear-reclamo',
@@ -8,16 +7,18 @@ import {ReclamoService} from "../services/reclamo.service";
   styleUrls: ['./crear-reclamo.component.css']
 })
 export class CrearReclamoComponent implements OnInit {
-    reclamo: Reclamo;
 
 
-  constructor(public reclamoService: ReclamoService) { }
+
+  constructor(public router: Router) { }
 
   ngOnInit() {
-     this.reclamo = new Reclamo("")
+
   }
 
-  public generarReclamo():void{
-      this.reclamoService.generarReclamo(this.reclamo).subscribe();
+  public goCrearLuminaria(): void{
+    this.router.navigate(['crear-reclamo', 'luminaria']);
   }
+
+
 }
