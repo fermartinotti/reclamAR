@@ -1,2 +1,3 @@
 # reclamAR
-TIP Universidad Nacional de Quilmes. Herramienta web para generar reclamos online al municipio.
+![LogoReclamAR](https://github.com/fermartinotti/reclamAR/blob/master/frontend/src/assets/ReclamAR-logo.png "Logo reclamAR")
+
