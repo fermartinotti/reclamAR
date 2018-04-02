@@ -3,6 +3,7 @@
     <div class="col">
       Mapa
     </div>
+
     <div class="col">
       <div class="container">
         <h1>Crear Reclamo</h1>
@@ -17,6 +18,11 @@
         <input id="problemaFoco" class="form-check-input" type="checkbox" name="problemaPalo" [(ngModel)]="luminaria.problemaFoco" >
         <label class="form-check-label">Problema en el foco?</label>
       </div>
+
+     <div class="form-group">
+            <label for="exampleFormControlTextarea1">Detalle del reclamo:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="reclamo.detalle" name="detalle"></textarea>
+       </div>
       <button type="submit" class="btn btn-primary" (click)="generarReclamo()">¡ReclamAR!</button>
         </form>
 
