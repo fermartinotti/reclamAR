@@ -1,23 +1,4 @@
-<div class="container-fluid">
-  <div class="col-4 offset-4">
-
-    <form #formulario="ngForm">
-      <div>
-        <input id="problemaPalo" type="checkbox" name="problemaPalo" aria-label="Checkbox for following text input" [(ngModel)]="luminaria.problemaPalo" >
-      </div>
-      Problema en el palo?
-      <div>
-        <input id="problemaFoco" type="checkbox" name="problemaPalo" aria-label="Checkbox for following text input" [(ngModel)]="luminaria.problemaFoco" >
-      </div>
-      Problema con el foco?
-
-      <button type="submit" (click)="generarReclamo()" class="btn btn-primary">guardar</button>
-    </form>
-  </div>
-</div>
-
-
-<!--<div class="container">
+<div class="container">
   <div class="row">
     <div class="col">
       Mapa
@@ -26,16 +7,21 @@
       <div class="container">
         <h1>Crear Reclamo</h1>
 
-        <form action="" *ngIf="reclamo" >
-          <div class="form-group">
-            <label for="mensaje"></label>
-            <textarea name="mensaje" id="mensaje" class="form-control" [(ngModel)]="reclamo.detalle"></textarea>
-          </div>
-          <button class="btn btn-primary" (click)="generarReclamo()">¡ReclamAR!</button>
+        <form #formulario="ngForm">
+      <div class="form-check">
+        <input id="problemaPalo" class="form-check-input" type="checkbox" name="problemaPalo" [(ngModel)]="luminaria.problemaPalo" >
+        <label class="form-check-label">Problema en el palo?</label>
+      </div>
+
+      <div class="form-check">
+        <input id="problemaFoco" class="form-check-input" type="checkbox" name="problemaPalo" [(ngModel)]="luminaria.problemaFoco" >
+        <label class="form-check-label">Problema en el foco?</label>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="generarReclamo()">¡ReclamAR!</button>
         </form>
 
       </div>
     </div>
   </div>
 
-</div>-->
+</div>

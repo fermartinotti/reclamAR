@@ -17,7 +17,7 @@ export class LuminariaComponent implements OnInit {
 
   ngOnInit() {
     this.reclamo = new Reclamo("")
-    this.luminaria= new Luminaria()
+    this.luminaria= new Luminaria("luminaria")
   }
 
   public generarReclamo():void{

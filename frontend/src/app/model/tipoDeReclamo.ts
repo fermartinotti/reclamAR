@@ -1,6 +1,7 @@
 export class TipoDeReclamo{
+  public type:string;
 
-
-  constructor(){
+  constructor(type: string){
+    this.type = type
   }
 }

@@ -4,7 +4,7 @@ export class Luminaria extends TipoDeReclamo{
   public problemaPalo = false;
   public problemaFoco = false;
 
-  constructor(){
-    super()
+  constructor(type:string){
+    super(type);
   }
 }
