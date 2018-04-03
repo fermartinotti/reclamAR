@@ -9,11 +9,8 @@ Los principales reclamos que podes generar son:
   * Arboleda
 
 # Motivacion
-El proyecto comienza con la idea de mejorar la gestión de un simple reclamo, que tal vez, de forma telefónica se pueden tornar muy largos y engorrosos. Es difícil encontrar el número telefónico para realizar cada reclamo, recordar tu número de reclamo, tener que volver a llamar para conocer el estado del trámite. De esta forma centralizariamos los reclamos más importantes que realizan dia a dia los vecinos, y pueden gestionar en tiempo real el estado de su reclamo.
+El proyecto comienza con la idea de mejorar la gestión de un simple reclamo que de forma telefónica se pueden tornar muy largo y engorroso. Es difícil encontrar el número telefónico para realizar diferentes tipos de reclamos, Tener que anotar en papel tu numero de reclamo, tener que volver a realizar una llamada para poder conocer el estado de tu trámite, etc. De esta forma centralizariamos los reclamos más importantes que realizan dia a dia los vecinos.
 
 # Objetivo
-Generar una herramienta simple y eficiente para la gestion de reclamos de los vecinos a su municipio.
-
-# ¿Como instalar el entorno?
-
+Centralizar los reclamos mas importantes que reciben los municipios todos los dias, asi generando una herramienta online para los vecinos que les permita crear, gestionar y visualizar su reclamo en tiempo real, online, y sin demoras.
 
