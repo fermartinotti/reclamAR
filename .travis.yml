@@ -15,4 +15,4 @@ cache:
 
 script: 
     - cd backend
-    - ./mvnw clean install
+    
