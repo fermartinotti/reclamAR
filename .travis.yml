@@ -15,4 +15,4 @@ cache:
 
 script: 
     - cd backend
-    
+    - mvn clean install
