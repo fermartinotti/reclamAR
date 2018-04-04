@@ -13,6 +13,6 @@ cache:
     directories:
     - $HOME/.m2
 
-    script: 
-  - cd backend
-  - ./mvnw clean install
+script: 
+    - cd backend
+    - ./mvnw clean install
