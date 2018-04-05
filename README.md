@@ -1,4 +1,4 @@
-![LogoReclamAR](https://github.com/fermartinotti/reclamAR/blob/master/frontend/src/assets/ReclamAR-logo.png "Logo reclamAR")
+[![Build Status](https://travis-ci.org/fermartinotti/reclamAR.svg?branch=master)](https://travis-ci.org/fermartinotti/reclamAR)![LogoReclamAR](https://github.com/fermartinotti/reclamAR/blob/master/frontend/src/assets/ReclamAR-logo.png "Logo reclamAR")
 
 # ¿Que es ReclamAR?
 ReclamAR es una plataforma web parar realizar y gestionar reclamos on-line a tu municipio de forma facil y sin largas demoras.
