@@ -1,6 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes} from '@Angular/router';
+import { RouterModule, Routes} from '@angular/router';
 import {CrearReclamoComponent} from "../crear-reclamo/crear-reclamo.component";
 import {MisReclamosComponent} from "../mis-reclamos/mis-reclamos.component";
 import {LuminariaComponent} from "../luminaria/luminaria.component";

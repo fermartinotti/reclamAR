@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@Angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-reclamo',
