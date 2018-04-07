@@ -40,3 +40,7 @@ h4 {
     min-width: 60px;
   }
 }
+
+agm-map {
+  height: 300px;
+}

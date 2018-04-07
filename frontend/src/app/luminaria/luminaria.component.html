@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      Mapa
+ <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
     </div>
 
     <div class="col">

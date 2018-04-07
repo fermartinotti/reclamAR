@@ -11,6 +11,8 @@ import {Luminaria} from "../model/luminaria";
 export class LuminariaComponent implements OnInit {
   reclamo: Reclamo;
   luminaria: Luminaria;
+  lat: number = 51.678418;
+  lng: number = 7.809007;
 
   constructor(public reclamoService: ReclamoService) {
   }
