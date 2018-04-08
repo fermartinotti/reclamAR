@@ -29,7 +29,6 @@ public class Reclamo  extends AbstractPersistable<Long>{
 
 	@JoinColumn(name="autor")
     @ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnore
 	Operador autor;
 	
 	@Column
