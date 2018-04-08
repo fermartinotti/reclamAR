@@ -1,5 +1,4 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { RoutingModule } from './routing/routing.module';
 import { AppComponent } from './app.component';
 import { CrearReclamoComponent } from './crear-reclamo/crear-reclamo.component';
@@ -9,6 +8,10 @@ import {ReclamoService} from "./services/reclamo.service";
 import { MisReclamosComponent } from './mis-reclamos/mis-reclamos.component';
 import { LuminariaComponent } from './luminaria/luminaria.component';
 import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclamos.component';
+
+import { NgModule, ApplicationRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AgmCoreModule } from '@agm/core'; 
 
 
 @NgModule({
@@ -21,9 +24,13 @@ import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclam
   ],
   imports: [
     BrowserModule,
+	CommonModule,
     RoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+	AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
+    })	
   ],
   providers: [
     ReclamoService
