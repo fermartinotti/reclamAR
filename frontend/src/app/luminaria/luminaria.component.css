@@ -41,6 +41,9 @@ h4 {
   }
 }
 
+agm-map {
+  height: 500px;
+}
 
 /* Estilo para el form */
 
