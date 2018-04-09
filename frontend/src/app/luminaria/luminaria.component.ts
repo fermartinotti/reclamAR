@@ -17,8 +17,8 @@ export class LuminariaComponent implements OnInit {
   lng: number = -58.25265;
   zoom: number = 8;
   markers: marker[] = [];
-  localizacion:Localizacion;
-  
+  localizacion: Localizacion;
+
 
   constructor(public reclamoService: ReclamoService) {
   }
@@ -37,7 +37,7 @@ export class LuminariaComponent implements OnInit {
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
   }
-  
+
   mapClicked($event: MouseEvent) {
     this.markers=[];
     this.markers.push({
@@ -45,15 +45,15 @@ export class LuminariaComponent implements OnInit {
       lng: $event.coords.lng,
       draggable: true
     });
-    
+
     this.localizacion.setLatitud = this.lat.toString()
-    this.localizacion.setLongitud = this.lat.toString()
+    this.localizacion.setLongitud = this.lng.toString()
     this.reclamo.setLugarDeIncidente= this.localizacion
   }
-  
+
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
-  } 
+  }
 }
 
 // just an interface for type safety.

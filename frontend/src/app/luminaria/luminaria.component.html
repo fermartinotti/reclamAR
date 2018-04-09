@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col">
+    <div class="col mb-3">
         <agm-map
         [latitude]="lat"
         [longitude]="lng"
@@ -8,8 +8,8 @@
         [disableDefaultUI]="false"
         [zoomControl]="false"
         (mapClick)="mapClicked($event)">
-      
-        <agm-marker 
+
+        <agm-marker
             *ngFor="let m of markers; let i = index"
             (markerClick)="clickedMarker(m.label, i)"
             [latitude]="m.lat"
@@ -19,15 +19,15 @@
             (dragEnd)="markerDragEnd(m, $event)"
             (mouseOver)="infoWindow.open();"
             (mouseOut)="infoWindow.close();">
-            
-            
+
+
           <agm-info-window #infoWindow>
               <strong>Latitud {{m.lat}}, Longitud {{m.lng}} </strong>
           </agm-info-window>
-          
+
         </agm-marker>
 
-      
+
       </agm-map>
     </div>
 
