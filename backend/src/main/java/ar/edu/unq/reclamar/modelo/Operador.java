@@ -24,6 +24,7 @@ public class Operador extends AbstractPersistable<Long>{
 
 	@JoinColumn(name="reclamos")
 	@OneToMany(fetch=FetchType.EAGER)
+	@JsonIgnore
 	List<Reclamo> reclamos = new ArrayList<Reclamo>();
 	
 	@Column

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @Entity
-@JsonIgnoreProperties(value = {"new"})
+@JsonIgnoreProperties(value = {"new", "id"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
     @Type(value = Luminaria.class, name = "luminaria")

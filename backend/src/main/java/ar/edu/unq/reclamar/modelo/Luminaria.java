@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties(value = {"new"})
+@JsonIgnoreProperties(value = {"new", "id"})
 public class Luminaria extends TipoDeReclamo{
 
 
