@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
 import {Luminaria} from "../model/luminaria";
+import {Localizacion} from "../model/localizacion"
 import { MouseEvent } from '@agm/core';
 
 @Component({
@@ -16,14 +17,16 @@ export class LuminariaComponent implements OnInit {
   lng: number = -58.25265;
   zoom: number = 8;
   markers: marker[] = [];
-
+  localizacion:Localizacion;
+  
 
   constructor(public reclamoService: ReclamoService) {
   }
 
   ngOnInit() {
     this.reclamo = new Reclamo("")
-    this.luminaria= new Luminaria("luminaria")
+    this.luminaria = new Luminaria("luminaria")
+    this.localizacion = new Localizacion("", "")
   }
 
   public generarReclamo():void{
@@ -42,13 +45,15 @@ export class LuminariaComponent implements OnInit {
       lng: $event.coords.lng,
       draggable: true
     });
+    
+    this.localizacion.setLatitud = this.lat.toString()
+    this.localizacion.setLongitud = this.lat.toString()
+    this.reclamo.setLugarDeIncidente= this.localizacion
   }
   
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
-  }
-  
-  
+  } 
 }
 
 // just an interface for type safety.
@@ -58,3 +63,4 @@ interface marker {
 	label?: string;
 	draggable: boolean;
 }
+
