@@ -32,6 +32,7 @@ export class LuminariaComponent implements OnInit {
   public generarReclamo():void{
     this.reclamo.setTipoDeReclamo = this.luminaria
     this.reclamoService.generarReclamo(this.reclamo).subscribe()
+
   }
 
   clickedMarker(label: string, index: number) {
@@ -46,8 +47,8 @@ export class LuminariaComponent implements OnInit {
       draggable: true
     });
 
-    this.localizacion.setLatitud = this.lat.toString()
-    this.localizacion.setLongitud = this.lng.toString()
+    this.localizacion.setLatitud = $event.coords.lat.toString()
+    this.localizacion.setLongitud = $event.coords.lng.toString()
     this.reclamo.setLugarDeIncidente= this.localizacion
   }
 
