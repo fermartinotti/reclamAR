@@ -11,7 +11,7 @@ const appRoutes: Routes = [
   {path: 'crear-reclamo', component: CrearReclamoComponent},
   {path: 'todos-los-reclamos', component: TodosLosReclamosComponent},
   {path: 'crear-reclamo/luminaria',component: LuminariaComponent},
-  {path: '**', redirectTo: 'todos-los-reclamos'}
+  {path: '**', redirectTo: 'crear-reclamo'}
 
 ]
 
