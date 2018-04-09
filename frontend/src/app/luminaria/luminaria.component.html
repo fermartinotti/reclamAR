@@ -16,10 +16,13 @@
             [longitude]="m.lng"
             [label]="m.label"
             [markerDraggable]="m.draggable"
-            (dragEnd)="markerDragEnd(m, $event)">
+            (dragEnd)="markerDragEnd(m, $event)"
+            (mouseOver)="infoWindow.open();"
+            (mouseOut)="infoWindow.close();">
             
-          <agm-info-window>
-            <strong>InfoWindow content</strong>
+            
+          <agm-info-window #infoWindow>
+              <strong>Latitud {{m.lat}}, Longitud {{m.lng}} </strong>
           </agm-info-window>
           
         </agm-marker>
