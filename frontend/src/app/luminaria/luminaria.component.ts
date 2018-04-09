@@ -13,8 +13,8 @@ import { MouseEvent } from '@agm/core';
 export class LuminariaComponent implements OnInit {
   reclamo: Reclamo;
   luminaria: Luminaria;
-  lat: number = -34.72418;
-  lng: number = -58.25265;
+  latInicial: number = -34.72418;
+  lngInicial: number = -58.25265;
   zoom: number = 8;
   markers: marker[] = [];
   localizacion: Localizacion;
