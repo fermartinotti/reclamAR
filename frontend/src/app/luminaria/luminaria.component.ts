@@ -4,6 +4,7 @@ import {ReclamoService} from "../services/reclamo.service";
 import {Luminaria} from "../model/luminaria";
 import {Localizacion} from "../model/localizacion"
 import { MouseEvent } from '@agm/core';
+import { Router} from "@angular/router";
 
 @Component({
   selector: 'app-luminaria',
@@ -18,9 +19,10 @@ export class LuminariaComponent implements OnInit {
   zoom: number = 8;
   markers: marker[] = [];
   localizacion: Localizacion;
+  display='none'
 
 
-  constructor(public reclamoService: ReclamoService) {
+  constructor(public reclamoService: ReclamoService, public router: Router) {
   }
 
   ngOnInit() {
@@ -29,10 +31,23 @@ export class LuminariaComponent implements OnInit {
     this.localizacion = new Localizacion("", "")
   }
 
-  public generarReclamo():void{
+  async generarReclamo():Promise<void>{
     this.reclamo.setTipoDeReclamo = this.luminaria
-    this.reclamoService.generarReclamo(this.reclamo).subscribe()
+    try{
+      await this.reclamoService.generarReclamo(this.reclamo)
+    }catch(error){
+      this.handleError(error);
+    }
+    // Abro dialog
+    this.display='block';
+  }
 
+  public handleError(error){
+    this.router.navigate(['']);
+  }
+
+  onCloseHandled(){
+    this.display='none';
   }
 
   clickedMarker(label: string, index: number) {

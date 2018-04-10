@@ -11,8 +11,12 @@ export class ReclamoService {
 
   }
 
-  public generarReclamo(reclamo: Reclamo): Observable<any>{
-    return this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo);
+  // public generarReclamo(reclamo: Reclamo): Observable<any>{
+  //   return this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo);
+  // }
+
+  async generarReclamo(reclamo: Reclamo): Promise<void>{
+      await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo).toPromise()
   }
 
 }
