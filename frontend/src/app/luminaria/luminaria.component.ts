@@ -5,6 +5,8 @@ import {Luminaria} from "../model/luminaria";
 import {Localizacion} from "../model/localizacion"
 import { MouseEvent } from '@agm/core';
 import { Router} from "@angular/router";
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
 
 @Component({
   selector: 'app-luminaria',
@@ -21,6 +23,8 @@ export class LuminariaComponent implements OnInit {
   localizacion: Localizacion;
   display='none'
 
+  private _success = new Subject<string>();
+  warningMessage: string;
 
   constructor(public reclamoService: ReclamoService, public router: Router) {
   }
@@ -29,25 +33,35 @@ export class LuminariaComponent implements OnInit {
     this.reclamo = new Reclamo("")
     this.luminaria = new Luminaria("luminaria")
     this.localizacion = new Localizacion("", "")
+
+    // logica cierre alert
+    this._success.subscribe((message) => this.warningMessage = message);
+    debounceTime.call(this._success, 5000).subscribe(() => this.warningMessage = null);
   }
 
   async generarReclamo():Promise<void>{
+    if (this.markers.length == 0){
+      this.changeSuccessMessage()
+    }else{
     this.reclamo.setTipoDeReclamo = this.luminaria
+
     try{
       await this.reclamoService.generarReclamo(this.reclamo)
+
     }catch(error){
-      this.handleError(error);
+
     }
-    // Abro dialog
-    this.display='block';
+    this.openModal()
+    }
   }
 
-  public handleError(error){
-    this.router.navigate(['']);
+  openModal(){
+    this.display='block';
   }
 
   onCloseHandled(){
     this.display='none';
+    this.router.navigate(['']);
   }
 
   clickedMarker(label: string, index: number) {
@@ -70,6 +84,11 @@ export class LuminariaComponent implements OnInit {
   markerDragEnd(m: marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
   }
+
+  public changeSuccessMessage() {
+    this._success.next(`Por favor seleccione la ubicacion de su reclamo`);
+  }
+
 }
 
 // just an interface for type safety.

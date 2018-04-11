@@ -29,6 +29,7 @@
 
 
       </agm-map>
+      <ngb-alert *ngIf="warningMessage" type="danger" (close)="warningMessage = null">{{ warningMessage }}</ngb-alert>
     </div>
 
     <div class="col ">

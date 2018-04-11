@@ -11,7 +11,8 @@ import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclam
 
 import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgmCoreModule } from '@agm/core'; 
+import { AgmCoreModule } from '@agm/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -28,9 +29,10 @@ import { AgmCoreModule } from '@agm/core';
     RoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule.forRoot(),
 	AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
-    })	
+    })
   ],
   providers: [
     ReclamoService
