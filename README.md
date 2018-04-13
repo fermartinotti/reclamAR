@@ -28,5 +28,5 @@ Como rol administrador se espera:
  * Poder asignar fechas estimadas de solución de un reclamo.
 
 ## Deseado:
-Contar con un sistema de puntos de satisfacción de la reparacion y poder dejar un comentario.
-Notificaciones (podría ser por email) cuando uno de tus reclamos cambia de estado (abierto, en curso, finalizado).
+ * Contar con un sistema de puntos de satisfacción de la reparacion y poder dejar un comentario.0
+ * Notificaciones (podría ser por email) cuando uno de tus reclamos cambia de estado (abierto, en curso, finalizado).
