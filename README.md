@@ -21,11 +21,12 @@ La aplicación contara con las siguientes funcionalidades como minimo
  * Contar con un mapa interactivo para poder ver todos los reclamos de tus vecinos.
  * Filtrar reclamos para poder buscar
  * Seguir el estado de tu reclamo y poder visualizar las fechas estimadas de resolución del mismo.
+ 
 Como rol administrador se espera:
  * Poder ver todos los reclamos y filtrar por tipo
  * Asignar cuadrillas a cada reclamo
  * Poder asignar fechas estimadas de solución de un reclamo.
 
-##Deseado:
+## Deseado:
 Contar con un sistema de puntos de satisfacción de la reparacion y poder dejar un comentario.
 Notificaciones (podría ser por email) cuando uno de tus reclamos cambia de estado (abierto, en curso, finalizado).
