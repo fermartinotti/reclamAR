@@ -14,7 +14,7 @@ El proyecto comienza con la idea de mejorar la gestión de un simple reclamo que
 # Objetivo
 Centralizar los reclamos más importantes que reciben los municipios todos los dias, así generando una herramienta online para los vecinos que les permita crear, gestionar y visualizar su reclamo en tiempo real, online, y sin demoras.
 
-#Alcance
+# Alcance
 La aplicación contara con las siguientes funcionalidades como minimo
  * Poder crear reclamos de diferente índole
  * Visualizar todos tus reclamos
