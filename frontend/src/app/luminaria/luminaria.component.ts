@@ -41,10 +41,10 @@ export class LuminariaComponent implements OnInit {
     }else{
       this.reclamo.setTipoDeReclamo = this.luminaria
       try{
-        await this.reclamoService.generarReclamo(this.reclamo)
-        this.open("Su reclamo se ha creado exitosamente! \\n Puede visualizar el estado de su reclamo haciendo click")
+        var link = await this.reclamoService.generarReclamo(this.reclamo)
+        this.open("sucess")
       }catch(error){
-        this.open(("Hubo un error inesperado. Por favor reintente"))
+        this.open("error")
       }
     }
   }
@@ -53,9 +53,9 @@ export class LuminariaComponent implements OnInit {
     this.reclamo.lugarDeIncidente = localizacion;
   }
 
-  open(msj: string) {
+  open(status: string) {
     const modalRef = this.modalService.open(NgModalContentComponent)
-    modalRef.componentInstance.cuerpoDelModal= msj
+    modalRef.componentInstance.status = status
     this.router.navigate(['']);
   }
 

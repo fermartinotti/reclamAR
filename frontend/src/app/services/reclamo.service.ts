@@ -15,8 +15,8 @@ export class ReclamoService {
   //   return this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo);
   // }
 
-  async generarReclamo(reclamo: Reclamo): Promise<void>{
-      await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo).toPromise()
+  async generarReclamo(reclamo: Reclamo): Promise<any>{
+      await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo).toPromise();
   }
 
 }

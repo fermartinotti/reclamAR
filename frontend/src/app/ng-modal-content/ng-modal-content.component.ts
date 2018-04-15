@@ -12,7 +12,10 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
       </button>
     </div>
     <div class="modal-body">
-      <p> {{cuerpoDelModal}}</p>
+      <div [ngSwitch]="status">
+        <reclamo-sucess    *ngSwitchCase="'sucess'"    ></reclamo-sucess>
+        <reclamo-errro      *ngSwitchCase="'error'"    ></reclamo-errro>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
@@ -20,7 +23,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   `
 })
 export class NgModalContentComponent{
-  @Input() cuerpoDelModal;
+  @Input() link;
+  @Input() status;
 
   constructor(public activeModal: NgbActiveModal) { }
 
