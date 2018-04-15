@@ -1,34 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col mb-3">
-        <agm-map
-        [latitude]="latInicial"
-        [longitude]="lngInicial"
-        [zoom]="zoom"
-        [disableDefaultUI]="false"
-        [zoomControl]="false"
-        (mapClick)="mapClicked($event)">
-
-        <agm-marker
-            *ngFor="let m of markers; let i = index"
-            (markerClick)="clickedMarker(m.label, i)"
-            [latitude]="m.lat"
-            [longitude]="m.lng"
-            [label]="m.label"
-            [markerDraggable]="m.draggable"
-            (dragEnd)="markerDragEnd(m, $event)"
-            (mouseOver)="infoWindow.open();"
-            (mouseOut)="infoWindow.close();">
-
-
-          <agm-info-window #infoWindow>
-              <strong>Latitud {{m.lat}}, Longitud {{m.lng}} </strong>
-          </agm-info-window>
-
-        </agm-marker>
-
-
-      </agm-map>
+      <app-map (onclickMap)="onClickMap($event)"></app-map>
       <ngb-alert *ngIf="warningMessage" type="danger" (close)="warningMessage = null">{{ warningMessage }}</ngb-alert>
     </div>
 
@@ -66,27 +39,5 @@
       </div>
     </div>
   </div>
-
-  <div class="backdrop" [ngStyle]="{'display':display}"></div>
-  <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Reclamo iniciado.</h4>
-          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()">
-            <span aria-hidden="true">&times;</span></button>
-        </div>
-
-        <div class="modal-body">
-          <p>Su reclamo se ha creado exitosamente!<br>
-           Puede visualizar el estado de su reclamo haciendo click <a href="#" class="alert-link">aqui</a></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal !-->
-
 
 </div>

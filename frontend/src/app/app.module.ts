@@ -13,6 +13,9 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModalContentComponent } from './ng-modal-content/ng-modal-content.component';
+import {ReclamoMsjComponent} from "./ng-modal-content/ng-modalMsj";
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CrearReclamoComponent,
     MisReclamosComponent,
     LuminariaComponent,
-    TodosLosReclamosComponent
+    TodosLosReclamosComponent,
+    NgModalContentComponent,
+    ReclamoMsjComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   providers: [
     ReclamoService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NgModalContentComponent],
 })
 export class AppModule { }
