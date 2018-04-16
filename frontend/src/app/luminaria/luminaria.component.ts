@@ -8,6 +8,7 @@ import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
+import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-luminaria',
@@ -23,7 +24,7 @@ export class LuminariaComponent implements OnInit {
   warningMessage: string;
   //
 
-  constructor(public reclamoService: ReclamoService, public router: Router, private modalService: NgbModal) {
+  constructor(public reclamoService: ReclamoService, public router: Router, private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
@@ -39,23 +40,26 @@ export class LuminariaComponent implements OnInit {
     if (this.reclamo.lugarDeIncidente == null){
       this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo")
     }else{
+      this.spinner.show()
       this.reclamo.setTipoDeReclamo = this.luminaria
       try{
-        var link = await this.reclamoService.generarReclamo(this.reclamo)
-        this.open("sucess")
+         await this.reclamoService.generarReclamo(this.reclamo)
+        this.open("success", "")
       }catch(error){
-        this.open("error")
+        this.open("error", "")
       }
     }
+    this.spinner.hide()
   }
 
   onClickMap(localizacion: Localizacion){
     this.reclamo.lugarDeIncidente = localizacion;
   }
 
-  open(status: string) {
+  open(status: string, link: string) {
     const modalRef = this.modalService.open(NgModalContentComponent)
     modalRef.componentInstance.status = status
+    modalRef.componentInstance.link = link;
     this.router.navigate(['']);
   }
 

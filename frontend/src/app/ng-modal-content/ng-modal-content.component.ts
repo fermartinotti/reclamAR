@@ -13,8 +13,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
     </div>
     <div class="modal-body">
       <div [ngSwitch]="status">
-        <reclamo-sucess    *ngSwitchCase="'sucess'"    ></reclamo-sucess>
-        <reclamo-errro      *ngSwitchCase="'error'"    ></reclamo-errro>
+        <reclamo-success    *ngSwitchCase="'success'"    [link]="link"></reclamo-success>
+        <reclamo-error      *ngSwitchCase="'error'"    ></reclamo-error>
       </div>
     </div>
     <div class="modal-footer">

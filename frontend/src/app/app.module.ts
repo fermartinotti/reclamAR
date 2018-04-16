@@ -16,7 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModalContentComponent } from './ng-modal-content/ng-modal-content.component';
 import {ReclamoMsjComponent} from "./ng-modal-content/ng-modalMsj";
 import { MapComponent } from './map/map.component';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { MapComponent } from './map/map.component';
     NgbModule.forRoot(),
 	AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
-    })
+    }),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
     ReclamoService
