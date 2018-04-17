@@ -11,8 +11,10 @@ import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -20,7 +22,7 @@ import ar.edu.unq.reclamar.api.ReclamarApi;
 
 
 @Configuration
-public class Configuracion {
+public class Configuracion{
 
 	@Autowired
     private ReclamarApi reclamarApi;

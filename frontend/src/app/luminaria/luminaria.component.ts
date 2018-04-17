@@ -43,8 +43,9 @@ export class LuminariaComponent implements OnInit {
       this.spinner.show()
       this.reclamo.setTipoDeReclamo = this.luminaria
       try{
-         var link = await this.reclamoService.generarReclamo(this.reclamo)
-        this.open("success", "")
+         var link = await this.reclamoService.generarReclamo(this.reclamo).then(resp=> Reclamo.crearDesdeJson(resp).id)
+        console.log(link)
+        this.open("success", link.toString())
       }catch(error){
         this.open("error", "")
       }

@@ -41,11 +41,13 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response agregarReclamo(Reclamo reclamo) {
 		reclamoService.agregarReclamo(reclamo);
 		
-		URI location  = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(reclamo.getId()).toUri();
+//		URI location  = ServletUriComponentsBuilder.fromCurrentRequest()
+//				.path("/{id}")
+//				.buildAndExpand(reclamo.getId()).toUri();
 				
-		return Response.created(location).build();
+//		return Response.created(location).build();
+		
+		return Response.ok(reclamo).build();
 	}
 
 	@Override
