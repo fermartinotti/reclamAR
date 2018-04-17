@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, NgZone } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, NgZone , Input} from '@angular/core';
 import {Localizacion} from "../model/localizacion";
 import { MouseEvent, AgmMap } from '@agm/core';
 
@@ -13,26 +13,34 @@ export class MapComponent implements OnInit {
   zoom: number = 8;
   //Punto marcado en el map
   markers: marker[] = [];
-  localizacion: Localizacion;
+  @Input() localizacion: Localizacion;
   @Output() onclickMap = new EventEmitter<Localizacion>();
+  @Input() clickableMap: boolean = true;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
-    this.localizacion = new Localizacion("", "")
-  }
+    if(this.localizacion != null){
+      this.addMarker()}
+    else {
+      this.localizacion = new Localizacion(null,null)
+      }
+}
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
   }
 
   mapClicked($event: MouseEvent) {
-    this.markers=[];
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: true
-    });
+    if(this.clickableMap){
+      this.markers=[];
+      this.markers.push({
+        lat: $event.coords.lat,
+        lng: $event.coords.lng,
+        draggable: false
+      });
+    }
 
     this.localizacion.setLatitud = $event.coords.lat.toString()
     this.localizacion.setLongitud = $event.coords.lng.toString()
@@ -44,6 +52,13 @@ export class MapComponent implements OnInit {
     console.log('dragEnd', m, $event);
   }
 
+  addMarker(){
+    this.markers.push({
+      lat: Number(this.localizacion.latitud),
+      lng: Number(this.localizacion.longitud),
+      draggable: false
+    });
+  }
 }
   // just an interface for type safety.
   interface marker {

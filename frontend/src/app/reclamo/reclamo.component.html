@@ -1,5 +1,8 @@
 <div class="card" style="width: 18rem;">
-  <app-map (onclickMap)="onClickMap($event)"></app-map>
+  <app-map #map *ngIf="reclamo.lugarDeIncidente"
+    [clickableMap]="false"
+  [localizacion]="reclamo.lugarDeIncidente">
+  </app-map>
   <div class="container" *ngIf="reclamo">
   <div class="card-body" >
     <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>

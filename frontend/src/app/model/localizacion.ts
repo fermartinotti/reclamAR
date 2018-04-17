@@ -14,4 +14,9 @@ export class Localizacion {
         this.latitud=lat;
         this.longitud=lng;
     }
+
+    static crearDesdeJson(json:any): Localizacion{
+     const localizacion = new Localizacion(json.latitud, json.longitud)
+      return localizacion
+    }
 }

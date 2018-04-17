@@ -1,8 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
 import {ActivatedRoute} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
+import {MapComponent} from "../map/map.component";
+import {Localizacion} from "../model/localizacion";
 
 @Component({
   selector: 'app-reclamo',
@@ -11,7 +13,9 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ReclamoComponent implements OnInit {
 
-  @Input() reclamo: Reclamo = new Reclamo(null,null,"","",null,null,null)
+  @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null)
+
+  @ViewChild('map') map: MapComponent;
 
   constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute) {
   }
@@ -19,9 +23,14 @@ export class ReclamoComponent implements OnInit {
   ngOnInit() {
     this.ruta.paramMap
       .switchMap( paramMap => this.reclamoService.buscarReclamo(+paramMap.get('id')))
-      .subscribe(reclamo => this.reclamo = reclamo);
+      .subscribe(reclamo => this.reclamo = reclamo)
   }
 
-
-
 }
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
+
