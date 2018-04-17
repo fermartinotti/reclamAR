@@ -64,7 +64,8 @@ export class LuminariaComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  }
+  
+}
 
   onClickMap(localizacion: Localizacion){
     this.reclamo.lugarDeIncidente = localizacion;
