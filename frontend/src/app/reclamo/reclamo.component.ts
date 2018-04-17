@@ -1,10 +1,11 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import 'rxjs/add/operator/switchMap';
 import {MapComponent} from "../map/map.component";
 import {Localizacion} from "../model/localizacion";
+
 
 @Component({
   selector: 'app-reclamo',
@@ -17,7 +18,7 @@ export class ReclamoComponent implements OnInit {
 
   @ViewChild('map') map: MapComponent;
 
-  constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute) {
+  constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute, public router: Router) {
   }
 
   ngOnInit() {
@@ -26,6 +27,9 @@ export class ReclamoComponent implements OnInit {
       .subscribe(reclamo => this.reclamo = reclamo)
   }
 
+  volver(){
+    this.router.navigate(['mis-reclamos']);
+  }
 }
 interface marker {
   lat: number;

@@ -16,8 +16,7 @@
           <li class="list-group-item" *ngIf="reclamo.estado">Su reclamo se encuentra: {{reclamo.estado.type}}</li>
         </ul>
         <div class="card-body">
-          <a href="#" class="card-link">link</a>
-          <a href="#" class="card-link">Another link</a>
+          <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
         </div>
       </div>
     </div>
