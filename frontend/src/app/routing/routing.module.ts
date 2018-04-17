@@ -5,9 +5,11 @@ import {CrearReclamoComponent} from "../crear-reclamo/crear-reclamo.component";
 import {MisReclamosComponent} from "../mis-reclamos/mis-reclamos.component";
 import {LuminariaComponent} from "../luminaria/luminaria.component";
 import {TodosLosReclamosComponent} from "../todos-los-reclamos/todos-los-reclamos.component";
+import {ReclamoComponent} from "../reclamo/reclamo.component";
 
 const appRoutes: Routes = [
   {path: 'mis-reclamos', component: MisReclamosComponent},
+  {path: 'mis-reclamos/:id', component: ReclamoComponent},
   {path: 'crear-reclamo', component: CrearReclamoComponent},
   {path: 'todos-los-reclamos', component: TodosLosReclamosComponent},
   {path: 'crear-reclamo/luminaria',component: LuminariaComponent},

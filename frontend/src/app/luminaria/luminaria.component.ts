@@ -28,7 +28,7 @@ export class LuminariaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reclamo = new Reclamo("")
+    this.reclamo = new Reclamo(null,null,"","",null,null,null)
     this.luminaria = new Luminaria("luminaria")
 
     // logica cierre alert
@@ -43,7 +43,7 @@ export class LuminariaComponent implements OnInit {
       this.spinner.show()
       this.reclamo.setTipoDeReclamo = this.luminaria
       try{
-         await this.reclamoService.generarReclamo(this.reclamo)
+         var link = await this.reclamoService.generarReclamo(this.reclamo)
         this.open("success", "")
       }catch(error){
         this.open("error", "")

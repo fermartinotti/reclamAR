@@ -1,0 +1,18 @@
+<div class="card" style="width: 18rem;">
+  <app-map (onclickMap)="onClickMap($event)"></app-map>
+  <div class="container" *ngIf="reclamo">
+  <div class="card-body" >
+    <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
+    <h6>Reclamo numero #{{reclamo.id}}</h6>
+    <p class="card-text">{{reclamo.detalle}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Iniciado el dia: {{reclamo.fechaDeCreacion}}</li>
+    <li class="list-group-item" *ngIf="reclamo.estado">Su reclamo se encuentra: {{reclamo.estado.type}}</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+</div>

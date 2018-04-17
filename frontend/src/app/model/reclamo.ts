@@ -1,11 +1,17 @@
 
 import {TipoDeReclamo} from "./tipoDeReclamo";
 import { Localizacion } from "./localizacion";
+import {Autor} from "./autor";
+import {Estado} from "./estado";
 
 export class Reclamo{
-  public detalle: string;
-  public tipoDeReclamo: TipoDeReclamo;
-  public lugarDeIncidente:Localizacion;
+  id: number;
+  autor: Autor;
+  detalle: string;
+  tipoDeReclamo: TipoDeReclamo;
+  lugarDeIncidente:Localizacion;
+  fechaDeCreacion:string;
+  estado: Estado;
 
   public get getTipoDeReclamo():TipoDeReclamo{
     return this.tipoDeReclamo
@@ -18,13 +24,25 @@ export class Reclamo{
   public get getLugarDeIncidente():Localizacion{
     return this.lugarDeIncidente
   }
-  
+
   public set setLugarDeIncidente(loc:Localizacion){
     this.lugarDeIncidente=loc;
   }
-  
-  constructor(msj: string){
-    this.detalle = msj;
+
+  constructor(id: number, autor: Autor, fechaDeCreacion:string, detalle: string, estado: Estado, tipoDeReclamo: TipoDeReclamo, lugarDeIncidente: Localizacion){
+    this.id = id
+    this.autor = autor
+    this.fechaDeCreacion = fechaDeCreacion
+    this.detalle = detalle
+    this.estado = estado
+    this.tipoDeReclamo = tipoDeReclamo
+    this.lugarDeIncidente = lugarDeIncidente
+  }
+
+  static crearDesdeJson(json:any): Reclamo{
+    const reclamo = new Reclamo(json.id, Autor.crearDesdeJson(json.autor), json.fechaDeCreacion, json.detalle, Estado.crearDesdeJson(json.estado)
+                                , TipoDeReclamo.crearDesdeJson(json.tipoDeReclamo), json.lugarDeIncidente)
+    return reclamo;
   }
 }
 

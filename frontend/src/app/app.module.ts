@@ -17,6 +17,7 @@ import { NgModalContentComponent } from './ng-modal-content/ng-modal-content.com
 import {ReclamoMsjComponent} from "./ng-modal-content/ng-modalMsj";
 import { MapComponent } from './map/map.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { ReclamoComponent } from './reclamo/reclamo.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     TodosLosReclamosComponent,
     NgModalContentComponent,
     ReclamoMsjComponent,
-    MapComponent
+    MapComponent,
+    ReclamoComponent
   ],
   imports: [
     BrowserModule,
