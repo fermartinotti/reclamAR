@@ -23,7 +23,8 @@
      <div class="form-group mb-3">
             <label for="exampleFormControlTextarea1">Detalle:</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="reclamo.detalle" name="detalle"></textarea>
-       </div>
+            <ngb-alert *ngIf="warningMessageDetalle" type="danger" (close)="warningMessageDetalle = null">{{ warningMessageDetalle }}</ngb-alert>       
+          </div>
           <div class="form-group">
             <p> En caso de que su reclamo sea por otro motivo especificar en el detalle.
               <br> Muchas Gracias.</p>

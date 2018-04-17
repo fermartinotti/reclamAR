@@ -21,7 +21,9 @@ export class LuminariaComponent implements OnInit {
 
   //Variables para el alert
   private _success = new Subject<string>();
+  private _sucessDetalle = new Subject<string>();
   warningMessage: string;
+  warningMessageDetalle: string;
   //
 
   constructor(public reclamoService: ReclamoService, public router: Router, private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) {
@@ -34,11 +36,23 @@ export class LuminariaComponent implements OnInit {
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 5000).subscribe(() => this.warningMessage = null);
+
+    this._sucessDetalle.subscribe((message) => this.warningMessageDetalle = message);
+    debounceTime.call(this._sucessDetalle, 5000).subscribe(() => this.warningMessageDetalle = null);
   }
 
   async generarReclamo():Promise<void>{
-    if (this.reclamo.lugarDeIncidente == null){
-      this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo")
+    if (this.reclamo.lugarDeIncidente == null || this.reclamo.detalle == null || this.reclamo.detalle =="" ){
+      if(this.reclamo.lugarDeIncidente == null && (this.reclamo.detalle == null || this.reclamo.detalle =="")){
+        this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo");
+        this.mensajeAlertaDetalle("Por favor completa el detalle");
+      }
+      else{
+      if(this.reclamo.lugarDeIncidente == null){
+        this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo")
+      }
+      else{this.mensajeAlertaDetalle("Por favor completa el detalle")}
+    }
     }else{
       this.spinner.show()
       this.reclamo.setTipoDeReclamo = this.luminaria
@@ -51,7 +65,8 @@ export class LuminariaComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  }
+  
+}
 
   onClickMap(localizacion: Localizacion){
     this.reclamo.lugarDeIncidente = localizacion;
@@ -67,6 +82,10 @@ export class LuminariaComponent implements OnInit {
 
   public cambiarMensajeDeAlerta(msj : string) {
     this._success.next(msj);
+  }
+
+  public mensajeAlertaDetalle(msj:string){
+    this._sucessDetalle.next(msj);
   }
 
 }
