@@ -28,7 +28,7 @@ export class LuminariaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reclamo = new Reclamo(null,null,"","",null,null,null)
+    this.reclamo = new Reclamo(null,null,null,null,null,null,null)
     this.luminaria = new Luminaria("luminaria")
 
     // logica cierre alert
