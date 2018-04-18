@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -22,9 +21,6 @@ import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
 @JsonIgnoreProperties(value = {"new"})
 public class Reclamo  extends AbstractPersistable<Long>{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@JoinColumn(name="autor")
