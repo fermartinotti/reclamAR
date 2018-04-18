@@ -5,6 +5,8 @@ import {CrearReclamoComponent} from "../crear-reclamo/crear-reclamo.component";
 import {MisReclamosComponent} from "../mis-reclamos/mis-reclamos.component";
 import {LuminariaComponent} from "../luminaria/luminaria.component";
 import {SemaforoComponent} from "../semaforo/semaforo.component";
+import {ArboledaComponent} from "../arboleda/arboleda.component";
+import {BacheoComponent} from "../bacheo/bacheo.component";
 import {TodosLosReclamosComponent} from "../todos-los-reclamos/todos-los-reclamos.component";
 import {ReclamoComponent} from "../reclamo/reclamo.component";
 
@@ -15,6 +17,8 @@ const appRoutes: Routes = [
   {path: 'todos-los-reclamos', component: TodosLosReclamosComponent},
   {path: 'crear-reclamo/luminaria',component: LuminariaComponent},
   {path: 'crear-reclamo/semaforo',component: SemaforoComponent},
+  {path: 'crear-reclamo/arboleda',component: ArboledaComponent},
+  {path: 'crear-reclamo/bacheo',component: BacheoComponent},
   {path: '**', redirectTo: 'crear-reclamo'}
 
 ]
