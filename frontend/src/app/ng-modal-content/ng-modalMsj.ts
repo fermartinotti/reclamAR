@@ -5,7 +5,8 @@ import {Input} from "@angular/core";
   selector: 'reclamo-success',
   template: '' +
   '<p>Su reclamo se ha creado exitosamente!<br>\n' +
-  'Puede visualizar el estado de sus reclamos haciendo click <a href="/mis-reclamos/{{link}}" id="link" class="alert-link">aqui</a></p>'
+  'Reclamo numero #{{link}}<br>\n' +
+  'Puede visualizar el estado de su reclamo haciendo click <a href="/mis-reclamos/{{link}}" id="link" class="alert-link">aqui</a></p>'
 })
 
 export class ReclamoSucessComponent{
