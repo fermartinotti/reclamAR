@@ -35,10 +35,10 @@ export class LuminariaComponent implements OnInit {
 
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
-    debounceTime.call(this._success, 5000).subscribe(() => this.warningMessage = null);
+    debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
 
     this._sucessDetalle.subscribe((message) => this.warningMessageDetalle = message);
-    debounceTime.call(this._sucessDetalle, 5000).subscribe(() => this.warningMessageDetalle = null);
+    debounceTime.call(this._sucessDetalle, 2000).subscribe(() => this.warningMessageDetalle = null);
   }
 
   async generarReclamo():Promise<void>{
@@ -65,7 +65,7 @@ export class LuminariaComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  
+
 }
 
   onClickMap(localizacion: Localizacion){
