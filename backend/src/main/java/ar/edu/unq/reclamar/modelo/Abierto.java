@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @JsonIgnoreProperties(value = {"new" , "id"})
 public class Abierto extends Estado {
-	public Abierto(){};
 	
+	private static final long serialVersionUID = 1L;
+
+	public Abierto(){};
 }

@@ -17,5 +17,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
     }
 )
 public abstract class Estado extends AbstractPersistable<Long>{
+	
+	private static final long serialVersionUID = 1L;
 
 }

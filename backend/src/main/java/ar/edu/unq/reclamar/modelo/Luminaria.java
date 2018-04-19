@@ -35,7 +35,27 @@ public class Luminaria extends TipoDeReclamo{
 		this.problemaFoco = problemaFoco;
 	}
 
-	public Luminaria(){};
-	
-	
+	public Luminaria(){}
+
+	public Luminaria(boolean problemaPalo, boolean problemaFoco) {
+		super();
+		this.problemaPalo = problemaPalo;
+		this.problemaFoco = problemaFoco;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Luminaria other = (Luminaria) obj;
+		if (problemaFoco != other.problemaFoco)
+			return false;
+		if (problemaPalo != other.problemaPalo)
+			return false;
+		return true;
+	}
 }
