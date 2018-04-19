@@ -12,7 +12,7 @@ public class Semaforo extends TipoDeReclamo{
 	private static final long serialVersionUID = 1L;
 	
 	@Column
-	public boolean poblemaEstructura;
+	public boolean problemaEstructura;
 	
 	@Column
 	public boolean problemaMalFuncionamiento;
@@ -21,12 +21,12 @@ public class Semaforo extends TipoDeReclamo{
 	public boolean problemaNoFunciona;
 	
 	
-	public boolean isPoblemaEstructura() {
-		return poblemaEstructura;
+	public boolean isProblemaEstructura() {
+		return problemaEstructura;
 	}
 
 	public void setPoblemaEstructura(boolean poblemaEstructura) {
-		this.poblemaEstructura = poblemaEstructura;
+		this.problemaEstructura = poblemaEstructura;
 	}
 
 	public boolean isProblemaMalFuncionamiento() {

@@ -21,6 +21,7 @@ import { ReclamoComponent } from './reclamo/reclamo.component';
 import { SemaforoComponent } from './semaforo/semaforo.component';
 import { ArboledaComponent } from './arboleda/arboleda.component';
 import { BacheoComponent } from './bacheo/bacheo.component';
+import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BacheoComponent } from './bacheo/bacheo.component';
     TodosLosReclamosComponent,
     NgModalContentComponent,
     ReclamoMsjComponent,
+    reverseCheckboxComponent,
     MapComponent,
     ReclamoComponent,
     SemaforoComponent,

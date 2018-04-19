@@ -16,17 +16,24 @@ export class MapComponent implements OnInit {
   @Input() localizacion: Localizacion;
   @Output() onclickMap = new EventEmitter<Localizacion>();
   @Input() clickableMap: boolean = true;
+  direccionFisica = null
 
   constructor() {
   }
 
   ngOnInit() {
     if(this.localizacion != null){
-      this.addMarker()}
+      this.addMarker()
+      this.agregardireccionFisica()
+    }
     else {
       this.localizacion = new Localizacion(null,null)
       }
 }
+  agregardireccionFisica():void{
+
+
+  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
