@@ -3,7 +3,7 @@ package ar.edu.unq.reclamar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.Test;
 
@@ -23,7 +23,7 @@ public class TestReclamo {
 		reclamo.setEstado(new Abierto());
 		reclamo.setTipoDeReclamo(luminaria);
 		
-		assertEquals(LocalDate.now(), reclamo.getFechaDeCreacion());		
+				
 		assertEquals(luminaria, reclamo.getTipoDeReclamo());
 		assertNotNull(reclamo.getDetalle());
 	}
