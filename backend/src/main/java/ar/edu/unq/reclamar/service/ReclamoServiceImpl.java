@@ -1,6 +1,6 @@
 package ar.edu.unq.reclamar.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,7 +50,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Operador opLogeado = securityService.getOperadorLogeado();
 		
 		reclamo.setAutor(opLogeado);
-		reclamo.setFechaDeCreacion(LocalDate.now());
+		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
 		Abierto estado = new Abierto();
 		estadoRepository.save(estado);

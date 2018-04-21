@@ -1,6 +1,6 @@
 package ar.edu.unq.reclamar.modelo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 
 import ar.edu.unq.reclamar.utils.Localizacion;
 import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
@@ -29,7 +28,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	
 	@Column
 	@JsonSerialize(using= MiLocalDateSerializer.class)
-	LocalDate fechaDeCreacion;
+	LocalDateTime fechaDeCreacion;
 	
 	@Column
 	String detalle;
@@ -51,7 +50,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	public Reclamo(Operador autor, String mensaje) {
 	
 		this.autor = autor;
-		this.fechaDeCreacion = LocalDate.now();
+		this.fechaDeCreacion = LocalDateTime.now();
 		this.detalle = mensaje;
 	}
 		
@@ -61,10 +60,10 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	public void setAutor(Operador autor) {
 		this.autor = autor;
 	}
-	public LocalDate getFechaDeCreacion() {
+	public LocalDateTime getFechaDeCreacion() {
 		return fechaDeCreacion;
 	}
-	public void setFechaDeCreacion(LocalDate fechaDeCreacion) {
+	public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
 		this.fechaDeCreacion = fechaDeCreacion;
 	}
 	public String getDetalle() {
@@ -90,7 +89,5 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	}
 	public void setLugarDeIncidente(Localizacion lugarDeIncidente) {
 		this.lugarDeIncidente = lugarDeIncidente;
-	}
-	
-	
+	}	
 }
