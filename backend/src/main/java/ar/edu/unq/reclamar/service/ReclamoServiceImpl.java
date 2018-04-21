@@ -47,24 +47,26 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	@Transactional
 	public void agregarReclamo(Reclamo reclamo) {
-		Operador opLogeado = securityService.getOperadorLogeado();
 		
-		reclamo.setAutor(opLogeado);
-		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		try {
+			Operador opLogeado = securityService.getOperadorLogeado();
+			reclamo.setAutor(opLogeado);
+			reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
-		Abierto estado = new Abierto();
-		estadoRepository.save(estado);
+			Abierto estado = new Abierto();
+			estadoRepository.save(estado);
 		
-		reclamo.setEstado(estado);		
+			reclamo.setEstado(estado);		
 		
-		localizacionRepository.save(reclamo.getLugarDeIncidente());
-		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
+			localizacionRepository.save(reclamo.getLugarDeIncidente());
+			tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
 		
-		repository.save(reclamo);
-		opLogeado.getReclamos().add(reclamo);
-		operadorRepository.save(opLogeado);
+			repository.save(reclamo);
+			opLogeado.getReclamos().add(reclamo);
+			operadorRepository.save(opLogeado);
 		
-		
+		}
+		catch(Exception e) {}
 	}
 
 	@Override

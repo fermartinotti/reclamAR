@@ -3,8 +3,6 @@ package ar.edu.unq.reclamar;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.time.LocalDateTime;
-
 import org.junit.Test;
 
 import ar.edu.unq.reclamar.builders.BuilderLuminaria;
