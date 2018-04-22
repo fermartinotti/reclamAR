@@ -1,0 +1,21 @@
+html,body {
+  height:100%;
+}
+
+.index-main{
+  background: url('../../assets/img/buenosaires.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.header-tittle {
+  background-color: #adb5bd;
+  opacity: 0.8;
+}
+
+
+.align-center{
+  align-content: center;
+}
