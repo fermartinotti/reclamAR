@@ -109,5 +109,5 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		}
 		
 		this.lugarDeIncidente = lugarDeIncidente;
-	}	
+	}
 }
