@@ -1,6 +1,6 @@
 package ar.edu.unq.reclamar.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
@@ -46,11 +47,10 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 	@Override
 	@Transactional
-	public void agregarReclamo(Reclamo reclamo) {
+	public void agregarReclamo(Reclamo reclamo) throws DatoInvalidoException {
 		Operador opLogeado = securityService.getOperadorLogeado();
-		
 		reclamo.setAutor(opLogeado);
-		reclamo.setFechaDeCreacion(LocalDate.now());
+		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
 		Abierto estado = new Abierto();
 		estadoRepository.save(estado);
@@ -63,7 +63,6 @@ public class ReclamoServiceImpl implements ReclamoService {
 		repository.save(reclamo);
 		opLogeado.getReclamos().add(reclamo);
 		operadorRepository.save(opLogeado);
-		
 		
 	}
 
