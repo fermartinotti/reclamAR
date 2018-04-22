@@ -13,10 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonIgnoreProperties(value = {"new", "id"})
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-    @Type(value = Luminaria.class, name = "luminaria"),
-    @Type(value = Bacheo.class, name = "bacheo"),
-    @Type(value = Arboleda.class, name = "arboleda"),
-    @Type(value = Semaforo.class, name = "semaforo")
+    @Type(value = Luminaria.class, name = "Luminaria"),
+    @Type(value = Bacheo.class, name = "Bacheo"),
+    @Type(value = Arboleda.class, name = "Arboleda"),
+    @Type(value = Semaforo.class, name = "Semaforo")
     }
 )
 public abstract class TipoDeReclamo extends AbstractPersistable<Long>{

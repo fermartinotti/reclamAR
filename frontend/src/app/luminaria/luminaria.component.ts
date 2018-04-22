@@ -31,7 +31,7 @@ export class LuminariaComponent implements OnInit {
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
-    this.luminaria = new Luminaria("luminaria")
+    this.luminaria = new Luminaria("Luminaria")
 
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);

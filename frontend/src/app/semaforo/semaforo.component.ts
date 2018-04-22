@@ -26,18 +26,18 @@ export class SemaforoComponent implements OnInit {
   warningMessage: string;
   warningMessageDetalle: string;
   //
-  
+
   constructor(public reclamoService: ReclamoService, public router: Router, private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
-    this.semaforo = new Semaforo("semaforo")
+    this.semaforo = new Semaforo("Semaforo")
 
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 5000).subscribe(() => this.warningMessage = null);
- 
+
     this._sucessDetalle.subscribe((message) => this.warningMessageDetalle = message);
     debounceTime.call(this._sucessDetalle, 5000).subscribe(() => this.warningMessageDetalle = null);
   }
@@ -67,7 +67,7 @@ export class SemaforoComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  
+
 }
 
   onClickMap(localizacion: Localizacion){

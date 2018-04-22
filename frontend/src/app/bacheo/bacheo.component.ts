@@ -32,7 +32,7 @@ export class BacheoComponent implements OnInit {
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
-    this.bacheo = new Bacheo("bacheo")
+    this.bacheo = new Bacheo("Bacheo")
 
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
@@ -66,7 +66,7 @@ export class BacheoComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  
+
 }
 
   onClickMap(localizacion: Localizacion){

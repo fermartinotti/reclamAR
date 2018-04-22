@@ -31,7 +31,7 @@ export class ArboledaComponent implements OnInit {
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
-    this.arboleda = new Arboleda("arboleda")
+    this.arboleda = new Arboleda("Arboleda")
 
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
@@ -65,7 +65,7 @@ export class ArboledaComponent implements OnInit {
       }
     }
     this.spinner.hide()
-  
+
 }
 
   onClickMap(localizacion: Localizacion){
