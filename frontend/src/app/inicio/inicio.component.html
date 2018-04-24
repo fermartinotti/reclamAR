@@ -14,11 +14,10 @@
 
         <form class="form-inline justify-content-center">
           <div class="input-group my-1">
-            <input type="text" class="form-control mr-3 my-1" placeholder="Numero de reclamo" id="inlineFormInputGroup">
+            <input #id type="number" class="form-control mr-3 my-1" placeholder="Numero de reclamo" id="inlineFormInputGroup" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
           </div>
-          <button type="submit" class="btn btn-secondary">Buscar reclamo</button>
+          <button type="submit" class="btn btn-secondary" (click)="buscarReclamo(id.value)">Buscar reclamo</button>
         </form>
-        <!-- <a href="#" class="btn btn-lg mx-1 btn-secondary">Crear Reclamo!</a>-->
       </div>
     </div>
   </div>
