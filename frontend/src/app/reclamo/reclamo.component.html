@@ -1,6 +1,6 @@
-<body>
-<main role="main" class="container">
-  <div class="align-items-center bg-white rounded box-shadow">
+<body class="bg-gris">
+<main role="main" class="container ">
+  <div class="align-items-center bg-white rounded box-shadow head">
     <div class="row" >
       <div class="col-md-4">
         <app-map #map *ngIf="reclamo.lugarDeIncidente"
@@ -8,7 +8,7 @@
         </app-map>
       </div>
       <div class="col-md-8">
-        <div class="container" *ngIf="reclamo">
+        <div class="container " *ngIf="reclamo">
           <div class="card-body" >
             <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
             <h6>Reclamo numero #{{reclamo.id}}</h6>
