@@ -1,35 +1,3 @@
-
-<!--<div class="container h-100">
-  <div class="row justify-content-center align-items-center">
-
-    <div class="card" style="width: 18rem;">
-      <app-map #map *ngIf="reclamo.lugarDeIncidente"
-               [clickableMap]="false" [localizacion]="reclamo.lugarDeIncidente">
-      </app-map>
-      <div class="container" *ngIf="reclamo">
-        <div class="card-body" >
-          <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
-          <h6>Reclamo numero #{{reclamo.id}}</h6>
-          Detalle del reclamo:
-          <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">
-            <reverse-checkbox-luminaria    *ngSwitchCase="'luminaria'"    [reclamo]="reclamo"></reverse-checkbox-luminaria>
-            <reverse-checkbox-arboleda      *ngSwitchCase="'arboleda'"    [reclamo]="reclamo"></reverse-checkbox-arboleda>
-            <reverse-checkbox-bacheo      *ngSwitchCase="'bacheo'"    [reclamo]="reclamo"></reverse-checkbox-bacheo>
-            <reverse-checkbox-semaforo      *ngSwitchCase="'semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>          </div>
-          <p class="card-text">{{reclamo.detalle}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Iniciado el dia: {{reclamo.fechaDeCreacion}}</li>
-          <li class="list-group-item" *ngIf="reclamo.estado">Su reclamo se encuentra: {{reclamo.estado.type}}</li>
-        </ul>
-        <div class="card-body">
-          <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>-->
 <body>
 <main role="main" class="container">
   <div class="align-items-center bg-white rounded box-shadow">
