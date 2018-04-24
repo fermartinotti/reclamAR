@@ -23,5 +23,13 @@ export class ReclamoErrorComponent{
 
 }
 
+@Component({
+  selector: 'error-buscando-reclamo',
+  template: 'Numero de reclamo incorrecto'
+})
+export  class ErrorBuscandoReclamoComponent{
+
+}
+
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent];
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent];

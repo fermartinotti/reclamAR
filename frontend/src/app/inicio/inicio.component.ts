@@ -17,7 +17,6 @@ export class InicioComponent implements OnInit {
   }
 
   buscarReclamo(id:number):void {
-  // validar primero o lanzar error
     this.router.navigate(['mis-reclamos', id])
   }
 }

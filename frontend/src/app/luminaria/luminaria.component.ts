@@ -26,7 +26,8 @@ export class LuminariaComponent implements OnInit {
   warningMessageDetalle: string;
   //
 
-  constructor(public reclamoService: ReclamoService, public router: Router, private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) {
+  constructor(public reclamoService: ReclamoService, public router: Router,
+              private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) {
   }
 
   ngOnInit() {
