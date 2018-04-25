@@ -23,8 +23,8 @@ export class ReclamoService {
     return await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo).toPromise()
   }
 
-  public buscarReclamo(id: number): Observable<Reclamo>{
-    return this.httpClient.get(`http://localhost:8080/api/rest/reclamos/${id}`)
-      .map(reclamo => Reclamo.crearDesdeJson(reclamo))
+  async buscarReclamo(id: number): Promise<Reclamo>{
+    return await this.httpClient.get(`http://localhost:8080/api/rest/reclamos/${id}`)
+      .map(reclamo => Reclamo.crearDesdeJson(reclamo)).toPromise()
   }
 }

@@ -9,8 +9,10 @@ import {ArboledaComponent} from "../arboleda/arboleda.component";
 import {BacheoComponent} from "../bacheo/bacheo.component";
 import {TodosLosReclamosComponent} from "../todos-los-reclamos/todos-los-reclamos.component";
 import {ReclamoComponent} from "../reclamo/reclamo.component";
+import {InicioComponent} from "../inicio/inicio.component";
 
 const appRoutes: Routes = [
+  {path: 'inicio', component:InicioComponent},
   {path: 'mis-reclamos', component: MisReclamosComponent},
   {path: 'mis-reclamos/:id', component: ReclamoComponent},
   {path: 'crear-reclamo', component: CrearReclamoComponent},
@@ -19,7 +21,7 @@ const appRoutes: Routes = [
   {path: 'crear-reclamo/semaforo',component: SemaforoComponent},
   {path: 'crear-reclamo/arboleda',component: ArboledaComponent},
   {path: 'crear-reclamo/bacheo',component: BacheoComponent},
-  {path: '**', redirectTo: 'crear-reclamo'}
+  {path: '**', redirectTo: 'inicio'}
 
 ]
 

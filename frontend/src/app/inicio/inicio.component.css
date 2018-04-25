@@ -1,0 +1,23 @@
+html,body {
+  height:100%;
+}
+
+.index-main{
+  background: url('../../assets/img/buenosaires-header.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.header-tittle {
+  background: rgba(0, 0, 0, 0.4);
+  margin: 2%;
+  padding: 1%;
+}
+
+span.icon:before {
+  font-family: FontAwesome;
+  content: "\f015";
+}
+

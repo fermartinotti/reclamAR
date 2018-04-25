@@ -1,35 +1,64 @@
-
-<div class="container h-100">
-  <div class="row justify-content-center align-items-center">
-
-    <div class="card" style="width: 18rem;">
-      <app-map #map *ngIf="reclamo.lugarDeIncidente"
-               [clickableMap]="false" [localizacion]="reclamo.lugarDeIncidente">
-      </app-map>
-      <div class="container" *ngIf="reclamo">
-        <div class="card-body" >
-          <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
-          <h6>Reclamo numero #{{reclamo.id}}</h6>
-          Detalle del reclamo:
-          <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">
-            <reverse-checkbox-luminaria    *ngSwitchCase="'luminaria'"    [reclamo]="reclamo"></reverse-checkbox-luminaria>
-            <reverse-checkbox-arboleda      *ngSwitchCase="'arboleda'"    [reclamo]="reclamo"></reverse-checkbox-arboleda>
-            <reverse-checkbox-bacheo      *ngSwitchCase="'bacheo'"    [reclamo]="reclamo"></reverse-checkbox-bacheo>
-            <reverse-checkbox-semaforo      *ngSwitchCase="'semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>          </div>
-          <p class="card-text">{{reclamo.detalle}}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Iniciado el dia: {{reclamo.fechaDeCreacion}}hs</li>
-          <li class="list-group-item" *ngIf="reclamo.estado">Su reclamo se encuentra: {{reclamo.estado.type}}</li>
-        </ul>
-        <div class="card-body">
-          <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
+<body class="bg-gris">
+<main role="main" class="container ">
+  <div class="align-items-center bg-white rounded box-shadow head">
+    <div class="row" >
+      <div class="col-md-4">
+        <app-map #map *ngIf="reclamo.lugarDeIncidente"
+                 [clickableMap]="false" [localizacion]="reclamo.lugarDeIncidente">
+        </app-map>
+      </div>
+      <div class="col-md-8">
+        <div class="container " *ngIf="reclamo">
+          <div class="card-body" >
+            <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
+            <h6>Reclamo numero #{{reclamo.id}}</h6>
+            Detalle del reclamo:
+            <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">
+              <reverse-checkbox-luminaria    *ngSwitchCase="'luminaria'"    [reclamo]="reclamo"></reverse-checkbox-luminaria>
+              <reverse-checkbox-arboleda      *ngSwitchCase="'arboleda'"    [reclamo]="reclamo"></reverse-checkbox-arboleda>
+              <reverse-checkbox-bacheo      *ngSwitchCase="'bacheo'"    [reclamo]="reclamo"></reverse-checkbox-bacheo>
+              <reverse-checkbox-semaforo      *ngSwitchCase="'semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>          </div>
+            <p class="card-text">{{reclamo.detalle}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Iniciado el dia: {{reclamo.fechaDeCreacion}}</li>
+            <li class="list-group-item" *ngIf="reclamo.estado">Su reclamo se encuentra: {{reclamo.estado.type}}</li>
+          </ul>
+          <div class="card-body">
+            <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
-</div>
 
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Ultimas actualizaciones</h6>
+    <div class="media text-muted pt-3">
+    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+      <strong class="d-block text-gray-dark">Reclamo cerrado</strong>
+      Su estado ahora es cerrado.
+      <i>24/04/2018</i>
+    </p>
+  </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Reclamo abierto</strong>
+        Se paso su estado a abierto
+      </p>
+    </div>
+    <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <strong class="d-block text-gray-dark">Reclamo abierto</strong>
+        Se paso su estado a abierto
+      </p>
+    </div>
 
+    <small class="d-block text-right mt-3">
+      <a href="#">mas actualizaciones</a>
+    </small>
+  </div>
+
+</main>
+</body>
 
