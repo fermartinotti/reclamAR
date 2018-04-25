@@ -27,16 +27,16 @@ export class ReclamoComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show()
-    try{
-      /*var id = this.ruta.paramMap.switchMap(paramMap => paramMap.get('id'))
-      var reclamo = this.reclamoService.buscarReclamo(id);*/
     this.ruta.paramMap
       .switchMap( paramMap => this.reclamoService.buscarReclamo(+paramMap.get('id')))
-      .subscribe(reclamo => this.reclamo = reclamo)
-    }catch(error){
-      this.openDlgError("error-bucando-reclamo")
-      this.router.navigate(['']);
-    }
+      .subscribe(data => {this.reclamo = data},
+        err => {
+          if(err.status === 404) {
+            this.openDlgError("errorBuscando")
+            this.router.navigate(['']);
+          }
+        }
+      )
     this.spinner.hide()
   }
 

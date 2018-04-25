@@ -6,7 +6,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-ng-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Reclamo</h4>
+      <h4 class="modal-title">{{tittle}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -15,7 +15,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
       <div [ngSwitch]="status">
         <reclamo-success    *ngSwitchCase="'success'"    [link]="link"></reclamo-success>
         <reclamo-error      *ngSwitchCase="'error'"    ></reclamo-error>
-        <error-buscando-reclamo *ngSwitchCase="'error-buscando-reclamo'"> </error-buscando-reclamo>
+        <error-buscando-reclamo *ngSwitchCase="'errorBuscando'"> </error-buscando-reclamo>
       </div>
     </div>
     <div class="modal-footer">
@@ -26,6 +26,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class NgModalContentComponent{
   @Input() link;
   @Input() status;
+  @Input() tittle = "Reclamo";
 
   constructor(public activeModal: NgbActiveModal) { }
 

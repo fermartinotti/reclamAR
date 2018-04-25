@@ -25,10 +25,10 @@ export class ReclamoErrorComponent{
 
 @Component({
   selector: 'error-buscando-reclamo',
-  template: 'Numero de reclamo incorrecto'
+  template: 'No existe ningun reclamo con este numero de seguimiento'
 })
 export  class ErrorBuscandoReclamoComponent{
-
+  @Input() tittle;
 }
 
 export const ReclamoMsjComponent =
