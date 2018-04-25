@@ -1,6 +1,6 @@
 package ar.edu.unq.reclamar.modelo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-
+import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.utils.Localizacion;
 import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
 
@@ -29,7 +29,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	
 	@Column
 	@JsonSerialize(using= MiLocalDateSerializer.class)
-	LocalDate fechaDeCreacion;
+	LocalDateTime fechaDeCreacion;
 	
 	@Column
 	String detalle;
@@ -51,46 +51,63 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	public Reclamo(Operador autor, String mensaje) {
 	
 		this.autor = autor;
-		this.fechaDeCreacion = LocalDate.now();
+		this.fechaDeCreacion = LocalDateTime.now();
 		this.detalle = mensaje;
 	}
 		
 	public Operador getAutor() {
 		return autor;
 	}
+	
 	public void setAutor(Operador autor) {
 		this.autor = autor;
 	}
-	public LocalDate getFechaDeCreacion() {
+	
+	public LocalDateTime getFechaDeCreacion() {
 		return fechaDeCreacion;
 	}
-	public void setFechaDeCreacion(LocalDate fechaDeCreacion) {
+	
+	public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
 		this.fechaDeCreacion = fechaDeCreacion;
 	}
+	
 	public String getDetalle() {
 		return detalle;
 	}
-	public void setDetalle(String detalle) {
+	
+	public void setDetalle(String detalle) throws DatoInvalidoException {
+		if(detalle == null || detalle.isEmpty()) {
+			throw new DatoInvalidoException("El detalle no ha sido ingresado");
+		}
+		
 		this.detalle = detalle;
 	}
+	
 	public Estado getEstado() {
 		return estado;
 	}
+	
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
+	
 	public TipoDeReclamo getTipoDeReclamo() {
 		return tipoDeReclamo;
 	}
+	
 	public void setTipoDeReclamo(TipoDeReclamo tipoDeReclamo) {
 		this.tipoDeReclamo = tipoDeReclamo;
 	}
+	
 	public Localizacion getLugarDeIncidente() {
 		return lugarDeIncidente;
 	}
-	public void setLugarDeIncidente(Localizacion lugarDeIncidente) {
+	
+	public void setLugarDeIncidente(Localizacion lugarDeIncidente) throws DatoInvalidoException {
+		if(lugarDeIncidente == null) {
+			throw new DatoInvalidoException("El lugar del incidente no puede ser null");
+		}
+		
 		this.lugarDeIncidente = lugarDeIncidente;
 	}
-	
-	
 }
