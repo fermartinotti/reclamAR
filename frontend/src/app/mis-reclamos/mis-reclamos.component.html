@@ -1,3 +1,21 @@
-<p>
-  mis-reclamos works!
-</p>
+<main role="main" class="container">
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Mis reclamos</h6>
+    <div class="media text-muted pt-3" *ngFor="let r of reclamos">
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="d-block text-gray-dark"> Reclamo #{{r.id}}</strong>
+          <a href="/mis-reclamos/{{r.id}}">Ver reclamo</a>
+        </div>
+        <span class="d-block">
+          reclamo de {{r.tipoDeReclamo.type}}. Creado el: <i>{{r.fechaDeCreacion}} Hs</i>
+        </span>
+      </div>
+    </div>
+
+    <small class="d-block text-right mt-3">
+      <a href="#">Mas reclamos</a>
+    </small>
+  </div>
+
+</main>

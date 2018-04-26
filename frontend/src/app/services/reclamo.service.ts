@@ -27,4 +27,8 @@ export class ReclamoService {
     return await this.httpClient.get(`http://localhost:8080/api/rest/reclamos/${id}`)
       .map(reclamo => Reclamo.crearDesdeJson(reclamo)).toPromise()
   }
+
+  async misReclamos(): Promise<Array<Reclamo>>{
+    return await this.httpClient.get<Array<Reclamo>>('http://localhost:8080/api/rest/reclamos/').toPromise()
+  }
 }
