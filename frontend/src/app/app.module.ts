@@ -23,6 +23,7 @@ import { ArboledaComponent } from './arboleda/arboleda.component';
 import { BacheoComponent } from './bacheo/bacheo.component';
 import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 import { InicioComponent } from './inicio/inicio.component';
+import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { InicioComponent } from './inicio/inicio.component';
     SemaforoComponent,
     ArboledaComponent,
     BacheoComponent,
-    InicioComponent
+    InicioComponent,
+    NuevoReclamoComponent
   ],
   imports: [
     BrowserModule,
