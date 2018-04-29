@@ -14,9 +14,9 @@ import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-
   templateUrl: './nuevo-reclamo.component.html',
   styleUrls: ['./nuevo-reclamo.component.css']
 })
+
 export class NuevoReclamoComponent implements OnInit {
   reclamo: Reclamo;
-
   //Variables para el alert
   private _success = new Subject<string>();
   private _sucessDetalle = new Subject<string>();

@@ -8,13 +8,13 @@ import { Router} from "@angular/router";
   styleUrls: ['./luminaria.component.css']
 })
 export class LuminariaComponent implements OnInit {
-  luminaria: Luminaria;
+  tipoDeReclamo: Luminaria;
 
   constructor(public router: Router) {
   }
 
   ngOnInit() {
-    this.luminaria = new Luminaria("Luminaria")
+    this.tipoDeReclamo = new Luminaria("Luminaria")
   }
 
 
