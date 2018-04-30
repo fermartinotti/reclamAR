@@ -10,7 +10,7 @@
       <div class="col-md-8">
         <div class="container " *ngIf="reclamo">
           <div class="card-body" >
-            <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo">{{reclamo.tipoDeReclamo.type}}</h5>
+            <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo"></h5>
             <h6>Reclamo numero #{{reclamo.id}}</h6>
             <br><h6>Problema:</h6>
             <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">

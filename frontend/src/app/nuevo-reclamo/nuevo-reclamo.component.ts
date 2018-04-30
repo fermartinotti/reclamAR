@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewChildren, QueryList, Injector } from '@angular/core';
+import {Component, OnInit, ViewChild, ViewChildren, QueryList, Injector, Input} from '@angular/core';
 import { Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
 import {Localizacion} from "../model/localizacion"
@@ -20,8 +20,9 @@ import { Subscription} from "rxjs/Subscription";
 
 export class NuevoReclamoComponent implements OnInit {
   reclamo: Reclamo;
-  tipoDeReclamo : TipoDeReclamo;
+  @Input() tipoDeReclamo : TipoDeReclamo;
   subscription: Subscription;
+  nombreTipoDeReclamo: String
 
   //Variables para el alert
   private _success = new Subject<string>();
@@ -36,17 +37,19 @@ export class NuevoReclamoComponent implements OnInit {
     this.subscription = this.ds.getData().subscribe(x => { this.tipoDeReclamo = x;
     });
 
+    // FIX para poner el nombre del tipo de reclamo
+    this.activatedRoute.children.pop().url.subscribe(resp => this.nombreTipoDeReclamo = resp.toString())
   }
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
-
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
 
     this._sucessDetalle.subscribe((message) => this.warningMessageDetalle = message);
     debounceTime.call(this._sucessDetalle, 2000).subscribe(() => this.warningMessageDetalle = null);
+
   }
 
   ngOnDestroy() {
