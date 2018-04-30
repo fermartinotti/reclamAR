@@ -23,6 +23,7 @@ export class NuevoReclamoComponent implements OnInit {
   @Input() tipoDeReclamo : TipoDeReclamo;
   subscription: Subscription;
   nombreTipoDeReclamo: String
+  hayReclamoCreado: boolean
 
   //Variables para el alert
   private _success = new Subject<string>();
@@ -39,6 +40,8 @@ export class NuevoReclamoComponent implements OnInit {
 
     // FIX para poner el nombre del tipo de reclamo
     this.activatedRoute.children.pop().url.subscribe(resp => this.nombreTipoDeReclamo = resp.toString())
+
+    this.reclamoService.misReclamos().then(resp=> this.hayReclamoCreado= resp.length >0)
   }
 
   ngOnInit() {
