@@ -17,19 +17,19 @@ export class CrearReclamoComponent implements OnInit {
   }
 
   public goCrearLuminaria(): void{
-    this.router.navigate(['crear-reclamo', 'luminaria']);
+    this.router.navigate(['nuevo-reclamo', 'luminaria']);
   }
 
   public goCrearSemaforo(): void{
-    this.router.navigate(['crear-reclamo', 'semaforo']);
+    this.router.navigate(['nuevo-reclamo', 'semaforo']);
   }
 
   public goCrearBacheo(): void{
-    this.router.navigate(['crear-reclamo', 'bacheo']);
+    this.router.navigate(['nuevo-reclamo', 'bacheo']);
   }
 
   public goCrearArboleda(): void{
-    this.router.navigate(['crear-reclamo', 'arboleda']);
+    this.router.navigate(['nuevo-reclamo', 'arboleda']);
   }
 
 }

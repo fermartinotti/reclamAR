@@ -23,6 +23,8 @@ import { ArboledaComponent } from './arboleda/arboleda.component';
 import { BacheoComponent } from './bacheo/bacheo.component';
 import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 import { InicioComponent } from './inicio/inicio.component';
+import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
+import {DataSenderService} from "./services/dataSender.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { InicioComponent } from './inicio/inicio.component';
     SemaforoComponent,
     ArboledaComponent,
     BacheoComponent,
-    InicioComponent
+    InicioComponent,
+    NuevoReclamoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { InicioComponent } from './inicio/inicio.component';
     Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
-    ReclamoService
+    ReclamoService,
+    DataSenderService
   ],
   bootstrap: [AppComponent],
   entryComponents: [NgModalContentComponent],

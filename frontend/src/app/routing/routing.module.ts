@@ -10,6 +10,7 @@ import {BacheoComponent} from "../bacheo/bacheo.component";
 import {TodosLosReclamosComponent} from "../todos-los-reclamos/todos-los-reclamos.component";
 import {ReclamoComponent} from "../reclamo/reclamo.component";
 import {InicioComponent} from "../inicio/inicio.component";
+import {NuevoReclamoComponent} from "../nuevo-reclamo/nuevo-reclamo.component";
 
 const appRoutes: Routes = [
   {path: 'inicio', component:InicioComponent},
@@ -17,12 +18,13 @@ const appRoutes: Routes = [
   {path: 'mis-reclamos/:id', component: ReclamoComponent},
   {path: 'crear-reclamo', component: CrearReclamoComponent},
   {path: 'todos-los-reclamos', component: TodosLosReclamosComponent},
-  {path: 'crear-reclamo/luminaria',component: LuminariaComponent},
-  {path: 'crear-reclamo/semaforo',component: SemaforoComponent},
-  {path: 'crear-reclamo/arboleda',component: ArboledaComponent},
-  {path: 'crear-reclamo/bacheo',component: BacheoComponent},
+  {path: 'nuevo-reclamo', component: NuevoReclamoComponent, children:[
+    {path: 'luminaria', component: LuminariaComponent},
+    {path: 'semaforo', component: SemaforoComponent},
+    {path: 'bacheo', component: BacheoComponent},
+    {path: 'arboleda', component: ArboledaComponent}
+  ]},
   {path: '**', redirectTo: 'inicio'}
-
 ]
 
 @NgModule({
