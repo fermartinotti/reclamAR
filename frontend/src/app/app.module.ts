@@ -24,6 +24,7 @@ import { BacheoComponent } from './bacheo/bacheo.component';
 import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 import { InicioComponent } from './inicio/inicio.component';
 import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
+import {DataSenderService} from "./services/dataSender.service";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
     Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [
-    ReclamoService
+    ReclamoService,
+    DataSenderService
   ],
   bootstrap: [AppComponent],
   entryComponents: [NgModalContentComponent],

@@ -9,6 +9,7 @@ import {debounceTime} from 'rxjs/operator/debounceTime';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
 import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
+import {DataSenderService} from "../services/dataSender.service";
 
 @Component({
   selector: 'app-bacheo',
@@ -18,11 +19,16 @@ import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-
 export class BacheoComponent implements OnInit {
   tipoDeReclamo: Bacheo;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private ds: DataSenderService) {
   }
 
 
   ngOnInit() {
     this.tipoDeReclamo = new Bacheo("Bacheo")
+    this.ds.sendData(this.tipoDeReclamo)
+  }
+
+  sendData(){
+    this.ds.sendData(this.tipoDeReclamo)
   }
 }

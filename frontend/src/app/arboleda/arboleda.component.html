@@ -1,10 +1,10 @@
 
       <div class="form-check mb-3">
-        <input id="problemaPoda" class="form-check-input" type="checkbox" name="problemaPoda" [(ngModel)]="tipoDeReclamo.problemaPoda" >
+        <input id="problemaPoda" class="form-check-input" type="checkbox" name="problemaPoda" [(ngModel)]="tipoDeReclamo.problemaPoda" (change)="sendData()" >
         <label class="form-check-label">Poda</label>
       </div>
 
       <div class="form-check mb-3">
-        <input id="problemaCaida" class="form-check-input" type="checkbox" name="problemaCaida" [(ngModel)]="tipoDeReclamo.problemaCaida" >
+        <input id="problemaCaida" class="form-check-input" type="checkbox" name="problemaCaida" [(ngModel)]="tipoDeReclamo.problemaCaida" (change)="sendData()">
         <label class="form-check-label">Caida</label>
       </div>

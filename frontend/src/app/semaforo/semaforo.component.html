@@ -1,15 +1,15 @@
 
       <div class="form-check mb-3">
-        <input id="problemaEstructura" class="form-check-input" type="checkbox" name="problemaEstructura" [(ngModel)]="tipoDeReclamo.problemaEstructura" >
+        <input id="problemaEstructura" class="form-check-input" type="checkbox" name="problemaEstructura" [(ngModel)]="tipoDeReclamo.problemaEstructura" (change)="sendData()">
         <label class="form-check-label">Problema en la estructura</label>
       </div>
 
       <div class="form-check mb-3">
-        <input id="problemaMalFuncionamiento" class="form-check-input" type="checkbox" name="problemaMalFuncionamiento" [(ngModel)]="tipoDeReclamo.problemaMalFuncionamiento" >
+        <input id="problemaMalFuncionamiento" class="form-check-input" type="checkbox" name="problemaMalFuncionamiento" [(ngModel)]="tipoDeReclamo.problemaMalFuncionamiento" (change)="sendData()">
         <label class="form-check-label">Mal funcionamiento</label>
       </div>
 
       <div class="form-check mb-3">
-        <input id="problemaNoFunciona" class="form-check-input" type="checkbox" name="problemaNoFunciona" [(ngModel)]="tipoDeReclamo.problemaNoFunciona" >
+        <input id="problemaNoFunciona" class="form-check-input" type="checkbox" name="problemaNoFunciona" [(ngModel)]="tipoDeReclamo.problemaNoFunciona" (change)="sendData()">
         <label class="form-check-label">No funciona</label>
       </div>

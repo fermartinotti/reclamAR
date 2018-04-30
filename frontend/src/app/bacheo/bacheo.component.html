@@ -1,4 +1,4 @@
       <div class="form-check mb-3">
-        <input id="hundimientoDelPavimento" class="form-check-input" type="checkbox" name="hundimientoDelPavimento" [(ngModel)]="tipoDeReclamo.hundimientoDelPavimento" >
+        <input id="hundimientoDelPavimento" class="form-check-input" type="checkbox" name="hundimientoDelPavimento" [(ngModel)]="tipoDeReclamo.hundimientoDelPavimento" (change)="sendData()">
         <label class="form-check-label">Hundimiento del pavimento</label>
       </div>

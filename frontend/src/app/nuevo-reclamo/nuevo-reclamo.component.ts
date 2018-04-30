@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList, Injector } from '@angular/core';
 import { Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
 import {Localizacion} from "../model/localizacion"
-import { Router} from "@angular/router";
+import {Router, RouterOutlet, ActivatedRoute} from "@angular/router";
 import {Subject} from 'rxjs/Subject';
 import {debounceTime} from 'rxjs/operator/debounceTime';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
-import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
+import {Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
+import {TipoDeReclamo} from "../model/tipoDeReclamo";
+import {DataSenderService} from "../services/dataSender.service";
+import { Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-nuevo-reclamo',
@@ -17,6 +20,9 @@ import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-
 
 export class NuevoReclamoComponent implements OnInit {
   reclamo: Reclamo;
+  tipoDeReclamo : TipoDeReclamo;
+  subscription: Subscription;
+
   //Variables para el alert
   private _success = new Subject<string>();
   private _sucessDetalle = new Subject<string>();
@@ -24,7 +30,13 @@ export class NuevoReclamoComponent implements OnInit {
   warningMessageDetalle: string;
 
   constructor( public reclamoService: ReclamoService, public router: Router,
-               private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService) { }
+               private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService,
+               private activatedRoute: ActivatedRoute, private ds: DataSenderService) {
+
+    this.subscription = this.ds.getData().subscribe(x => { this.tipoDeReclamo = x;
+    });
+
+  }
 
   ngOnInit() {
     this.reclamo = new Reclamo(null,null,null,null,null,null,null)
@@ -35,6 +47,10 @@ export class NuevoReclamoComponent implements OnInit {
 
     this._sucessDetalle.subscribe((message) => this.warningMessageDetalle = message);
     debounceTime.call(this._sucessDetalle, 2000).subscribe(() => this.warningMessageDetalle = null);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   async generarReclamo():Promise<void>{
@@ -51,8 +67,9 @@ export class NuevoReclamoComponent implements OnInit {
       }
     }else{
       this.spinner.show()
-      // ACA ASIGNAR EL TIPO DE RECLAMO
-      /*this.reclamo.setTipoDeReclamo =*/
+      // SE ACTUALIZA SOLO EL TIPO DE RECLAMO GRACIAS A "DATA SENDER SERVICE"
+      this.reclamo.setTipoDeReclamo = this.tipoDeReclamo
+
       try{
         var link = await this.reclamoService.generarReclamo(this.reclamo).then(resp=> Reclamo.crearDesdeJson(resp).id)
         console.log(link)
