@@ -31,4 +31,8 @@ export class ReclamoService {
   async misReclamos(): Promise<Array<Reclamo>>{
     return await this.httpClient.get<Array<Reclamo>>('http://localhost:8080/api/rest/reclamos/').toPromise()
   }
+
+  async todosLosReclamos(): Promise<Array<Reclamo>>{
+    return await this.httpClient.get<Array<Reclamo>>('http://localhost:8080/api/rest/reclamos/todos').toPromise()
+  }
 }
