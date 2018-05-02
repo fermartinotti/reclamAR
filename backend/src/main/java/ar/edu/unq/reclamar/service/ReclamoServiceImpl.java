@@ -70,6 +70,11 @@ public class ReclamoServiceImpl implements ReclamoService {
 	public Optional<Reclamo> getReclamo(Long id) {
 		return Optional.ofNullable(repository.findOne(id));
 	}
+
+	@Override
+	public List<Reclamo> todosLosReclamos() {
+		return (List<Reclamo>) repository.findAll();
+	}
 	
 
 }
