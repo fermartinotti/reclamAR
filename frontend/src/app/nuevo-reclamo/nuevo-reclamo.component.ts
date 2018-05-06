@@ -21,7 +21,7 @@ import { Subscription} from "rxjs/Subscription";
 export class NuevoReclamoComponent implements OnInit {
   reclamo: Reclamo;
   @Input() tipoDeReclamo : TipoDeReclamo;
-  subscription: Subscription;
+  subscription: Subscription; // Para obtener el dato del child, en este caso cada tipo de reclamo en particular.
   nombreTipoDeReclamo: String
   hayReclamoCreado: boolean
 
@@ -35,8 +35,7 @@ export class NuevoReclamoComponent implements OnInit {
                private modalService: NgbModal,  private spinner: Ng4LoadingSpinnerService,
                private activatedRoute: ActivatedRoute, private ds: DataSenderService) {
 
-    this.subscription = this.ds.getData().subscribe(x => { this.tipoDeReclamo = x;
-    });
+    this.subscription = this.ds.getData().subscribe(x => { this.tipoDeReclamo = x});
 
     // FIX para poner el nombre del tipo de reclamo
     this.activatedRoute.children.pop().url.subscribe(resp => this.nombreTipoDeReclamo = resp.toString())
