@@ -25,6 +25,7 @@ import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 import { InicioComponent } from './inicio/inicio.component';
 import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
 import {DataSenderService} from "./services/dataSender.service";
+import { HttpModule } from '@angular/http'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {DataSenderService} from "./services/dataSender.service";
     NuevoReclamoComponent
   ],
   imports: [
+    HttpModule, 
     BrowserModule,
 	CommonModule,
     RoutingModule,
