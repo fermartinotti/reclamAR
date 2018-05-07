@@ -58,21 +58,28 @@ export class NuevoReclamoComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  manejadorLugarDeIncidente(){
+    let lugarIncidente = this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica);
+    switch (lugarIncidente) {
+      case true:
+        this.cambiarMensajeDeAlerta("Por favor seleccione una ubicacion dentro del partido de Quilmes");
+    }
+  }
+
+  manejadorErrorDetalle(){
+    let error = this.reclamo.detalle == null || this.reclamo.detalle == "";
+    switch(error){
+    case true:
+          this.mensajeAlertaDetalle("Por favor completa el detalle");
+    }
+  }
+
+
   async generarReclamo():Promise<void>{
     if (this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica) || this.reclamo.detalle == null || this.reclamo.detalle =="" ){ 
-      if(this.reclamo.lugarDeIncidente == null && (this.reclamo.detalle == null || this.reclamo.detalle =="")){
-        this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo");
-        this.mensajeAlertaDetalle("Por favor completa el detalle");
-      }
-      else{
-        if(this.reclamo.lugarDeIncidente == null){
-          this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo")
-        }
-        if(!this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica)){ 
-          this.alertaDireccionFisica("Por favor seleccione una ubicacion dentro del partido de Quilmes"); 
-        }     
-        else{this.mensajeAlertaDetalle("Por favor completa el detalle")}
-      }
+      this.manejadorErrorDetalle();
+      this.manejadorLugarDeIncidente();
+       
     }else{
       this.spinner.show()
       // SE ACTUALIZA SOLO EL TIPO DE RECLAMO GRACIAS A "DATA SENDER SERVICE"
@@ -121,5 +128,4 @@ export class NuevoReclamoComponent implements OnInit {
     partido.includes("Don Bosco") ||  
     partido.includes("Villa la Florida"); 
    } 
-
 }
