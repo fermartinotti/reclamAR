@@ -15,13 +15,14 @@ export class Localizacion {
         this.direccionFisica = dir
     }
 
-    constructor(lat:string, lng:string) {
+    constructor(lat:string, lng:string, dirFisica: string) {
         this.latitud=lat;
         this.longitud=lng;
+        this.direccionFisica = dirFisica;
     }
 
     static crearDesdeJson(json:any): Localizacion{
-     const localizacion = new Localizacion(json.latitud, json.longitud)
+     const localizacion = new Localizacion(json.latitud, json.longitud, json.direccionFisica)
       return localizacion
     }
 }
