@@ -58,28 +58,32 @@ export class NuevoReclamoComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  manejadorLugarDeIncidente(){
-    let lugarIncidente = this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica);
-    switch (lugarIncidente) {
+  hayProblemaLugarIncidente():boolean{
+    return this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica);
+  }
+
+  hayProblemaDetalle():boolean{
+    return this.reclamo.detalle == null || this.reclamo.detalle == "";
+  }
+  
+  manejadorLugarDeIncidente(){ 
+    switch (this.hayProblemaLugarIncidente()) {
       case true:
         this.cambiarMensajeDeAlerta("Por favor seleccione una ubicacion dentro del partido de Quilmes");
     }
   }
 
   manejadorErrorDetalle(){
-    let error = this.reclamo.detalle == null || this.reclamo.detalle == "";
-    switch(error){
+    switch(this.hayProblemaDetalle()){
     case true:
           this.mensajeAlertaDetalle("Por favor completa el detalle");
     }
   }
 
-
   async generarReclamo():Promise<void>{
-    if (this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica) || this.reclamo.detalle == null || this.reclamo.detalle =="" ){ 
+    if (this.hayProblemaDetalle() || this.hayProblemaLugarIncidente()){ 
       this.manejadorErrorDetalle();
       this.manejadorLugarDeIncidente();
-       
     }else{
       this.spinner.show()
       // SE ACTUALIZA SOLO EL TIPO DE RECLAMO GRACIAS A "DATA SENDER SERVICE"
@@ -94,7 +98,6 @@ export class NuevoReclamoComponent implements OnInit {
       }
     }
     this.spinner.hide()
-
   }
 
   onClickMap(localizacion: Localizacion){
@@ -116,10 +119,6 @@ export class NuevoReclamoComponent implements OnInit {
     this._sucessDetalle.next(msj);
   }
 
-  public alertaDireccionFisica(msj : string) { 
-    this._success.next(msj); 
-  } 
- 
   pertenecePartidoDeQuilmes(partido){ 
     return partido.includes("Quilmes") ||  
     partido.includes("Bernal") || 
