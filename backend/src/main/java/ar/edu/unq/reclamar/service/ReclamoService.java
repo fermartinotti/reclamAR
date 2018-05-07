@@ -13,4 +13,6 @@ public interface ReclamoService {
 
 	Optional<Reclamo> getReclamo(Long id);
 
+	List<Reclamo> todosLosReclamos();
+
 }

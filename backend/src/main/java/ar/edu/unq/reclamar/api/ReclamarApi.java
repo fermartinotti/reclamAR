@@ -42,5 +42,9 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getReclamoById(@PathParam("id") Long id);	
 	
+	@GET
+	@Path("/reclamos/todos")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getTodosLosReclamos();
 	
 }

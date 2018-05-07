@@ -58,5 +58,10 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}
 	}
 
+	@Override
+	public Response getTodosLosReclamos() {
+		return Response.ok(reclamoService.todosLosReclamos()).build();
+	}
+
 
 }
