@@ -60,7 +60,7 @@ export class NuevoReclamoComponent implements OnInit {
   }
 
   async generarReclamo():Promise<void>{
-    if (this.reclamo.lugarDeIncidente == null || this.reclamo.detalle == null || this.reclamo.detalle =="" ){
+    if (this.reclamo.lugarDeIncidente == null || !this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica) || this.reclamo.detalle == null || this.reclamo.detalle =="" ){ 
       if(this.reclamo.lugarDeIncidente == null && (this.reclamo.detalle == null || this.reclamo.detalle =="")){
         this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo");
         this.mensajeAlertaDetalle("Por favor completa el detalle");
@@ -69,6 +69,9 @@ export class NuevoReclamoComponent implements OnInit {
         if(this.reclamo.lugarDeIncidente == null){
           this.cambiarMensajeDeAlerta("Por favor seleccione la ubicacion de su reclamo")
         }
+        if(!this.pertenecePartidoDeQuilmes(this.reclamo.lugarDeIncidente.direccionFisica)){ 
+          this.alertaDireccionFisica("Por favor seleccione una ubicacion dentro del partido de Quilmes"); 
+        }     
         else{this.mensajeAlertaDetalle("Por favor completa el detalle")}
       }
     }else{
@@ -99,7 +102,6 @@ export class NuevoReclamoComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-
   public cambiarMensajeDeAlerta(msj : string) {
     this._success.next(msj);
   }
@@ -107,5 +109,18 @@ export class NuevoReclamoComponent implements OnInit {
   public mensajeAlertaDetalle(msj:string){
     this._sucessDetalle.next(msj);
   }
+
+  public alertaDireccionFisica(msj : string) { 
+    this._success.next(msj); 
+  } 
+ 
+  pertenecePartidoDeQuilmes(partido){ 
+    return partido.includes("Quilmes") ||  
+    partido.includes("Bernal") || 
+    partido.includes("Solano") ||  
+    partido.includes("Ezpeleta") ||  
+    partido.includes("Don Bosco") ||  
+    partido.includes("Villa la Florida"); 
+   } 
 
 }

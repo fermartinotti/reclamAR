@@ -14,6 +14,7 @@ public class Localizacion  extends AbstractPersistable<Long> {
 	
 	String latitud;
 	String longitud;
+	String direccionFisica; 
 	
 	public String getLatitud() {
 		return latitud;
@@ -27,4 +28,10 @@ public class Localizacion  extends AbstractPersistable<Long> {
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
 	}
+	public String getDireccionFisica() { 
+		return direccionFisica; 
+	} 
+	public void setDireccionFisica(String direccionFisica) { 
+		this.direccionFisica = direccionFisica; 
+	} 
 }
