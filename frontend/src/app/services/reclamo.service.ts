@@ -11,13 +11,6 @@ export class ReclamoService {
 
   }
 
-/*
-  generarReclamo (reclamo:Reclamo): Observable<any>{
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo,{headers: headers, observe: "response"})
-  }
-*/
-
   async generarReclamo(reclamo: Reclamo): Promise<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo).toPromise()

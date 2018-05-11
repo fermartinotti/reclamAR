@@ -14,4 +14,5 @@ export class DataSenderService {
   getData(): Observable<any> {
     return this.subject.asObservable();
   }
+
 }

@@ -25,7 +25,8 @@ import {reverseCheckboxComponent} from "./reclamo/reverse-checkbox";
 import { InicioComponent } from './inicio/inicio.component';
 import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
 import {DataSenderService} from "./services/dataSender.service";
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
+import { MapGlobalComponent } from './map-global/map-global.component'; 
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HttpModule } from '@angular/http';
     ArboledaComponent,
     BacheoComponent,
     InicioComponent,
-    NuevoReclamoComponent
+    NuevoReclamoComponent,
+    MapGlobalComponent
   ],
   imports: [
     HttpModule, 
