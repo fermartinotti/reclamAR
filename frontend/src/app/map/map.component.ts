@@ -12,7 +12,7 @@ import {Geocoder} from '../model/Geocoder';
 export class MapComponent implements OnInit {
   latInicial: number = -34.72418;
   lngInicial: number = -58.25265;
-  zoom: number = 8;
+  zoom: number = 13;
   //Punto marcado en el map
   markers: marker[] = [];
   @Input() localizacion: Localizacion;

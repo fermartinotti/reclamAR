@@ -39,13 +39,13 @@ export class MapGlobalComponent implements OnInit {
         return "https://www.google.com/mapfiles/traffic.png";
       }
       case "Arboleda":{
-          return "https://lh5.googleusercontent.com/u9L7qo02khsXZf6qE6z_SrWW8g_MbO1lcu0ZfIFVsbvaltLCBEIpYtlQesHszi7yVJURonrjZ5Bz-1Tt2kQl=w1919-h925";
+          return "http://maps.google.com/mapfiles/kml/pal2/icon12.png";
       }
       case "Bacheo":{
-        return "https://lh6.googleusercontent.com/Ub3MsJV5ROtNEHFYsaI7cPr2dJ8DcKwTsmhWYuLEI3OqtC8_4RDo9OZSz1hN6M9cxQehZ21iVYKEY0U-l7-_=w1919-h973"
+        return "http://maps.google.com/mapfiles/kml/pal3/icon59.png"
       }
       case "Luminaria":{
-        return "https://lh4.googleusercontent.com/tXAnvTHE0FAesuvW5ffHGkNRibS8eGX8SY5x3M7m-GFAuklJeQFkwapm8mRrnUSJsaYKcVb6NXpx2gQd5kE5=w1919-h925"
+        return "http://maps.google.com/mapfiles/kml/pal3/icon58.png"
       }
     }
   }
