@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, NgZone , Input} from '@angular/core';
 import {Localizacion} from "../model/localizacion";
 import { MouseEvent, AgmMap } from '@agm/core';
-import {Geocoder} from '../model/Geocoder';
+import {Geocoder} from '../model/geocoder';
 
 @Component({
   selector: 'app-map',
