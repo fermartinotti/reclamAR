@@ -7,11 +7,10 @@ import * as auth0 from 'auth0-js';
 export class AuthService {
 
   auth0 = new auth0.WebAuth({
-    clientID: 'rAATXnsri1b_Tp5h_3SB3LlsOlQMR833',
-    domain: 'garciadiego1990.auth0.com',
+    clientID: 'pkWsivxxPINC9sLGyeZXqmnTQ1VrqJNV',
+    domain: 'reclamar.auth0.com',
     responseType: 'token id_token',
-    audience: `https://garciadiego1990.auth0.com/userinfo`,
-    redirectUri: 'http://localhost:4200/todos-los-reclamos',
+    audience: `https://reclamar.auth0.com/userinfo`,
     scope: 'openid'
   });
 
