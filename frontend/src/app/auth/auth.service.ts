@@ -3,6 +3,8 @@ import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 
+(window as any).global = window;
+
 @Injectable()
 export class AuthService {
 
@@ -10,9 +12,11 @@ export class AuthService {
     clientID: 'pkWsivxxPINC9sLGyeZXqmnTQ1VrqJNV',
     domain: 'reclamar.auth0.com',
     responseType: 'token id_token',
-    audience: `https://reclamar.auth0.com/userinfo`,
-    scope: 'openid'
+    audience: `http://localhost:8080/api`,
+    scope: 'openid profile read:messages'
   });
+
+  userProfile: any;
 
   constructor(public router: Router) {}
 
@@ -29,6 +33,20 @@ export class AuthService {
         this.router.navigate(['/home']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
+  }
+
+  public getProfile(): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access token must exist to fetch profile');
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
       }
     });
   }
@@ -57,5 +75,5 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  
+
 }
