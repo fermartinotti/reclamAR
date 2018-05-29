@@ -44,7 +44,7 @@ export class NuevoReclamoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reclamo = new Reclamo(null,null,null,null,null,null,null)
+    this.reclamo = new Reclamo(null,null,null,null,null,null,null, [])
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
@@ -65,8 +65,8 @@ export class NuevoReclamoComponent implements OnInit {
   hayProblemaDetalle():boolean{
     return this.reclamo.detalle == null || this.reclamo.detalle == "";
   }
-  
-  manejadorLugarDeIncidente(){ 
+
+  manejadorLugarDeIncidente(){
     switch (this.hayProblemaLugarIncidente()) {
       case true:
         this.cambiarMensajeDeAlerta("Por favor seleccione una ubicacion dentro del partido de Quilmes");
@@ -81,7 +81,7 @@ export class NuevoReclamoComponent implements OnInit {
   }
 
   async generarReclamo():Promise<void>{
-    if (this.hayProblemaDetalle() || this.hayProblemaLugarIncidente()){ 
+    if (this.hayProblemaDetalle() || this.hayProblemaLugarIncidente()){
       this.manejadorErrorDetalle();
       this.manejadorLugarDeIncidente();
     }else{
@@ -119,12 +119,12 @@ export class NuevoReclamoComponent implements OnInit {
     this._sucessDetalle.next(msj);
   }
 
-  pertenecePartidoDeQuilmes(partido){ 
-    return partido.includes("Quilmes") ||  
-    partido.includes("Bernal") || 
-    partido.includes("Solano") ||  
-    partido.includes("Ezpeleta") ||  
-    partido.includes("Don Bosco") ||  
-    partido.includes("Villa la Florida"); 
-   } 
+  pertenecePartidoDeQuilmes(partido){
+    return partido.includes("Quilmes") ||
+    partido.includes("Bernal") ||
+    partido.includes("Solano") ||
+    partido.includes("Ezpeleta") ||
+    partido.includes("Don Bosco") ||
+    partido.includes("Villa la Florida");
+   }
 }

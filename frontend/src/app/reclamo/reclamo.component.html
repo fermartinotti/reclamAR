@@ -35,25 +35,13 @@
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <h6 class="border-bottom border-gray pb-2 mb-0">Ultimas actualizaciones</h6>
-    <div class="media text-muted pt-3">
+    <div class="media text-muted pt-3"*ngFor="let e of reclamo.estados">
     <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-      <strong class="d-block text-gray-dark">Reclamo cerrado</strong>
+      <strong class="d-block text-gray-dark">Reclamo {{e.type}}</strong>
       Su estado ahora es cerrado.
       <i>24/04/2018</i>
     </p>
   </div>
-    <div class="media text-muted pt-3">
-      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Reclamo abierto</strong>
-        Se paso su estado a abierto
-      </p>
-    </div>
-    <div class="media text-muted pt-3">
-      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark">Reclamo abierto</strong>
-        Se paso su estado a abierto
-      </p>
-    </div>
 
     <small class="d-block text-right mt-3">
       <a href="#">mas actualizaciones</a>

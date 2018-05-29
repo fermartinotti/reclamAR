@@ -16,7 +16,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ReclamoComponent implements OnInit {
 
-  @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null)
+  @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null,[])
 
   @ViewChild('map') map: MapComponent;
 
