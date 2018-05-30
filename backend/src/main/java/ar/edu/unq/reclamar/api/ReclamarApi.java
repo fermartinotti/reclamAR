@@ -21,9 +21,11 @@ import ar.edu.unq.reclamar.modelo.Reclamo;
 @Path("/rest")
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = false, 
 exposeHeaders = {"Access-Control-Allow-Headers",
-        "Origin, Content-Type, X-Requested-With, accept, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization"},
+	        "Origin", "Content-Type", "X-Requested-With", "accept", 
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"},
 allowHeaders = {"Access-Control-Allow-Headers",
-        "Origin, Content-Type, X-Requested-With, accept, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization"})
+	        "Origin", "Content-Type", "X-Requested-With", "accept", 
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"})
 public interface ReclamarApi {
 
 	@GET
