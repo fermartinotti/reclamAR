@@ -13,7 +13,8 @@ export class AuthService {
     domain: 'reclamar.auth0.com',
     responseType: 'token id_token',
     audience: `http://localhost:8080/api`,
-    scope: 'openid profile read:messages'
+    scope: 'openid profile read:messages',
+    redirectUri:'http://localhost:4200/callback'
   });
 
   userProfile: any;
@@ -28,9 +29,9 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/inicio']);
       } else if (err) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/inicio']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
