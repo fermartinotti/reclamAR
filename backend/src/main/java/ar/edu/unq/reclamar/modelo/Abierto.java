@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Abierto extends Estado {
 	
 	private static final long serialVersionUID = 1L;
-
+	
 	public Abierto(){};
+	
 }

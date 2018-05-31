@@ -43,6 +43,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 	@Override
 	public Response reclamos(){
 		String token = request.getHeader("Authorization");
+		System.out.println(token);
 		securityService.setUsuarioLogueado(token);
 		return Response.ok(reclamoService.misReclamos()).build();
 	}
@@ -55,6 +56,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 	@Override
 	public Response agregarReclamo(Reclamo reclamo) {
 		String token = request.getHeader("Authorization");
+		System.out.println(token);
 		securityService.setUsuarioLogueado(token);
 		try {
 			reclamoService.agregarReclamo(reclamo);			

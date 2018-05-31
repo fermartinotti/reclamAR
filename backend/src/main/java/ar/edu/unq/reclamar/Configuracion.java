@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,7 +31,7 @@ import ar.edu.unq.reclamar.api.ReclamarApi;
 
 @Configuration
 @EnableWebSecurity(debug = false)
-public class Configuracion extends WebSecurityConfigurerAdapter{
+public class Configuracion extends WebSecurityConfigurerAdapter {
 
 	@Value(value = "5b0898633b631f527538f16d")
     private String apiAudience;
@@ -82,5 +84,7 @@ public class Configuracion extends WebSecurityConfigurerAdapter{
                 .antMatchers(HttpMethod.GET, "/api/private").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
     }
+    
+
     
 }
