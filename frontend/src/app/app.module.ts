@@ -26,7 +26,10 @@ import { InicioComponent } from './inicio/inicio.component';
 import { NuevoReclamoComponent } from './nuevo-reclamo/nuevo-reclamo.component';
 import {DataSenderService} from "./services/dataSender.service";
 import { HttpModule } from '@angular/http';
-import { MapGlobalComponent } from './map-global/map-global.component'; 
+import { MapGlobalComponent } from './map-global/map-global.component';
+import { CallbackComponent } from './callback/callback.component';
+import {AuthService} from './auth/auth.service'
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -45,10 +48,11 @@ import { MapGlobalComponent } from './map-global/map-global.component';
     BacheoComponent,
     InicioComponent,
     NuevoReclamoComponent,
-    MapGlobalComponent
+    MapGlobalComponent,
+    CallbackComponent
   ],
   imports: [
-    HttpModule, 
+    HttpModule,
     BrowserModule,
 	CommonModule,
     RoutingModule,
@@ -62,7 +66,9 @@ import { MapGlobalComponent } from './map-global/map-global.component';
   ],
   providers: [
     ReclamoService,
-    DataSenderService
+    DataSenderService,
+    AuthService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent],
   entryComponents: [NgModalContentComponent],

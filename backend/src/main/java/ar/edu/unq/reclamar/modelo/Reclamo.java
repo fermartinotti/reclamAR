@@ -1,12 +1,15 @@
 package ar.edu.unq.reclamar.modelo;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -37,6 +40,10 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@JoinColumn(name="estado")
 	@ManyToOne()
 	Estado estado;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name="estados")
+	Set<Estado> estados = new HashSet<Estado>();
 	
 	@JoinColumn(name="tipoDeReclamo")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -110,4 +117,14 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		
 		this.lugarDeIncidente = lugarDeIncidente;
 	}
+
+	public Set<Estado> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(Set<Estado> estados) {
+		this.estados = estados;
+	}
+	
+	
 }

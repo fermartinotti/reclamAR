@@ -17,6 +17,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import ar.edu.unq.reclamar.utils.Localizacion;
 import ar.edu.unq.reclamar.utils.Telefono;
 
+/**
+ * @author ferna
+ *
+ */
 @Entity
 @JsonIgnoreProperties(value = {"new"})
 public class Operador extends AbstractPersistable<Long>{
@@ -33,9 +37,16 @@ public class Operador extends AbstractPersistable<Long>{
 	@Column
 	String apellido;
 	
+	@Column
+	String subId;
+	
 //	Telefono telefono;
 	
 	public Operador(){};
+	
+	public Operador(String subId) {
+		this.subId = subId;
+	}
 	
 	public List<Reclamo> getReclamos() {
 		return reclamos;
@@ -54,6 +65,14 @@ public class Operador extends AbstractPersistable<Long>{
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String getSubId() {
+		return subId;
+	}
+
+	public void setSubId(String subId) {
+		this.subId = subId;
 	}
 	
 	

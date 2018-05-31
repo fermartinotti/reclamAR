@@ -1,0 +1,2 @@
+auth0.issuer:http://localhost:8080/api
+auth0.apiAudience:5b0898633b631f527538f16d

@@ -56,6 +56,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		estadoRepository.save(estado);
 		
 		reclamo.setEstado(estado);		
+		reclamo.getEstados().add(estado);
 		
 		localizacionRepository.save(reclamo.getLugarDeIncidente());
 		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
