@@ -14,7 +14,6 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import ar.edu.unq.reclamar.modelo.Operador;
-import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.OperadorRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
 
