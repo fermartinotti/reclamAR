@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
-import ar.edu.unq.reclamar.service.OperadorService;
+import ar.edu.unq.reclamar.service.UsuarioService;
 import ar.edu.unq.reclamar.service.ReclamoService;
 import ar.edu.unq.reclamar.service.SecurityService;
 
@@ -24,7 +24,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 	private CuadrillaService cuadrillaService;
 	
 	@Autowired
-	private OperadorService operadorService;
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private HttpServletRequest request;
@@ -55,7 +55,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 
 	@Override
 	public Response usuarios() {
-		return Response.ok(operadorService.getAllUsuarios()).build();
+		return Response.ok(usuarioService.getAllUsuarios()).build();
 	}
 
 	@Override

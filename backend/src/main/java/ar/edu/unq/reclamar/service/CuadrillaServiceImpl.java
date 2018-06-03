@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EmpleadoCuadrilla;
-import ar.edu.unq.reclamar.modelo.Operador;
+import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EmpleadoCuadrillaRepository;
-import ar.edu.unq.reclamar.repository.OperadorRepository;
+import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Service
 public class CuadrillaServiceImpl implements CuadrillaService {
 	
 	@Autowired
-	private OperadorRepository operadorRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private CuadrillaRepository repository;
@@ -33,7 +33,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	@Override
 	@Transactional
 	public void crearCuadrilla(Integer cantEmpleados) throws DatoInvalidoException {
-		Operador opLogeado = securityService.getOperadorLogeado();
+		Usuario userLogeado = securityService.getUsuarioLogeado();
 		
 		Cuadrilla cuadrilla = new Cuadrilla();
 		
@@ -42,9 +42,9 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 			cuadrillaRepository.save(empleado);
 			cuadrilla.agregarEmpleado(empleado);
 		}
-		opLogeado.getCuadrillas().add(cuadrilla);
+		userLogeado.getCuadrillas().add(cuadrilla);
 		repository.save(cuadrilla);
-		operadorRepository.save(opLogeado);		
+		usuarioRepository.save(userLogeado);		
 	}
 
 	@Override

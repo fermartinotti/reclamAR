@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(value = {"new" , "id"})
 public class Cerrado extends Estado {
 
+	private static final long serialVersionUID = 1L;
+
 	@Column
 	public String comentario;
 	

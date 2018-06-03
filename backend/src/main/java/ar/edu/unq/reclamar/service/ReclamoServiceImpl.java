@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
-import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
+import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.LocalizacionRepository;
-import ar.edu.unq.reclamar.repository.OperadorRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
 import ar.edu.unq.reclamar.repository.TipodDeReclamoRepository;
+import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Service
 public class ReclamoServiceImpl implements ReclamoService {
@@ -26,7 +26,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 	private ReclamoRepository repository;
 	
 	@Autowired
-	private OperadorRepository operadorRepository;
+	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
 	private SecurityService securityService;
@@ -42,14 +42,14 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 	@Override
 	public List<Reclamo> misReclamos() {
-		return repository.getReclamosByOperador(securityService.getOperadorLogeado());
+		return repository.getReclamosByUsuario(securityService.getUsuarioLogeado());
 	}
 
 	@Override
 	@Transactional
 	public void agregarReclamo(Reclamo reclamo) throws DatoInvalidoException {
-		Operador opLogeado = securityService.getOperadorLogeado();
-		reclamo.setAutor(opLogeado);
+		Usuario userLogeado = securityService.getUsuarioLogeado();
+		reclamo.setAutor(userLogeado);
 		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
 		Abierto estado = new Abierto();
@@ -62,8 +62,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
 		
 		repository.save(reclamo);
-		opLogeado.getReclamos().add(reclamo);
-		operadorRepository.save(opLogeado);		
+		userLogeado.getReclamos().add(reclamo);
+		usuarioRepository.save(userLogeado);		
 	}
 
 	@Override
