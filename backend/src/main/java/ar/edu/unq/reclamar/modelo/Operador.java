@@ -1,9 +1,9 @@
 package ar.edu.unq.reclamar.modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,17 +16,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import ar.edu.unq.reclamar.utils.Localizacion;
-import ar.edu.unq.reclamar.utils.Telefono;
-
-/**
- * @author ferna
- *
- */
 @Entity
 @JsonIgnoreProperties(value = {"new"})
 public class Operador extends AbstractPersistable<Long>{
 
+	private static final long serialVersionUID = 1L;
 
 	@JoinColumn(name="reclamos")
 	@OneToMany(fetch=FetchType.EAGER)
@@ -37,7 +31,7 @@ public class Operador extends AbstractPersistable<Long>{
 	@JoinColumn(name="cuadrillas")
 	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
-	Set<Cuadrilla> cuadrillas = new TreeSet<Cuadrilla>();
+	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
 	
 	@Column
 	String nombre;
@@ -74,14 +68,16 @@ public class Operador extends AbstractPersistable<Long>{
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-
 	public String getSubId() {
 		return subId;
 	}
-
 	public void setSubId(String subId) {
 		this.subId = subId;
 	}
-	
-	
+	public Set<Cuadrilla> getCuadrillas() {
+		return cuadrillas;
+	}
+	public void setCuadrillas(Set<Cuadrilla> cuadrillas) {
+		this.cuadrillas = cuadrillas;
+	}	
 }

@@ -12,6 +12,7 @@ import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EmpleadoCuadrilla;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
+import ar.edu.unq.reclamar.repository.EmpleadoCuadrillaRepository;
 import ar.edu.unq.reclamar.repository.OperadorRepository;
 
 @Service
@@ -24,6 +25,9 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	private CuadrillaRepository repository;
 	
 	@Autowired
+	private EmpleadoCuadrillaRepository cuadrillaRepository;
+	
+	@Autowired
 	private SecurityService securityService;
 
 	@Override
@@ -33,14 +37,14 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		
 		Cuadrilla cuadrilla = new Cuadrilla();
 		
-//		for(int i = 0; cantEmpleados > i; i++) {
-//			EmpleadoCuadrilla empleado = new EmpleadoCuadrilla();
-//			cuadrilla.getEmpleadosCuadrilla().add(empleado);
-//		}
-		
+		for(int i = 0; cantEmpleados > i; i++) {
+			EmpleadoCuadrilla empleado = new EmpleadoCuadrilla();
+			cuadrillaRepository.save(empleado);
+			cuadrilla.agregarEmpleado(empleado);
+		}
+		opLogeado.getCuadrillas().add(cuadrilla);
 		repository.save(cuadrilla);
-		operadorRepository.save(opLogeado);
-		
+		operadorRepository.save(opLogeado);		
 	}
 
 	@Override
