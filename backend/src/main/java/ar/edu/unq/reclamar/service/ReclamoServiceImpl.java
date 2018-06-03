@@ -63,8 +63,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		repository.save(reclamo);
 		opLogeado.getReclamos().add(reclamo);
-		operadorRepository.save(opLogeado);
-		
+		operadorRepository.save(opLogeado);		
 	}
 
 	@Override
@@ -76,6 +75,4 @@ public class ReclamoServiceImpl implements ReclamoService {
 	public List<Reclamo> todosLosReclamos() {
 		return (List<Reclamo>) repository.findAll();
 	}
-	
-
 }

@@ -3,19 +3,13 @@ package ar.edu.unq.reclamar.api;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
-
-import com.auth0.jwt.interfaces.DecodedJWT;
 
 import ar.edu.unq.reclamar.modelo.Reclamo;
+import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.OperadorService;
 import ar.edu.unq.reclamar.service.ReclamoService;
 import ar.edu.unq.reclamar.service.SecurityService;
@@ -25,6 +19,9 @@ public class ReclamarApiImpl implements ReclamarApi {
 	
 	@Autowired
 	private ReclamoService reclamoService;
+	
+	@Autowired
+	private CuadrillaService cuadrillaService;
 	
 	@Autowired
 	private OperadorService operadorService;
@@ -47,6 +44,14 @@ public class ReclamarApiImpl implements ReclamarApi {
 		securityService.setUsuarioLogueado(token);
 		return Response.ok(reclamoService.misReclamos()).build();
 	}
+	
+	@Override
+	public Response getCuadrillas(){
+		String token = request.getHeader("Authorization");
+		System.out.println(token);
+		securityService.setUsuarioLogueado(token);
+		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
+	}
 
 	@Override
 	public Response usuarios() {
@@ -61,6 +66,19 @@ public class ReclamarApiImpl implements ReclamarApi {
 		try {
 			reclamoService.agregarReclamo(reclamo);			
 			return Response.ok(reclamo).build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}		
+	}
+	
+	@Override
+	public Response agregarCuadrilla(Integer cantEmpleados) {
+		String token = request.getHeader("Authorization");
+		System.out.println(token);
+		securityService.setUsuarioLogueado(token);
+		try {
+			cuadrillaService.crearCuadrilla(cantEmpleados);		
+			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}		
