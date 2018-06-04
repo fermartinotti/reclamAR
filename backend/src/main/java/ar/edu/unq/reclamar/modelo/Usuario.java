@@ -1,9 +1,7 @@
 package ar.edu.unq.reclamar.modelo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,12 +24,6 @@ public class Usuario extends AbstractPersistable<Long>{
 	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
 	List<Reclamo> reclamos = new ArrayList<Reclamo>();
-	
-	// Lo pongo acá solo para probar
-	@JoinColumn(name="cuadrillas")
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
 	
 	@Column
 	String nombre;
@@ -73,12 +65,6 @@ public class Usuario extends AbstractPersistable<Long>{
 	}
 	public void setSubId(String subId) {
 		this.subId = subId;
-	}
-	public Set<Cuadrilla> getCuadrillas() {
-		return cuadrillas;
-	}
-	public void setCuadrillas(Set<Cuadrilla> cuadrillas) {
-		this.cuadrillas = cuadrillas;
 	}	
 }
 

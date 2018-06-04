@@ -5,7 +5,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Usuario;
+import ar.edu.unq.reclamar.repository.AdminRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Component

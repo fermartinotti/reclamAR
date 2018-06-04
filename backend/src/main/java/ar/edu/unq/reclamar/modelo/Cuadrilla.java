@@ -12,6 +12,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
+
 @Entity
 @JsonIgnoreProperties(value = {"new"})
 public class Cuadrilla extends AbstractPersistable<Long> {
@@ -22,12 +24,22 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	@JoinColumn(name="empleados")
 	List<EmpleadoCuadrilla> empleadosCuadrilla = new ArrayList<EmpleadoCuadrilla>();
 	
+	Integer maximoEmpleados = 6;
+	
 	public List<EmpleadoCuadrilla> getEmpleadosCuadrilla() {
 		return empleadosCuadrilla;
 	}
 	public void setEmpleadosCuadrilla(List<EmpleadoCuadrilla> empleadosCuadrilla) {
 		this.empleadosCuadrilla = empleadosCuadrilla;
 	}
+	
+	public boolean puedeCrearCuadrilla(Integer cantidad) throws DatoInvalidoException{
+		if(cantidad > maximoEmpleados) {
+			throw new DatoInvalidoException("La cuadrilla tiene una capacidad máxima para 6 personas");
+		}
+		return true;
+	}
+	
 	public void agregarEmpleado(EmpleadoCuadrilla empleado){
 		empleadosCuadrilla.add(empleado);
 	}

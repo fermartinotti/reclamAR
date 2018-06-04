@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.modelo.Reclamo;
+import ar.edu.unq.reclamar.service.AdminService;
 import ar.edu.unq.reclamar.service.CuadrillaService;
-import ar.edu.unq.reclamar.service.UsuarioService;
 import ar.edu.unq.reclamar.service.ReclamoService;
 import ar.edu.unq.reclamar.service.SecurityService;
+import ar.edu.unq.reclamar.service.UsuarioService;
 
 @Service
 public class ReclamarApiImpl implements ReclamarApi {
@@ -25,6 +26,9 @@ public class ReclamarApiImpl implements ReclamarApi {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@Autowired
 	private HttpServletRequest request;
@@ -49,7 +53,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response getCuadrillas(){
 		String token = request.getHeader("Authorization");
 		System.out.println(token);
-		securityService.setUsuarioLogueado(token);
+		securityService.setAdminLogueado(token);
 		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
 	}
 
@@ -75,7 +79,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response agregarCuadrilla(Integer cantEmpleados) {
 		String token = request.getHeader("Authorization");
 		System.out.println(token);
-		securityService.setUsuarioLogueado(token);
+		securityService.setAdminLogueado(token);
 		try {
 			cuadrillaService.crearCuadrilla(cantEmpleados);		
 			return Response.ok().build();

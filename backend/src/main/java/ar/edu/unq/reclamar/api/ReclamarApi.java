@@ -52,7 +52,6 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getCuadrillas();
 	
-	
 	@GET
 	@Path("/reclamos/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

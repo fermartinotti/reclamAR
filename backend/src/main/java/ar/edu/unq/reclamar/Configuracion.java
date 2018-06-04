@@ -79,8 +79,5 @@ public class Configuracion extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/rest/reclamos/todos").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/private").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
-    }
-    
-
-    
+    }  
 }
