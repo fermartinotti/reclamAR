@@ -104,5 +104,18 @@ public class ReclamarApiImpl implements ReclamarApi {
 		return Response.ok(reclamoService.todosLosReclamos()).build();
 	}
 
+	@Override
+	public Response asignarCuadrilla(Reclamo reclamo) {
+		String token = request.getHeader("Authorization");
+		System.out.println(token);
+		securityService.setUsuarioLogueado(token);
+		try {
+			reclamoService.agregarReclamo(reclamo);			
+			return Response.ok(reclamo).build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}	
+	}
+
 
 }

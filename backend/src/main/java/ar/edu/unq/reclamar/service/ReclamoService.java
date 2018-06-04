@@ -15,4 +15,6 @@ public interface ReclamoService {
 
 	List<Reclamo> todosLosReclamos();
 
+	void asignacionCuadrilla(Reclamo reclamo);
+
 }

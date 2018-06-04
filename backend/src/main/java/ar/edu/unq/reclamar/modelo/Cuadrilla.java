@@ -3,6 +3,7 @@ package ar.edu.unq.reclamar.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -26,11 +27,26 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	
 	Integer maximoEmpleados = 6;
 	
+	@Column
+	boolean estaDisponible = true;
+	
 	public List<EmpleadoCuadrilla> getEmpleadosCuadrilla() {
 		return empleadosCuadrilla;
 	}
 	public void setEmpleadosCuadrilla(List<EmpleadoCuadrilla> empleadosCuadrilla) {
 		this.empleadosCuadrilla = empleadosCuadrilla;
+	}
+	public Integer getMaximoEmpleados() {
+		return maximoEmpleados;
+	}
+	public void setMaximoEmpleados(Integer maximoEmpleados) {
+		this.maximoEmpleados = maximoEmpleados;
+	}
+	public boolean isEstaDisponible() {
+		return estaDisponible;
+	}
+	public void setEstaDisponible(boolean estaDisponible) {
+		this.estaDisponible = estaDisponible;
 	}
 	
 	public boolean puedeCrearCuadrilla(Integer cantidad) throws DatoInvalidoException{

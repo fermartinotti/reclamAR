@@ -1,7 +1,9 @@
 package ar.edu.unq.reclamar.modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +25,7 @@ public class Usuario extends AbstractPersistable<Long>{
 	@JoinColumn(name="reclamos")
 	@OneToMany(fetch=FetchType.EAGER)
 	@JsonIgnore
-	List<Reclamo> reclamos = new ArrayList<Reclamo>();
+	Set<Reclamo> reclamos = new HashSet<Reclamo>();
 	
 	@Column
 	String nombre;
@@ -36,16 +38,47 @@ public class Usuario extends AbstractPersistable<Long>{
 	
 //	Telefono telefono;
 	
+	@JoinColumn(name="cuadrillas")
+	@OneToMany(fetch=FetchType.EAGER)
+	@JsonIgnore
+	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
+	
+	public Set<Cuadrilla> getCuadrillas() {
+		return cuadrillas;
+	}
+	public void setCuadrillas(Set<Cuadrilla> cuadrillas) {
+		this.cuadrillas = cuadrillas;
+	}
+	
+	public boolean hayCuadrillaDisponible() {
+		for(Cuadrilla c : cuadrillas) {
+			if(!c.isEstaDisponible()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void asignarCuadrilla(Reclamo reclamo) {
+		for(Cuadrilla c : cuadrillas) {
+			if(c.isEstaDisponible()) {
+				reclamo.setCuadrilla(c);
+				c.setEstaDisponible(false);
+				break;
+			}
+		}
+	}
+	
 	public Usuario(){};
 	
 	public Usuario(String subId) {
 		this.subId = subId;
 	}
 	
-	public List<Reclamo> getReclamos() {
+	public Set<Reclamo> getReclamos() {
 		return reclamos;
 	}
-	public void setReclamos(List<Reclamo> reclamos) {
+	public void setReclamos(Set<Reclamo> reclamos) {
 		this.reclamos = reclamos;
 	}
 	public String getNombre() {

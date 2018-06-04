@@ -17,17 +17,26 @@ public class Admin extends Usuario {
 
 	private static final long serialVersionUID = 1L;
 	
-	@JoinColumn(name="cuadrillas")
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
-	
-	public Set<Cuadrilla> getCuadrillas() {
-		return cuadrillas;
-	}
-	public void setCuadrillas(Set<Cuadrilla> cuadrillas) {
-		this.cuadrillas = cuadrillas;
-	}
+//	@JoinColumn(name="cuadrillas")
+//	@OneToMany(fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
+//	
+//	public Set<Cuadrilla> getCuadrillas() {
+//		return cuadrillas;
+//	}
+//	public void setCuadrillas(Set<Cuadrilla> cuadrillas) {
+//		this.cuadrillas = cuadrillas;
+//	}
+//	
+//	public boolean hayCuadrillaDisponible() {
+//		for(Cuadrilla c : cuadrillas) {
+//			if(c.isEstaDisponible()) {
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
 	
 	public Admin() {
 		super();

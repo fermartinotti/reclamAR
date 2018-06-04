@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
+import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
@@ -63,6 +64,29 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		repository.save(reclamo);
 		userLogeado.getReclamos().add(reclamo);
+		usuarioRepository.save(userLogeado);		
+	}
+	
+	@Override
+	@Transactional
+	public void asignacionCuadrilla(Reclamo reclamo){
+		Usuario userLogeado = securityService.getUsuarioLogeado();
+		reclamo.setAutor(userLogeado);
+		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		
+		if(userLogeado.hayCuadrillaDisponible()){
+			userLogeado.asignarCuadrilla(reclamo);
+		}
+		
+		EnReparacion estado = new EnReparacion();
+		estadoRepository.save(estado);
+		
+		reclamo.setEstado(estado);		
+		reclamo.getEstados().add(estado);
+	
+		
+		repository.save(reclamo);
+		
 		usuarioRepository.save(userLogeado);		
 	}
 
