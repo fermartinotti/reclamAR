@@ -41,6 +41,7 @@ public abstract class Usuario extends AbstractPersistable<Long>{
 	String email;
 	
 	@Column
+	@JsonIgnore
 	String subId;
 	
 	@Column

@@ -75,4 +75,9 @@ public interface ReclamarApi {
 	@GET
     @Path("/login")
     Response login();
+	
+	@GET
+	@Path("/usuarioLogueado")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response usuarioLogueado();
 }

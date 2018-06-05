@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
@@ -20,6 +21,12 @@ public class StartUp implements ApplicationRunner {
 		usuario.setNombre("usuarioNombre");
 		usuario.setApellido("usuarioApellido");
 		this.usuarioRepository.save(usuario);
+		
+		Admin admin = new Admin("google-oauth2|115958904657922705294");
+		admin.setNombre("Fernando");
+		admin.setApellido("Martinotti");
+		admin.setEmail("fermartinotti@gmail.com");
+		this.usuarioRepository.save(admin);
 		
 	}
 

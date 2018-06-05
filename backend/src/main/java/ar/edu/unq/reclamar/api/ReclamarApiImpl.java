@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.modelo.Reclamo;
-import ar.edu.unq.reclamar.service.AdminService;
 import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.ReclamoService;
 import ar.edu.unq.reclamar.service.SecurityService;
@@ -25,9 +24,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 	
 	@Autowired
 	private UsuarioService usuarioService;
-	
-	@Autowired
-	private AdminService adminService;
 	
 	@Autowired
 	private SecurityService securityService;
@@ -106,6 +102,11 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response login() {
 		securityService.setUsuarioLogueado();
 		return Response.ok().build();
+	}
+
+	@Override
+	public Response usuarioLogueado() {
+		return Response.ok(securityService.getUsuarioLogeado()).build();
 	}
 	
 

@@ -8,7 +8,7 @@ export class AuthGuardAdminService implements CanActivate {
   constructor(public auth: AuthService, public router: Router) {}
 
   canActivate(): boolean {
-    return false;
+    return this.auth.esAdmin();
   }
 
 

@@ -90,7 +90,8 @@ export class NuevoReclamoComponent implements OnInit {
       this.reclamo.setTipoDeReclamo = this.tipoDeReclamo
 
       try{
-        var link = await this.reclamoService.generarReclamo(this.reclamo).then(resp=> Reclamo.crearDesdeJson(resp).id)
+        var link = await this.reclamoService.generarReclamo(this.reclamo)
+          .then(resp=> Reclamo.crearDesdeJson(resp).id)
         console.log(link)
         this.open("success", link.toString())
       }catch(error){
