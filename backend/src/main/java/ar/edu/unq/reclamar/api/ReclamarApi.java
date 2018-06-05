@@ -71,6 +71,8 @@ public interface ReclamarApi {
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response asignarCuadrilla(Reclamo reclamo);
-	
-	
+
+	@GET
+    @Path("/login")
+    Response login();
 }

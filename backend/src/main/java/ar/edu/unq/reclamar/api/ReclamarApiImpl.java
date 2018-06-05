@@ -102,5 +102,12 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}	
 	}
 
+	@Override
+	public Response login() {
+		securityService.setUsuarioLogueado();
+		return Response.ok().build();
+	}
+	
+
 
 }

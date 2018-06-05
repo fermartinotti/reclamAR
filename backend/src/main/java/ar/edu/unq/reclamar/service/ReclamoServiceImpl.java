@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
+
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
@@ -20,6 +22,7 @@ import ar.edu.unq.reclamar.repository.LocalizacionRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
 import ar.edu.unq.reclamar.repository.TipodDeReclamoRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
+import ar.edu.unq.reclamar.utils.EmailSender;
 
 @Service
 public class ReclamoServiceImpl implements ReclamoService {
@@ -65,7 +68,15 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		repository.save(reclamo);
 		userLogeado.getReclamos().add(reclamo);
-		usuarioRepository.save(userLogeado);		
+		usuarioRepository.save(userLogeado);	
+		try {
+			EmailSender.sendEmail(userLogeado.getEmail(),
+					"Su reclamo se creo con exito", 
+					"Muchas gracias por reportar la problematica. Su reclamo numero: " 
+					+ reclamo.getId() + "fue creado con exito. ");
+		} catch (UnirestException e) {
+			
+		}
 	}
 	
 	@Override

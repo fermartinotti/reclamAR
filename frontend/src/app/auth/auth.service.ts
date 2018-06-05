@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import {UsuarioService} from "../services/usuario.service";
 
 (window as any).global = window;
 
@@ -19,7 +20,7 @@ export class AuthService {
 
   userProfile: any;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private usuarioService: UsuarioService) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -29,6 +30,7 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        this.usuarioService.loguearUsuario()
         this.router.navigate(['/inicio']);
       } else if (err) {
         this.router.navigate(['/inicio']);
@@ -74,6 +76,11 @@ export class AuthService {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public isAdmin(): boolean {
+    return false;
+    // Corroborar tambien que este logueado.
   }
 
 

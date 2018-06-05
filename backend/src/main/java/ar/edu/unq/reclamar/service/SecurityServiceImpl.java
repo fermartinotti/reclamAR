@@ -16,6 +16,7 @@ import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
+import ar.edu.unq.reclamar.utils.EmailSender;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
@@ -77,6 +78,7 @@ public class SecurityServiceImpl implements SecurityService {
 		usuarioRepository.save(usuario);
 		this.logeado = usuario;
 	}
+
 	
 	
 //	@Override

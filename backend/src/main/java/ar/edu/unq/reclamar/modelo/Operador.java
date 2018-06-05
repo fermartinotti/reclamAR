@@ -25,6 +25,7 @@ public class Operador extends Usuario {
 	public Set<Reclamo> getReclamos() {
 		return reclamos;
 	}
+	
 	public void setReclamos(Set<Reclamo> reclamos) {
 		this.reclamos = reclamos;
 	}

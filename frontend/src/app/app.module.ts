@@ -31,6 +31,8 @@ import { CallbackComponent } from './callback/callback.component';
 import {AuthService} from './auth/auth.service'
 import {AuthGuardService} from "./auth/auth-guard.service";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import {AuthGuardAdminService} from "./auth/auth-guard-admin.service";
+import {UsuarioService} from "./services/usuario.service";
 
 @NgModule({
   declarations: [
@@ -68,9 +70,11 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
   ],
   providers: [
     ReclamoService,
+    UsuarioService,
     DataSenderService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    AuthGuardAdminService
   ],
   bootstrap: [AppComponent],
   entryComponents: [NgModalContentComponent],
