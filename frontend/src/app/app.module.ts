@@ -30,6 +30,7 @@ import { MapGlobalComponent } from './map-global/map-global.component';
 import { CallbackComponent } from './callback/callback.component';
 import {AuthService} from './auth/auth.service'
 import {AuthGuardService} from "./auth/auth-guard.service";
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {AuthGuardService} from "./auth/auth-guard.service";
     InicioComponent,
     NuevoReclamoComponent,
     MapGlobalComponent,
-    CallbackComponent
+    CallbackComponent,
+    AdminPanelComponent
   ],
   imports: [
     HttpModule,

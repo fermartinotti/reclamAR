@@ -29,7 +29,9 @@ public class Operador extends Usuario {
 		this.reclamos = reclamos;
 	}
 	
-	public Operador(){}
+	public Operador(){
+		this.setEsAdmin(false);
+	}
 	
 	public Operador(String subId) {
 		this.subId = subId;

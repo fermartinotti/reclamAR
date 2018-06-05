@@ -15,6 +15,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/todos-los-reclamos">Ver todos los reclamos</a>
       </li>
+      <li class="nav-item" *ngIf="auth.isAuthenticated()">
+        <a class="nav-link" routerLink="/admin-panel">Panel Administrador</a>
+      </li>
     </ul>
     <form class="form-inline">
       <button id="qsLoginBtn"

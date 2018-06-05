@@ -13,8 +13,8 @@ export class AuthService {
     domain: 'reclamar.auth0.com',
     responseType: 'token id_token',
     audience: `http://localhost:8080/api`,
-    scope: 'openid profile read:messages',
-    redirectUri:'http://localhost:4200/callback'
+    scope: 'openid profile email read:messages',
+    redirectUri:'http://localhost:4200/callback',
   });
 
   userProfile: any;
@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   public getProfile(): void {
-    const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('Access token must exist to fetch profile');
     }

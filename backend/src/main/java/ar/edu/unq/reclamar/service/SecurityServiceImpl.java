@@ -1,5 +1,7 @@
 package ar.edu.unq.reclamar.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import ar.edu.unq.reclamar.modelo.Admin;
@@ -52,18 +55,25 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public void setUsuarioLogueado(){
 		String token = request.getHeader("Authorization");
+		System.out.println(token);
 		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
 		String subId = jwt.getSubject();
+		String nombre = jwt.getClaim("given_name").asString();
+		String apellido = jwt.getClaim("family_name").asString();
+		String email = jwt.getClaim("email").asString();
 		Usuario usuario = usuarioRepository.getUsuarioBySubId(subId);
 		if (usuario != null) {
 			this.logeado = usuario;
 		}else {
-			crearNuevoUsuarioYLoguear(subId); 
+			crearNuevoUsuarioYLoguear(subId, nombre, apellido, email); 
 		}		
 	}
 	
-	private void crearNuevoUsuarioYLoguear(String subId) {
+	private void crearNuevoUsuarioYLoguear(String subId, String nombre, String apellido, String email) {
 		Usuario usuario = new Operador(subId);
+		usuario.setNombre(nombre);
+		usuario.setApellido(apellido);
+		usuario.setEmail(email);
 		usuarioRepository.save(usuario);
 		this.logeado = usuario;
 	}

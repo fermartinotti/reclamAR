@@ -43,6 +43,9 @@ public abstract class Usuario extends AbstractPersistable<Long>{
 	@Column
 	String subId;
 	
+	@Column
+	boolean esAdmin;
+	
 //	Telefono telefono;
 	
 	@JoinColumn(name="cuadrillas")
@@ -99,6 +102,19 @@ public abstract class Usuario extends AbstractPersistable<Long>{
 	}
 	public void setSubId(String subId) {
 		this.subId = subId;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public boolean isEsAdmin() {
+		return esAdmin;
+	}
+	public void setEsAdmin(boolean esAdmin) {
+		this.esAdmin = esAdmin;
 	}	
+	
 }
 

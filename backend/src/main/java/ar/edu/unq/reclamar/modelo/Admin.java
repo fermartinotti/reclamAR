@@ -39,7 +39,7 @@ public class Admin extends Usuario {
 //	}
 	
 	public Admin() {
-		super();
+		this.setEsAdmin(true);
 	}
 	
 	public Admin(String subId) {

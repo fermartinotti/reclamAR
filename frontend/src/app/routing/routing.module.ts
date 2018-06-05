@@ -13,6 +13,7 @@ import {InicioComponent} from "../inicio/inicio.component";
 import {NuevoReclamoComponent} from "../nuevo-reclamo/nuevo-reclamo.component";
 import {AuthGuardService as AuthGuard} from "../auth/auth-guard.service";
 import {CallbackComponent} from "../callback/callback.component";
+import {AdminPanelComponent} from "../admin-panel/admin-panel.component";
 
 const appRoutes: Routes = [
   {path: 'inicio', component:InicioComponent},
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     {path: 'bacheo', component: BacheoComponent, canActivate: [AuthGuard]},
     {path: 'arboleda', component: ArboledaComponent, canActivate: [AuthGuard]}
   ]},
+  {path: 'admin-panel', component: AdminPanelComponent},
   {path: 'callback', component: CallbackComponent},
   {path: '**', redirectTo: 'inicio'}
 ]
