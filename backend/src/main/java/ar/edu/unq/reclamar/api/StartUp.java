@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
@@ -15,7 +16,7 @@ public class StartUp implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments arg0) throws Exception {
-		Usuario usuario = new Usuario();
+		Usuario usuario = new Operador();
 		usuario.setNombre("usuarioNombre");
 		usuario.setApellido("usuarioApellido");
 		this.usuarioRepository.save(usuario);

@@ -6,6 +6,6 @@ import ar.edu.unq.reclamar.modelo.Admin;
 
 public interface AdminService {
 	
-	List<Admin> getAllAdmin();
+//	List<Admin> getAllAdmin();
 
 }

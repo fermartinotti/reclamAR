@@ -12,13 +12,14 @@ public interface SecurityService {
  * Esta clase sirve para devolver el usuario logeado en el momento de ralizar una accion.
  * 
  */
+	
 	public Usuario getUsuarioLogeado();
 	
-	public Admin getAdminLogueado();
+//	public Admin getAdminLogueado();
 	
 	public DecodedJWT decode (String token) throws JWTDecodeException;  
 	
-	public void setUsuarioLogueado(String token);
+	public void setUsuarioLogueado();
 	
-	public void setAdminLogueado(String token);
+//	public void setAdminLogueado(String token);
 }

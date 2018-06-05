@@ -1,5 +1,7 @@
 package ar.edu.unq.reclamar.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +10,8 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import ar.edu.unq.reclamar.modelo.Admin;
+import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Usuario;
-import ar.edu.unq.reclamar.repository.AdminRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Service
@@ -25,17 +27,17 @@ public class SecurityServiceImpl implements SecurityService {
 	UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	AdminRepository adminRepository;
+	private HttpServletRequest request;
 
 	@Override
 	public Usuario getUsuarioLogeado() {
 		return this.logeado;
 	}
 	
-	@Override
-	public Admin getAdminLogueado() {
-		return this.adminLogueado;
-	}
+//	@Override
+//	public Admin getAdminLogueado() {
+//		return this.adminLogueado;
+//	}
 
 	@Override
 	public DecodedJWT decode(String token) throws JWTDecodeException {	
@@ -46,9 +48,10 @@ public class SecurityServiceImpl implements SecurityService {
 		}
 		return jwt;
 	}
-
+	
 	@Override
-	public void setUsuarioLogueado(String token) {
+	public void setUsuarioLogueado(){
+		String token = request.getHeader("Authorization");
 		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
 		String subId = jwt.getSubject();
 		Usuario usuario = usuarioRepository.getUsuarioBySubId(subId);
@@ -59,27 +62,29 @@ public class SecurityServiceImpl implements SecurityService {
 		}		
 	}
 	
-	@Override
-	public void setAdminLogueado(String token) {
-		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
-		String subId = jwt.getSubject();
-		Admin admin = adminRepository.getAdminBySubId(subId);
-		if (admin != null) {
-			this.adminLogueado = admin;
-		}else {
-			crearNuevoAdminYLoguear(subId); 
-		}		
-	}
-	
 	private void crearNuevoUsuarioYLoguear(String subId) {
-		Usuario usuario = new Usuario(subId);
+		Usuario usuario = new Operador(subId);
 		usuarioRepository.save(usuario);
 		this.logeado = usuario;
 	}
 	
-	private void crearNuevoAdminYLoguear(String subId) {
-		Admin admin = new Admin(subId);
-		adminRepository.save(admin);
-		this.adminLogueado = admin;
-	}
+	
+//	@Override
+//	public void setAdminLogueado(String token) {
+//		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
+//		String subId = jwt.getSubject();
+//		Admin admin = adminRepository.getAdminBySubId(subId);
+//		if (admin != null) {
+//			this.adminLogueado = admin;
+//		}else {
+//			crearNuevoAdminYLoguear(subId); 
+//		}		
+//	}
+//	
+//	
+//	private void crearNuevoAdminYLoguear(String subId) {
+//		Admin admin = new Admin(subId);
+//		adminRepository.save(admin);
+//		this.adminLogueado = admin;
+//	}
 }

@@ -16,10 +16,14 @@ import ar.edu.unq.reclamar.modelo.Reclamo;
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = false, 
 exposeHeaders = {"Access-Control-Allow-Headers",
 	        "Origin", "Content-Type", "X-Requested-With", "accept", 
-	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"},
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", 
+	        "Authorization"},
 allowHeaders = {"Access-Control-Allow-Headers",
 	        "Origin", "Content-Type", "X-Requested-With", "accept", 
-	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"})
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", 
+	        "Authorization"})
+
+
 public interface ReclamarApi {
 
 	@GET
@@ -42,15 +46,6 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response agregarReclamo(Reclamo reclamo);
 	
-	@POST
-	@Path("/cuadrillas")
-	@Produces(MediaType.APPLICATION_JSON)
-	Response agregarCuadrilla(Integer cantEmpleados);
-	
-	@GET
-	@Path("/cuadrillas")
-	@Produces(MediaType.APPLICATION_JSON)
-	Response getCuadrillas();
 	
 	@GET
 	@Path("/reclamos/{id}")
@@ -62,8 +57,20 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getTodosLosReclamos();
 	
+//	@POST
+//	@Path("/cuadrillas")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response agregarCuadrilla(Integer cantEmpleados);
+//
+//	@GET
+//	@Path("/cuadrillas")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response getCuadrillas();
+
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response asignarCuadrilla(Reclamo reclamo);
+	
+	
 }

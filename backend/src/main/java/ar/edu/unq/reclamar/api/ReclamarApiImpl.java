@@ -2,7 +2,6 @@ package ar.edu.unq.reclamar.api;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +30,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 	private AdminService adminService;
 	
 	@Autowired
-	private HttpServletRequest request;
-	
-	@Autowired
 	private SecurityService securityService;
 	
 	@Override
@@ -43,19 +39,15 @@ public class ReclamarApiImpl implements ReclamarApi {
 
 	@Override
 	public Response reclamos(){
-		String token = request.getHeader("Authorization");
-		System.out.println(token);
-		securityService.setUsuarioLogueado(token);
+		securityService.setUsuarioLogueado();
 		return Response.ok(reclamoService.misReclamos()).build();
 	}
 	
-	@Override
-	public Response getCuadrillas(){
-		String token = request.getHeader("Authorization");
-		System.out.println(token);
-		securityService.setAdminLogueado(token);
-		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
-	}
+//	@Override
+//	public Response getCuadrillas(){
+//		securityService.setUsuarioLogueado();
+//		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
+//	}
 
 	@Override
 	public Response usuarios() {
@@ -64,9 +56,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 
 	@Override
 	public Response agregarReclamo(Reclamo reclamo) {
-		String token = request.getHeader("Authorization");
-		System.out.println(token);
-		securityService.setUsuarioLogueado(token);
+		securityService.setUsuarioLogueado();
 		try {
 			reclamoService.agregarReclamo(reclamo);			
 			return Response.ok(reclamo).build();
@@ -75,23 +65,20 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}		
 	}
 	
-	@Override
-	public Response agregarCuadrilla(Integer cantEmpleados) {
-		String token = request.getHeader("Authorization");
-		System.out.println(token);
-		securityService.setAdminLogueado(token);
-		try {
-			cuadrillaService.crearCuadrilla(cantEmpleados);		
-			return Response.ok().build();
-		}catch(Exception e) {
-			return Response.status(500).build();
-		}		
-	}
+//	@Override
+//	public Response agregarCuadrilla(Integer cantEmpleados) {
+//		securityService.setUsuarioLogueado();
+//		try {
+//			cuadrillaService.crearCuadrilla(cantEmpleados);		
+//			return Response.ok().build();
+//		}catch(Exception e) {
+//			return Response.status(500).build();
+//		}		
+//	}
 
 	@Override
 	public Response getReclamoById(Long id) {
-		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);
-		
+		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);		
 		if(reclamo.isPresent()) {
 			return Response.ok(reclamo.get()).build();
 		}else {
@@ -106,9 +93,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 
 	@Override
 	public Response asignarCuadrilla(Reclamo reclamo) {
-		String token = request.getHeader("Authorization");
-		System.out.println(token);
-		securityService.setUsuarioLogueado(token);
+		securityService.setUsuarioLogueado();
 		try {
 			reclamoService.agregarReclamo(reclamo);			
 			return Response.ok(reclamo).build();

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
+import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
@@ -49,7 +50,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	@Transactional
 	public void agregarReclamo(Reclamo reclamo) throws DatoInvalidoException {
-		Usuario userLogeado = securityService.getUsuarioLogeado();
+		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
 		reclamo.setAutor(userLogeado);
 		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		

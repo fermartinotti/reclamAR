@@ -15,23 +15,30 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 @Entity
 @JsonIgnoreProperties(value = {"new"})
-public class Usuario extends AbstractPersistable<Long>{
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+	@Type(value = Operador.class, name ="Operador"),
+	@Type(value = Admin.class, name= "Admin")	
+	}
+)
+public abstract class Usuario extends AbstractPersistable<Long>{
 
 	private static final long serialVersionUID = 1L;
-
-	@JoinColumn(name="reclamos")
-	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
-	Set<Reclamo> reclamos = new HashSet<Reclamo>();
 	
 	@Column
 	String nombre;
 	
 	@Column
 	String apellido;
+	
+	@Column
+	String email;
 	
 	@Column
 	String subId;
@@ -75,12 +82,6 @@ public class Usuario extends AbstractPersistable<Long>{
 		this.subId = subId;
 	}
 	
-	public Set<Reclamo> getReclamos() {
-		return reclamos;
-	}
-	public void setReclamos(Set<Reclamo> reclamos) {
-		this.reclamos = reclamos;
-	}
 	public String getNombre() {
 		return nombre;
 	}
