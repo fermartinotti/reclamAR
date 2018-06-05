@@ -58,13 +58,13 @@ public class SecurityServiceImpl implements SecurityService {
 		System.out.println(token);
 		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
 		String subId = jwt.getSubject();
-		String nombre = jwt.getClaim("given_name").asString();
-		String apellido = jwt.getClaim("family_name").asString();
-		String email = jwt.getClaim("email").asString();
 		Usuario usuario = usuarioRepository.getUsuarioBySubId(subId);
 		if (usuario != null) {
 			this.logeado = usuario;
 		}else {
+			String nombre = jwt.getClaim("given_name").asString();
+			String apellido = jwt.getClaim("family_name").asString();
+			String email = jwt.getClaim("email").asString();
 			crearNuevoUsuarioYLoguear(subId, nombre, apellido, email); 
 		}		
 	}
