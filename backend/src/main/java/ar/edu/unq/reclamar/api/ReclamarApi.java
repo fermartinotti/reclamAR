@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
+import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
 @Path("/rest")
@@ -53,7 +54,7 @@ public interface ReclamarApi {
 	@POST
 	@Path("/cuadrillas")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response agregarCuadrilla(Integer cantEmpleados, String nombre);
+	Response agregarCuadrilla(Cuadrilla cuadrilla);
 
 	@GET
 	@Path("/cuadrillas")

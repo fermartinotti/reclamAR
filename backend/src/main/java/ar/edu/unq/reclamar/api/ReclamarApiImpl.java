@@ -5,6 +5,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.ReclamoService;
@@ -60,10 +61,10 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 	
 	@Override
-	public Response agregarCuadrilla(Integer cantEmpleados, String nombre) {
+	public Response agregarCuadrilla(Cuadrilla cuadrilla) {
 		securityService.setUsuarioLogueado();
 		try {
-			cuadrillaService.crearCuadrilla(cantEmpleados, nombre);		
+			cuadrillaService.crearCuadrilla(cuadrilla);		
 			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
