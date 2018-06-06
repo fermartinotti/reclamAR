@@ -33,6 +33,8 @@ import {AuthGuardService} from "./auth/auth-guard.service";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import {AuthGuardAdminService} from "./auth/auth-guard-admin.service";
 import {UsuarioService} from "./services/usuario.service";
+import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.component';
+import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import {UsuarioService} from "./services/usuario.service";
     NuevoReclamoComponent,
     MapGlobalComponent,
     CallbackComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AdminCuadrillaComponent,
+    AdminReclamosComponent
   ],
   imports: [
     HttpModule,

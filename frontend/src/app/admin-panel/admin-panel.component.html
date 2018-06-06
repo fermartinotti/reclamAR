@@ -1,3 +1,34 @@
-<p>
-  admin-panel works!
-</p>
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['cuadrillas']">
+              <span data-feather="home"></span>
+              Cuadrilla <span class="sr-only"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['administrar-reclamos']">
+              <span data-feather="file"></span>
+              Reclamos
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+</body>
+</html>
