@@ -12,7 +12,11 @@ import {ReclamoComponent} from "../reclamo/reclamo.component";
 import {InicioComponent} from "../inicio/inicio.component";
 import {NuevoReclamoComponent} from "../nuevo-reclamo/nuevo-reclamo.component";
 import {AuthGuardService as AuthGuard} from "../auth/auth-guard.service";
+import {AuthGuardAdminService as AuthGuardAdmin} from "../auth/auth-guard-admin.service";
 import {CallbackComponent} from "../callback/callback.component";
+import {AdminPanelComponent} from "../admin-panel/admin-panel.component";
+import {AdminCuadrillaComponent} from "../admin-cuadrilla/admin-cuadrilla.component";
+import {AdminReclamosComponent} from "../admin-reclamos/admin-reclamos.component";
 
 const appRoutes: Routes = [
   {path: 'inicio', component:InicioComponent},
@@ -25,6 +29,10 @@ const appRoutes: Routes = [
     {path: 'semaforo', component: SemaforoComponent, canActivate: [AuthGuard]},
     {path: 'bacheo', component: BacheoComponent, canActivate: [AuthGuard]},
     {path: 'arboleda', component: ArboledaComponent, canActivate: [AuthGuard]}
+  ]},
+  {path: 'admin-panel', component: AdminPanelComponent, children:[
+    {path: 'cuadrillas', component: AdminCuadrillaComponent},
+    {path: 'administrar-reclamos', component: AdminReclamosComponent}
   ]},
   {path: 'callback', component: CallbackComponent},
   {path: '**', redirectTo: 'inicio'}

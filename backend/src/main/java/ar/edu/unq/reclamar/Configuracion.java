@@ -12,13 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -35,7 +31,7 @@ public class Configuracion extends WebSecurityConfigurerAdapter {
 
 	@Value(value = "5b0898633b631f527538f16d")
     private String apiAudience;
-    @Value(value = "http://localhost:8080/api")
+    @Value(value = "http://localhost:8090/api")
     private String issuer;
 	
 	@Autowired
@@ -83,8 +79,5 @@ public class Configuracion extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/rest/reclamos/todos").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/private").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/private-scoped").hasAuthority("read:messages");
-    }
-    
-
-    
+    }  
 }

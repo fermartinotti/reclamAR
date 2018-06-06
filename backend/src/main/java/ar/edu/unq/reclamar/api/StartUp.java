@@ -5,25 +5,34 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Operador;
-import ar.edu.unq.reclamar.repository.OperadorRepository;
+import ar.edu.unq.reclamar.modelo.Usuario;
+import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Component
 public class StartUp implements ApplicationRunner {
-	private OperadorRepository operadorRepository;
+	
+	private UsuarioRepository usuarioRepository;
 
 	@Override
 	public void run(ApplicationArguments arg0) throws Exception {
-		Operador operador = new Operador();
-		operador.setNombre("operadorNombre");
-		operador.setApellido("operadorApellido");
-		this.operadorRepository.save(operador);
+		Usuario usuario = new Operador();
+		usuario.setNombre("usuarioNombre");
+		usuario.setApellido("usuarioApellido");
+		this.usuarioRepository.save(usuario);
+		
+		Admin admin = new Admin("auth0|5b17261c157859716f2c7518");
+		admin.setNombre("Administrador");
+		admin.setApellido("ReclamAR");
+		admin.setEmail("administrador@reclamar.com.ar");
+		this.usuarioRepository.save(admin);
 		
 	}
 
 	@Autowired
-	public void setOperadorRepository(OperadorRepository operadorRepository) {
-		this.operadorRepository = operadorRepository;
+	public void setUsuarioRepository(UsuarioRepository usuarioRepository) {
+		this.usuarioRepository = usuarioRepository;
 	}
 	
 	

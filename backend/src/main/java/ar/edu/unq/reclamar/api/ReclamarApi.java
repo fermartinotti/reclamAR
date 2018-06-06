@@ -1,20 +1,14 @@
 package ar.edu.unq.reclamar.api;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestHeader;
 
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -22,10 +16,14 @@ import ar.edu.unq.reclamar.modelo.Reclamo;
 @CrossOriginResourceSharing(allowAllOrigins = true, allowCredentials = false, 
 exposeHeaders = {"Access-Control-Allow-Headers",
 	        "Origin", "Content-Type", "X-Requested-With", "accept", 
-	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"},
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", 
+	        "Authorization"},
 allowHeaders = {"Access-Control-Allow-Headers",
 	        "Origin", "Content-Type", "X-Requested-With", "accept", 
-	        "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization"})
+	        "Access-Control-Request-Method", "Access-Control-Request-Headers", 
+	        "Authorization"})
+
+
 public interface ReclamarApi {
 
 	@GET
@@ -48,6 +46,7 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response agregarReclamo(Reclamo reclamo);
 	
+	
 	@GET
 	@Path("/reclamos/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -58,4 +57,27 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getTodosLosReclamos();
 	
+//	@POST
+//	@Path("/cuadrillas")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response agregarCuadrilla(Integer cantEmpleados);
+//
+//	@GET
+//	@Path("/cuadrillas")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response getCuadrillas();
+
+	@POST
+	@Path("/reclamos/asignarCuadrilla")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response asignarCuadrilla(Reclamo reclamo);
+
+	@GET
+    @Path("/login")
+    Response login();
+	
+	@GET
+	@Path("/usuarioLogueado")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response usuarioLogueado();
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AUTH_CONFIG } from './auth0-variables';
 import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
+import {UsuarioService} from "../services/usuario.service";
+import {Usuario} from "../model/usuario";
 
 (window as any).global = window;
 
@@ -13,19 +15,20 @@ export class AuthService {
     domain: 'reclamar.auth0.com',
     responseType: 'token id_token',
     audience: `http://localhost:8080/api`,
-    scope: 'openid profile read:messages',
-    redirectUri:'http://localhost:4200/callback'
+    scope: 'openid profile email read:messages',
+    redirectUri:'http://localhost:4200/callback',
   });
 
   userProfile: any;
+  private usuarioLogueado: Usuario = new Usuario(null,null,null,false);
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private usuarioService: UsuarioService) {}
 
   public login(): void {
     this.auth0.authorize();
   }
 
-  public handleAuthentication(): void {
+  public handleAuthentication():void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -39,7 +42,7 @@ export class AuthService {
   }
 
   public getProfile(): void {
-    const accessToken = localStorage.getItem('access_token');
+      const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('Access token must exist to fetch profile');
     }
@@ -52,12 +55,15 @@ export class AuthService {
     });
   }
 
-  private setSession(authResult): void {
+  private async setSession(authResult): Promise<void> {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    await this.usuarioService.loguearUsuario();
+    await this.usuarioService.usuarioLogueado()
+      .then(usuario => this.usuarioLogueado = usuario);
   }
 
   public logout(): void {
@@ -74,6 +80,10 @@ export class AuthService {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public esAdmin(): boolean {
+    return this.isAuthenticated() && this.usuarioLogueado.esAdmin
   }
 
 

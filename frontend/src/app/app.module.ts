@@ -30,6 +30,11 @@ import { MapGlobalComponent } from './map-global/map-global.component';
 import { CallbackComponent } from './callback/callback.component';
 import {AuthService} from './auth/auth.service'
 import {AuthGuardService} from "./auth/auth-guard.service";
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import {AuthGuardAdminService} from "./auth/auth-guard-admin.service";
+import {UsuarioService} from "./services/usuario.service";
+import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.component';
+import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +54,10 @@ import {AuthGuardService} from "./auth/auth-guard.service";
     InicioComponent,
     NuevoReclamoComponent,
     MapGlobalComponent,
-    CallbackComponent
+    CallbackComponent,
+    AdminPanelComponent,
+    AdminCuadrillaComponent,
+    AdminReclamosComponent
   ],
   imports: [
     HttpModule,
@@ -66,9 +74,11 @@ import {AuthGuardService} from "./auth/auth-guard.service";
   ],
   providers: [
     ReclamoService,
+    UsuarioService,
     DataSenderService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    AuthGuardAdminService
   ],
   bootstrap: [AppComponent],
   entryComponents: [NgModalContentComponent],

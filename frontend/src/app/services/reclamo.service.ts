@@ -14,7 +14,7 @@ export class ReclamoService {
   async generarReclamo(reclamo: Reclamo): Promise<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return await this.httpClient.post('http://localhost:8080/api/rest/reclamos', reclamo, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
+      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
     }).toPromise()
   }
 
@@ -25,7 +25,7 @@ export class ReclamoService {
 
   async misReclamos(): Promise<Array<Reclamo>>{
     return await this.httpClient.get<Array<Reclamo>>('http://localhost:8080/api/rest/reclamos/', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
+      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
     }).toPromise();
   }
 

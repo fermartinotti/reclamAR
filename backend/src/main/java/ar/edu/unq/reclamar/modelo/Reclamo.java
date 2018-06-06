@@ -28,7 +28,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 
 	@JoinColumn(name="autor")
     @ManyToOne(fetch = FetchType.EAGER)
-	Operador autor;
+	Usuario autor;
 	
 	@Column
 	@JsonSerialize(using= MiLocalDateSerializer.class)
@@ -53,21 +53,25 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.EAGER)
 	Localizacion lugarDeIncidente;
 	
+	@JoinColumn(name="cuadrillaAsignada")
+	@ManyToOne(fetch = FetchType.EAGER)
+	Cuadrilla cuadrilla;
+	
 	public Reclamo() {};
 	
-	public Reclamo(Operador autor, String mensaje) {
+	public Reclamo(Usuario autor, String mensaje) {
 	
 		this.autor = autor;
 		this.fechaDeCreacion = LocalDateTime.now();
 		this.detalle = mensaje;
 	}
 		
-	public Operador getAutor() {
+	public Usuario getAutor() {
 		return autor;
 	}
 	
-	public void setAutor(Operador autor) {
-		this.autor = autor;
+	public void setAutor(Usuario userLogeado) {
+		this.autor = userLogeado;
 	}
 	
 	public LocalDateTime getFechaDeCreacion() {
@@ -125,6 +129,12 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	public void setEstados(Set<Estado> estados) {
 		this.estados = estados;
 	}
-	
-	
+
+	public Cuadrilla getCuadrilla() {
+		return cuadrilla;
+	}
+
+	public void setCuadrilla(Cuadrilla cuadrilla) {
+		this.cuadrilla = cuadrilla;
+	}
 }

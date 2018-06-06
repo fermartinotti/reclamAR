@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 )
 public abstract class TipoDeReclamo extends AbstractPersistable<Long>{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 }
