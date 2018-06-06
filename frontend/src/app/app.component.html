@@ -6,10 +6,10 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item" *ngIf="auth.isAuthenticated()">
+      <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
         <a class="nav-link" routerLink="/crear-reclamo">Nuevo Reclamo</a>
       </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated()">
+      <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
         <a class="nav-link" routerLink="/mis-reclamos">Ver mis reclamos</a>
       </li>
       <li class="nav-item">
