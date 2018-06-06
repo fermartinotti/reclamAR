@@ -35,6 +35,7 @@ import {AuthGuardAdminService} from "./auth/auth-guard-admin.service";
 import {UsuarioService} from "./services/usuario.service";
 import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.component';
 import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
+import {CuadrillaService} from "./services/cuadrilla.service";
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.componen
   providers: [
     ReclamoService,
     UsuarioService,
+    CuadrillaService,
     DataSenderService,
     AuthService,
     AuthGuardService,
