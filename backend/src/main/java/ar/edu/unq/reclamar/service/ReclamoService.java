@@ -12,6 +12,8 @@ public interface ReclamoService {
 	public void agregarReclamo(Reclamo reclamo);
 
 	Optional<Reclamo> getReclamo(Long id);
+	
+	Reclamo getReclamoById(Long id);
 
 	List<Reclamo> todosLosReclamos();
 

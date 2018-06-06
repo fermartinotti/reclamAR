@@ -57,20 +57,20 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getTodosLosReclamos();
 	
-//	@POST
-//	@Path("/cuadrillas")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response agregarCuadrilla(Integer cantEmpleados);
-//
-//	@GET
-//	@Path("/cuadrillas")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response getCuadrillas();
+	@POST
+	@Path("/cuadrillas")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response agregarCuadrilla(Integer cantEmpleados);
+
+	@GET
+	@Path("/cuadrillas")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getCuadrillas();
 
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response asignarCuadrilla(Reclamo reclamo);
+	Response asignarCuadrilla(Long id);
 
 	@GET
     @Path("/login")

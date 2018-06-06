@@ -38,12 +38,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		securityService.setUsuarioLogueado();
 		return Response.ok(reclamoService.misReclamos()).build();
 	}
-	
-//	@Override
-//	public Response getCuadrillas(){
-//		securityService.setUsuarioLogueado();
-//		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
-//	}
 
 	@Override
 	public Response usuarios() {
@@ -61,26 +55,23 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}		
 	}
 	
-//	@Override
-//	public Response agregarCuadrilla(Integer cantEmpleados) {
-//		securityService.setUsuarioLogueado();
-//		try {
-//			cuadrillaService.crearCuadrilla(cantEmpleados);		
-//			return Response.ok().build();
-//		}catch(Exception e) {
-//			return Response.status(500).build();
-//		}		
-//	}
-
 	@Override
-	public Response getReclamoById(Long id) {
-		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);		
-		if(reclamo.isPresent()) {
-			return Response.ok(reclamo.get()).build();
-		}else {
-			return Response.status(404).build();
-		}
+	public Response getCuadrillas(){
+		securityService.setUsuarioLogueado();
+		return Response.ok(cuadrillaService.todasLasCuadrillas()).build();
 	}
+	
+	@Override
+	public Response agregarCuadrilla(Integer cantEmpleados) {
+		securityService.setUsuarioLogueado();
+		try {
+			cuadrillaService.crearCuadrilla(cantEmpleados);		
+			return Response.ok().build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}		
+	}
+
 
 	@Override
 	public Response getTodosLosReclamos() {
@@ -88,10 +79,11 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 
 	@Override
-	public Response asignarCuadrilla(Reclamo reclamo) {
+	public Response asignarCuadrilla(Long id) {
 		securityService.setUsuarioLogueado();
+		Reclamo reclamo = reclamoService.getReclamoById(id);
 		try {
-			reclamoService.agregarReclamo(reclamo);			
+			reclamoService.asignacionCuadrilla(reclamo);			
 			return Response.ok(reclamo).build();
 		}catch(Exception e) {
 			return Response.status(500).build();
@@ -107,6 +99,12 @@ public class ReclamarApiImpl implements ReclamarApi {
 	@Override
 	public Response usuarioLogueado() {
 		return Response.ok(securityService.getUsuarioLogeado()).build();
+	}
+
+	@Override
+	public Response getReclamoById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

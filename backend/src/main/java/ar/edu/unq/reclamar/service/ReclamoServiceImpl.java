@@ -13,10 +13,12 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
+import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Usuario;
+import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.LocalizacionRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
@@ -44,6 +46,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 	@Autowired
 	private LocalizacionRepository localizacionRepository;
+	
+	@Autowired
+	private CuadrillaRepository cuadrillaRepository;
 
 	@Override
 	public List<Reclamo> misReclamos() {
@@ -83,22 +88,22 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Transactional
 	public void asignacionCuadrilla(Reclamo reclamo){
 		Usuario userLogeado = securityService.getUsuarioLogeado();
-		reclamo.setAutor(userLogeado);
-		reclamo.setFechaDeCreacion(LocalDateTime.now());
+//		reclamo.setAutor(userLogeado);
+//		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
 		if(userLogeado.hayCuadrillaDisponible()){
 			userLogeado.asignarCuadrilla(reclamo);
 		}
 		
+		Cuadrilla cuadrilla = reclamo.getCuadrilla();
+		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
 		estadoRepository.save(estado);
 		
 		reclamo.setEstado(estado);		
 		reclamo.getEstados().add(estado);
 	
-		
 		repository.save(reclamo);
-		
 		usuarioRepository.save(userLogeado);		
 	}
 
@@ -110,5 +115,10 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	public List<Reclamo> todosLosReclamos() {
 		return (List<Reclamo>) repository.findAll();
+	}
+
+	@Override
+	public Reclamo getReclamoById(Long id) {
+		return repository.findOne(id);
 	}
 }
