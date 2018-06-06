@@ -34,11 +34,11 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	 
 	 @Override
 	 @Transactional
-	 public void crearCuadrilla(Integer cantEmpleados) throws DatoInvalidoException {
+	 public void crearCuadrilla(Integer cantEmpleados, String nombre) throws DatoInvalidoException {
 		  Usuario adminLogeado = securityService.getUsuarioLogeado();
 		  Cuadrilla cuadrilla = new Cuadrilla();
 		  if(cuadrilla.puedeCrearCuadrilla(cantEmpleados)) {
-			  //cuadrilla.setNombre(nombre);
+			  cuadrilla.setNombre(nombre);
 			  for(int i = 0; cantEmpleados > i; i++) {
 				  EmpleadoCuadrilla empleado = new EmpleadoCuadrilla();
 				  cuadrillaRepository.save(empleado);

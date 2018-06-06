@@ -6,7 +6,7 @@ import ar.edu.unq.reclamar.modelo.Cuadrilla;
 
 public interface CuadrillaService {
 
-	public void crearCuadrilla(Integer cantidadEmpleados);
+	public void crearCuadrilla(Integer cantidadEmpleados, String nombre);
 	
 	List<Cuadrilla> todasLasCuadrillas();
 	

@@ -30,6 +30,9 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	@Column
 	boolean estaDisponible = true;
 	
+	@Column 
+	String nombre;
+	
 	public List<EmpleadoCuadrilla> getEmpleadosCuadrilla() {
 		return empleadosCuadrilla;
 	}
@@ -48,7 +51,12 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	public void setEstaDisponible(boolean estaDisponible) {
 		this.estaDisponible = estaDisponible;
 	}
-	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	public boolean puedeCrearCuadrilla(Integer cantidad) throws DatoInvalidoException{
 		if(cantidad > maximoEmpleados) {
 			throw new DatoInvalidoException("La cuadrilla tiene una capacidad máxima para 6 personas");

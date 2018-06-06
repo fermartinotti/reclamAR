@@ -1,7 +1,5 @@
 package ar.edu.unq.reclamar.api;
 
-import java.util.Optional;
-
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,10 +60,10 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 	
 	@Override
-	public Response agregarCuadrilla(Integer cantEmpleados) {
+	public Response agregarCuadrilla(Integer cantEmpleados, String nombre) {
 		securityService.setUsuarioLogueado();
 		try {
-			cuadrillaService.crearCuadrilla(cantEmpleados);		
+			cuadrillaService.crearCuadrilla(cantEmpleados, nombre);		
 			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
@@ -100,13 +98,4 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response usuarioLogueado() {
 		return Response.ok(securityService.getUsuarioLogeado()).build();
 	}
-
-	@Override
-	public Response getReclamoById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
-
 }

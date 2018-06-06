@@ -3,7 +3,6 @@ package ar.edu.unq.reclamar.api;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -46,12 +45,6 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response agregarReclamo(Reclamo reclamo);
 	
-	
-	@GET
-	@Path("/reclamos/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	Response getReclamoById(@PathParam("id") Long id);	
-	
 	@GET
 	@Path("/reclamos/todos")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -60,7 +53,7 @@ public interface ReclamarApi {
 	@POST
 	@Path("/cuadrillas")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response agregarCuadrilla(Integer cantEmpleados);
+	Response agregarCuadrilla(Integer cantEmpleados, String nombre);
 
 	@GET
 	@Path("/cuadrillas")
