@@ -22,10 +22,10 @@ public class StartUp implements ApplicationRunner {
 		usuario.setApellido("usuarioApellido");
 		this.usuarioRepository.save(usuario);
 		
-		Admin admin = new Admin("google-oauth2|115958904657922705294");
-		admin.setNombre("Fernando");
-		admin.setApellido("Martinotti");
-		admin.setEmail("fermartinotti@gmail.com");
+		Admin admin = new Admin("auth0|5b17261c157859716f2c7518");
+		admin.setNombre("Administrador");
+		admin.setApellido("ReclamAR");
+		admin.setEmail("administrador@reclamar.com.ar");
 		this.usuarioRepository.save(admin);
 		
 	}
