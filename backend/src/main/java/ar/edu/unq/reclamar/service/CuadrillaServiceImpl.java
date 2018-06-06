@@ -8,11 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
+import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
-import ar.edu.unq.reclamar.modelo.EmpleadoCuadrilla;
-import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
-import ar.edu.unq.reclamar.repository.EmpleadoCuadrillaRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Service
@@ -22,28 +20,25 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	private CuadrillaRepository repository;
 	
 	@Autowired
-	private EmpleadoCuadrillaRepository cuadrillaRepository;
-	
-	@Autowired
 	private SecurityService securityService;
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	 
-
 	 
 	 @Override
 	 @Transactional
 	 public void crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
-//		 Usuario adminLogeado = securityService.getUsuarioLogeado();
-//		   
-//		 adminLogeado.getCuadrillas().add(cuadrilla);
-//		 repository.save(cuadrilla);
-//		 usuarioRepository.save(adminLogeado);    
+		 Admin adminLogeado = (Admin) securityService.getUsuarioLogeado();
+		 repository.save(cuadrilla);
+		   
+		 adminLogeado.getCuadrillas().add(cuadrilla);
+		 usuarioRepository.save(adminLogeado);    
+		 
 	}
 	 
 	 
-	 @Override
+	@Override
 	public List<Cuadrilla> todasLasCuadrillas() {
 		return (List<Cuadrilla>) repository.findAll();	
 	}
