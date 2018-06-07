@@ -22,7 +22,10 @@ export class AuthService {
   userProfile: any;
   private usuarioLogueado: Usuario = new Usuario(null,null,null,false);
 
-  constructor(public router: Router, private usuarioService: UsuarioService) {}
+  constructor(public router: Router, private usuarioService: UsuarioService) {
+    this.usuarioService.usuarioLogueado()
+      .then(usuario => this.usuarioLogueado = usuario);
+  }
 
   public login(): void {
     this.auth0.authorize();
