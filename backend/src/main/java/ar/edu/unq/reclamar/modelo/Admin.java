@@ -38,16 +38,15 @@ public class Admin extends Usuario {
 		return true;
 	}
 	
-//	public void asignarCuadrilla(Reclamo reclamo) {
-//		for(Cuadrilla c : cuadrillas) {
-//			if(c.isEstaDisponible()) {
-//				reclamo.setCuadrilla(c);
-//				c.setEstaDisponible(false);
-//				break;
-//			}
-//		}
-//	}
-	
+	public void asignarCuadrilla(Reclamo reclamo) {
+		for(Cuadrilla c : cuadrillas) {
+			if(c.isEstaDisponible()) {
+				reclamo.setCuadrilla(c);
+				c.setEstaDisponible(false);
+				break;
+			}
+		}
+	}
 	
 	public Admin() {
 		this.setEsAdmin(true);

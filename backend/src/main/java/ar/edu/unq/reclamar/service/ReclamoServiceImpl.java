@@ -1,5 +1,6 @@
 package ar.edu.unq.reclamar.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,12 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
+import ar.edu.unq.reclamar.modelo.Admin;
+import ar.edu.unq.reclamar.modelo.Cerrado;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
-import ar.edu.unq.reclamar.modelo.Usuario;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.LocalizacionRepository;
@@ -86,18 +88,26 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 	@Override
 	@Transactional
-	public void asignacionCuadrilla(Reclamo reclamo){
-		Usuario userLogeado = securityService.getUsuarioLogeado();
-//		reclamo.setAutor(userLogeado);
-//		reclamo.setFechaDeCreacion(LocalDateTime.now());
+	public void asignacionCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion){
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		// No se para que estan estas 2 lineas
+		reclamo.setAutor(userLogeado);
+		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		//
 		
 //		if(userLogeado.hayCuadrillaDisponible()){
 //			userLogeado.asignarCuadrilla(reclamo);
 //		}
+		if(cuadrilla.isEstaDisponible()) {
+			reclamo.setCuadrilla(cuadrilla);
+			cuadrilla.setEstaDisponible(false);
+		}
 		
-		Cuadrilla cuadrilla = reclamo.getCuadrilla();
+		
 		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
+		estado.setFechaDeReparacion(fechaTerminacion);
 		estadoRepository.save(estado);
 		
 		reclamo.setEstado(estado);		
@@ -120,5 +130,25 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	public Reclamo getReclamoById(Long id) {
 		return repository.findOne(id);
+	}
+	
+	@Override
+	public void finalizarReclamo(Reclamo reclamo, String comentario) {
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		reclamo.getCuadrilla().setEstaDisponible(true);
+		cuadrillaRepository.save(reclamo.getCuadrilla());
+		
+		Cerrado estadoCerrado = new Cerrado();
+		estadoCerrado.setComentario(comentario);
+		estadoCerrado.setFechaFinalizacion(LocalDate.now());
+		estadoRepository.save(estadoCerrado);
+		reclamo.setCuadrilla(null);
+		reclamo.setEstado(estadoCerrado);
+		reclamo.getEstados().add(estadoCerrado);
+	
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);	
+	
 	}
 }

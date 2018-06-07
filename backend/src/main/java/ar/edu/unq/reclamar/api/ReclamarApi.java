@@ -1,5 +1,7 @@
 package ar.edu.unq.reclamar.api;
 
+import java.time.LocalDate;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -64,7 +66,12 @@ public interface ReclamarApi {
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response asignarCuadrilla(Long id);
+	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
+	
+	@POST
+	@Path("/reclamos/finalizarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response finalizarReclamo(Reclamo reclamo, String comentario);	
 
 	@GET
     @Path("/login")

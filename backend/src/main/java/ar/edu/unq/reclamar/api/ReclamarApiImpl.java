@@ -1,5 +1,7 @@
 package ar.edu.unq.reclamar.api;
 
+import java.time.LocalDate;
+
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,11 +80,10 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 
 	@Override
-	public Response asignarCuadrilla(Long id) {
+	public Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion) {
 		securityService.setUsuarioLogueado();
-		Reclamo reclamo = reclamoService.getReclamoById(id);
 		try {
-			reclamoService.asignacionCuadrilla(reclamo);			
+			reclamoService.asignacionCuadrilla(reclamo, cuadrilla, fechaTerminacion);			
 			return Response.ok(reclamo).build();
 		}catch(Exception e) {
 			return Response.status(500).build();
@@ -98,5 +99,17 @@ public class ReclamarApiImpl implements ReclamarApi {
 	@Override
 	public Response usuarioLogueado() {
 		return Response.ok(securityService.getUsuarioLogeado()).build();
+	}
+
+	@Override
+	public Response finalizarReclamo(Reclamo reclamo, String comentario) {
+		securityService.setUsuarioLogueado();
+		
+		try {
+			reclamoService.finalizarReclamo(reclamo, comentario);		
+			return Response.ok(reclamo).build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}
 	}
 }

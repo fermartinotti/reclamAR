@@ -22,10 +22,10 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	@Column 
 	String nombre;
 	
-	public Integer getCantIntegrantes() {
+	public int getCantIntegrantes() {
 		return cantIntegrantes;
 	}
-	public void setCantIntegrantes(Integer cantIntegrantes) {
+	public void setCantIntegrantes(int cantIntegrantes) {
 		this.cantIntegrantes = cantIntegrantes;
 	}
 	public boolean isEstaDisponible() {
@@ -43,7 +43,7 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 			
 	public Cuadrilla() {}	
 	
-	public Cuadrilla(Integer cantIntegrantes, String nombre) {
+	public Cuadrilla(int cantIntegrantes, String nombre) {
 		this.cantIntegrantes = cantIntegrantes;
 		this.nombre= nombre;
 	}
