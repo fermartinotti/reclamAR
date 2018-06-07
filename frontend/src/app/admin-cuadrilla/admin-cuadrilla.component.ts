@@ -22,5 +22,6 @@ export class AdminCuadrillaComponent implements OnInit {
 
   async crearCuadrilla():Promise<void>{
     this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+    this.cuadrillas = [this.cuadrilla].concat(this.cuadrillas)
   }
 }
