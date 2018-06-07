@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Cuadrilla} from "../model/cuadrilla";
+import {CuadrillaService} from "../services/cuadrilla.service";
 
 @Component({
   selector: 'app-admin-cuadrilla',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCuadrillaComponent implements OnInit {
 
-  constructor() { }
+  cuadrilla:Cuadrilla = new Cuadrilla(null,null,true, null);
+
+  cuadrillas:Array<Cuadrilla>;
+
+  constructor(private cuadrillaService: CuadrillaService) {
+    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas);
+  }
 
   ngOnInit() {
   }
 
+  async crearCuadrilla():Promise<void>{
+    this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+  }
 }

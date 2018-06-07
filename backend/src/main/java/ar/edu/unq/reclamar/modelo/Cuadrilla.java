@@ -14,7 +14,7 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@Column
-	Integer cantIntegrantes; 
+	int cantIntegrantes; 
 	
 	@Column
 	boolean estaDisponible = true;
