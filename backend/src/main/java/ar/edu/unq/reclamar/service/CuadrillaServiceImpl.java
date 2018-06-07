@@ -36,8 +36,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		 usuarioRepository.save(adminLogeado);    
 		 
 	}
-	 
-	 
+	 	 
 	@Override
 	public List<Cuadrilla> todasLasCuadrillas() {
 		return (List<Cuadrilla>) repository.findAll();	

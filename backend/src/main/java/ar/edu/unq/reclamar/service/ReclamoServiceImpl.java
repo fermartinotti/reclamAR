@@ -91,9 +91,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 //		reclamo.setAutor(userLogeado);
 //		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		
-		if(userLogeado.hayCuadrillaDisponible()){
-			userLogeado.asignarCuadrilla(reclamo);
-		}
+//		if(userLogeado.hayCuadrillaDisponible()){
+//			userLogeado.asignarCuadrilla(reclamo);
+//		}
 		
 		Cuadrilla cuadrilla = reclamo.getCuadrilla();
 		cuadrillaRepository.save(cuadrilla);
