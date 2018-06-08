@@ -1,6 +1,7 @@
 package ar.edu.unq.reclamar.api;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.ws.rs.core.Response;
 
@@ -55,6 +56,16 @@ public class ReclamarApiImpl implements ReclamarApi {
 			return Response.status(500).build();
 		}		
 	}
+	
+	@Override
+	public Response getReclamoById(Long id) {
+		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);		
+		if(reclamo.isPresent()) {
+			return Response.ok(reclamo.get()).build();
+		}else {
+			return Response.status(404).build();
+		}
+}
 	
 	@Override
 	public Response getCuadrillas(){

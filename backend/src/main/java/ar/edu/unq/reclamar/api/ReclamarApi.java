@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,6 +48,11 @@ public interface ReclamarApi {
 	@Path("/reclamos")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response agregarReclamo(Reclamo reclamo);
+	
+	@GET
+	@Path("/reclamos/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getReclamoById(@PathParam("id") Long id);
 	
 	@GET
 	@Path("/reclamos/todos")
