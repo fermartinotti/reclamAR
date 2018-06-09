@@ -30,9 +30,9 @@ const appRoutes: Routes = [
     {path: 'bacheo', component: BacheoComponent, canActivate: [AuthGuard]},
     {path: 'arboleda', component: ArboledaComponent, canActivate: [AuthGuard]}
   ]},
-  {path: 'admin-panel', component: AdminPanelComponent, children:[
-    {path: 'cuadrillas', component: AdminCuadrillaComponent},
-    {path: 'administrar-reclamos', component: AdminReclamosComponent}
+  {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuardAdmin], children:[
+    {path: 'cuadrillas', component: AdminCuadrillaComponent, canActivate: [AuthGuardAdmin]},
+    {path: 'administrar-reclamos', component: AdminReclamosComponent, canActivate: [AuthGuardAdmin]}
   ]},
   {path: 'callback', component: CallbackComponent},
   {path: '**', redirectTo: 'inicio'}
