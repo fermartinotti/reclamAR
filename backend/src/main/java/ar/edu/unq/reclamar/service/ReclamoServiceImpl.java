@@ -19,6 +19,7 @@ import ar.edu.unq.reclamar.modelo.Cerrado;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
+import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
@@ -85,7 +86,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 			
 		}
 	}
-	
+/*	
 	@Override
 	@Transactional
 	public void asignacionCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion){
@@ -115,6 +116,38 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 		repository.save(reclamo);
 		usuarioRepository.save(userLogeado);		
+	}
+*/
+	@Override
+	@Transactional
+	public void asignacionCuadrilla(Prueba prueba) {
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		Reclamo reclamo = getReclamoById(prueba.getIdReclamo());
+		Cuadrilla cuadrilla = cuadrillaRepository.findOne(prueba.getIdCuadrilla());
+		
+		// No se para que estan estas 2 lineas
+		reclamo.setAutor(userLogeado);
+		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		//
+		
+		if(cuadrilla.isEstaDisponible()) {
+			reclamo.setCuadrilla(cuadrilla);
+			cuadrilla.setEstaDisponible(false);
+		}
+		
+		
+		cuadrillaRepository.save(cuadrilla);
+		EnReparacion estado = new EnReparacion();
+		estado.setFechaDeReparacion(prueba.getFecha());
+		estadoRepository.save(estado);
+		
+		reclamo.setEstado(estado);		
+		reclamo.getEstados().add(estado);
+	
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);	
+		
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package ar.edu.unq.reclamar.api;
 
-import java.time.LocalDate;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -13,6 +11,7 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
+import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
 @Path("/rest")
@@ -69,10 +68,15 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getCuadrillas();
 
+//	@POST
+//	@Path("/reclamos/asignarCuadrilla")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
+	
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
+	Response asignarCuadrilla(Prueba prueba);
 	
 	@POST
 	@Path("/reclamos/finalizarReclamo")

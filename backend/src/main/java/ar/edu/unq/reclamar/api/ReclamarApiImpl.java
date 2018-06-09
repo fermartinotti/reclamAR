@@ -1,6 +1,5 @@
 package ar.edu.unq.reclamar.api;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ws.rs.core.Response;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
+import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.ReclamoService;
@@ -90,12 +90,23 @@ public class ReclamarApiImpl implements ReclamarApi {
 		return Response.ok(reclamoService.todosLosReclamos()).build();
 	}
 
+//	@Override
+//	public Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion) {
+//		securityService.setUsuarioLogueado();
+//		try {
+//			reclamoService.asignacionCuadrilla(reclamo, cuadrilla, fechaTerminacion);			
+//			return Response.ok(reclamo).build();
+//		}catch(Exception e) {
+//			return Response.status(500).build();
+//		}	
+//	}
+	
 	@Override
-	public Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion) {
+	public Response asignarCuadrilla(Prueba prueba) {
 		securityService.setUsuarioLogueado();
 		try {
-			reclamoService.asignacionCuadrilla(reclamo, cuadrilla, fechaTerminacion);			
-			return Response.ok(reclamo).build();
+			reclamoService.asignacionCuadrilla(prueba);			
+			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}	
