@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
@@ -124,12 +125,12 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 
 	@Override
-	public Response finalizarReclamo(Reclamo reclamo, String comentario) {
+	public Response finalizarReclamo(CerrarReclamoDTO cerrar) {
 		securityService.setUsuarioLogueado();
 		
 		try {
-			reclamoService.finalizarReclamo(reclamo, comentario);		
-			return Response.ok(reclamo).build();
+			reclamoService.finalizarReclamo(cerrar);		
+			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.Admin;
@@ -166,14 +167,16 @@ public class ReclamoServiceImpl implements ReclamoService {
 	}
 	
 	@Override
-	public void finalizarReclamo(Reclamo reclamo, String comentario) {
+	public void finalizarReclamo(CerrarReclamoDTO cerrar) {
 		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
 		
 		reclamo.getCuadrilla().setEstaDisponible(true);
 		cuadrillaRepository.save(reclamo.getCuadrilla());
 		
 		Cerrado estadoCerrado = new Cerrado();
-		estadoCerrado.setComentario(comentario);
+		estadoCerrado.setComentario(cerrar.getComentario());
 		estadoCerrado.setFechaFinalizacion(LocalDate.now());
 		estadoRepository.save(estadoCerrado);
 		reclamo.setCuadrilla(null);

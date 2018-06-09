@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
@@ -81,7 +82,7 @@ public interface ReclamarApi {
 	@POST
 	@Path("/reclamos/finalizarReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response finalizarReclamo(Reclamo reclamo, String comentario);	
+	Response finalizarReclamo(CerrarReclamoDTO cerrar);	
 
 	@GET
     @Path("/login")

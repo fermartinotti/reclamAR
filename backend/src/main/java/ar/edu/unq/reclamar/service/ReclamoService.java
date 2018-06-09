@@ -3,6 +3,7 @@ package ar.edu.unq.reclamar.service;
 import java.util.List;
 import java.util.Optional;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -22,6 +23,6 @@ public interface ReclamoService {
 	
 	void asignacionCuadrilla(Prueba prueba);
 	
-	void finalizarReclamo(Reclamo reclamo, String comentario);
+	void finalizarReclamo(CerrarReclamoDTO cerrar);
 
 }
