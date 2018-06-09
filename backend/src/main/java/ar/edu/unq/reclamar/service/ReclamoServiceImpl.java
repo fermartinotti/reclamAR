@@ -127,8 +127,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(prueba.getIdCuadrilla());
 		
 		// No se para que estan estas 2 lineas
-		reclamo.setAutor(userLogeado);
-		reclamo.setFechaDeCreacion(LocalDateTime.now());
+//		reclamo.setAutor(userLogeado);
+//		reclamo.setFechaDeCreacion(LocalDateTime.now());
 		//
 		
 		if(cuadrilla.isEstaDisponible()) {
