@@ -2,6 +2,39 @@
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Crear cuadrillas</h1>
 
+    <form #formulario="ngForm">
+
+      <div class="form-group mb-3">
+        <label for="exampleFormControlTextarea1">nombre:</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="cuadrilla.nombre" name="nombre"></textarea>
+      </div>
+      <div class="form-group mb-3">
+        <label for="exampleFormControlTextarea1">Cantidad de empleados que la integran:</label>
+        <textarea class="form-control" id="example2" rows="3" [(ngModel)]="cuadrilla.cantIntegrantes" name="nombre"></textarea>
+      </div>
+      <ng4-loading-spinner></ng4-loading-spinner>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="crearCuadrilla()">Crear Cuadrilla</button>
+
+    </form>
+  </div>
+
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Cuadrillas</h6>
+    <div class="media text-muted pt-3" *ngFor="let c of cuadrillas">
+      <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <strong class="d-block text-gray-dark"> Cuadrilla {{c.nombre}}</strong>
+         <!-- <a href="/mis-reclamos/{{r.id}}">Ver reclamo</a>-->
+        </div>
+        <span class="d-block">
+          Integrantes de la cuadrilla: <i>{{c.cantIntegrantes}}.</i>
+        </span>
+      </div>
+    </div>
+
+   <!-- <small class="d-block text-right mt-3">
+      <a href="#">Mas reclamos</a>
+    </small>-->
   </div>
 
 </main>

@@ -1,5 +1,6 @@
 package ar.edu.unq.reclamar.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -11,12 +12,17 @@ import org.springframework.stereotype.Service;
 
 import com.mashape.unirest.http.exceptions.UnirestException;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
+import ar.edu.unq.reclamar.modelo.Admin;
+import ar.edu.unq.reclamar.modelo.Cerrado;
+import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
-import ar.edu.unq.reclamar.modelo.Usuario;
+import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.LocalizacionRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
@@ -44,6 +50,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 	@Autowired
 	private LocalizacionRepository localizacionRepository;
+	
+	@Autowired
+	private CuadrillaRepository cuadrillaRepository;
 
 	@Override
 	public List<Reclamo> misReclamos() {
@@ -78,28 +87,68 @@ public class ReclamoServiceImpl implements ReclamoService {
 			
 		}
 	}
-	
+/*	
 	@Override
 	@Transactional
-	public void asignacionCuadrilla(Reclamo reclamo){
-		Usuario userLogeado = securityService.getUsuarioLogeado();
+	public void asignacionCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion){
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		// No se para que estan estas 2 lineas
 		reclamo.setAutor(userLogeado);
 		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		//
 		
-		if(userLogeado.hayCuadrillaDisponible()){
-			userLogeado.asignarCuadrilla(reclamo);
+//		if(userLogeado.hayCuadrillaDisponible()){
+//			userLogeado.asignarCuadrilla(reclamo);
+//		}
+		if(cuadrilla.isEstaDisponible()) {
+			reclamo.setCuadrilla(cuadrilla);
+			cuadrilla.setEstaDisponible(false);
 		}
 		
+		
+		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
+		estado.setFechaDeReparacion(fechaTerminacion);
 		estadoRepository.save(estado);
 		
 		reclamo.setEstado(estado);		
 		reclamo.getEstados().add(estado);
 	
-		
 		repository.save(reclamo);
-		
 		usuarioRepository.save(userLogeado);		
+	}
+*/
+	@Override
+	@Transactional
+	public void asignacionCuadrilla(AsignarCuadrillaDTO prueba) {
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		Reclamo reclamo = getReclamoById(prueba.getIdReclamo());
+		Cuadrilla cuadrilla = cuadrillaRepository.findOne(prueba.getIdCuadrilla());
+		
+		// No se para que estan estas 2 lineas
+//		reclamo.setAutor(userLogeado);
+//		reclamo.setFechaDeCreacion(LocalDateTime.now());
+		//
+		
+		if(cuadrilla.isEstaDisponible()) {
+			reclamo.setCuadrilla(cuadrilla);
+			cuadrilla.setEstaDisponible(false);
+		}
+		
+		
+		cuadrillaRepository.save(cuadrilla);
+		EnReparacion estado = new EnReparacion();
+		estado.setFechaDeReparacion(prueba.getFecha());
+		estadoRepository.save(estado);
+		
+		reclamo.setEstado(estado);		
+		reclamo.getEstados().add(estado);
+	
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);	
+		
 	}
 
 	@Override
@@ -110,5 +159,32 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	public List<Reclamo> todosLosReclamos() {
 		return (List<Reclamo>) repository.findAll();
+	}
+
+	@Override
+	public Reclamo getReclamoById(Long id) {
+		return repository.findOne(id);
+	}
+	
+	@Override
+	public void finalizarReclamo(CerrarReclamoDTO cerrar) {
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
+		
+		reclamo.getCuadrilla().setEstaDisponible(true);
+		cuadrillaRepository.save(reclamo.getCuadrilla());
+		
+		Cerrado estadoCerrado = new Cerrado();
+		estadoCerrado.setComentario(cerrar.getComentario());
+		estadoCerrado.setFechaFinalizacion(LocalDate.now());
+		estadoRepository.save(estadoCerrado);
+		reclamo.setCuadrilla(null);
+		reclamo.setEstado(estadoCerrado);
+		reclamo.getEstados().add(estadoCerrado);
+	
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);	
+	
 	}
 }

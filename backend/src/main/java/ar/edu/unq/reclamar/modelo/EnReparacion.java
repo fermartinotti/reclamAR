@@ -1,7 +1,5 @@
 package ar.edu.unq.reclamar.modelo;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -14,19 +12,19 @@ public class EnReparacion extends Estado {
 	private static final long serialVersionUID = 1L;
 	
 	@Column
-	public LocalDate fechaDeReparacion;
+	public String fechaDeReparacion;
 
 	public EnReparacion() {}
 	
-	public EnReparacion(LocalDate fechaReparacion) {
+	public EnReparacion(String fechaReparacion) {
 		this.fechaDeReparacion =fechaReparacion;
 	}
 
-	public LocalDate getFechaDeReparacion() {
+	public String getFechaDeReparacion() {
 		return fechaDeReparacion;
 	}
 
-	public void setFechaDeReparacion(LocalDate fechaDeReparacion) {
+	public void setFechaDeReparacion(String fechaDeReparacion) {
 		this.fechaDeReparacion = fechaDeReparacion;
 	}
 	

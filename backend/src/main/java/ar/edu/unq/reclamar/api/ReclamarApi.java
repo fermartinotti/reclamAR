@@ -10,6 +10,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
+import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
 @Path("/rest")
@@ -46,31 +49,40 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response agregarReclamo(Reclamo reclamo);
 	
-	
 	@GET
 	@Path("/reclamos/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response getReclamoById(@PathParam("id") Long id);	
+	Response getReclamoById(@PathParam("id") Long id);
 	
 	@GET
 	@Path("/reclamos/todos")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getTodosLosReclamos();
 	
-//	@POST
-//	@Path("/cuadrillas")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response agregarCuadrilla(Integer cantEmpleados);
-//
-//	@GET
-//	@Path("/cuadrillas")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response getCuadrillas();
+	@POST
+	@Path("/cuadrillas")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response agregarCuadrilla(Cuadrilla cuadrilla);
 
+	@GET
+	@Path("/cuadrillas")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getCuadrillas();
+
+//	@POST
+//	@Path("/reclamos/asignarCuadrilla")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
+	
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response asignarCuadrilla(Reclamo reclamo);
+	Response asignarCuadrilla(AsignarCuadrillaDTO prueba);
+	
+	@POST
+	@Path("/reclamos/finalizarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response finalizarReclamo(CerrarReclamoDTO cerrar);	
 
 	@GET
     @Path("/login")
