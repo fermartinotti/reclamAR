@@ -1,6 +1,6 @@
-package ar.edu.unq.reclamar.modelo;
+package ar.edu.unq.reclamar.dto;
 
-public class Prueba {
+public class AsignarCuadrillaDTO {
 	
 	Long idReclamo;
 	Long idCuadrilla;
@@ -24,13 +24,13 @@ public class Prueba {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public Prueba(Long idReclamo, Long idCuadrilla, String fecha) {
+	public AsignarCuadrillaDTO(Long idReclamo, Long idCuadrilla, String fecha) {
 		super();
 		this.idReclamo = idReclamo;
 		this.idCuadrilla = idCuadrilla;
 		this.fecha = fecha;
 	}
-	public Prueba() {
+	public AsignarCuadrillaDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
