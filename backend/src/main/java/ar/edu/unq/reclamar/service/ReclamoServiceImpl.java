@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.Admin;
@@ -20,7 +21,6 @@ import ar.edu.unq.reclamar.modelo.Cerrado;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
-import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
@@ -121,7 +121,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 */
 	@Override
 	@Transactional
-	public void asignacionCuadrilla(Prueba prueba) {
+	public void asignacionCuadrilla(AsignarCuadrillaDTO prueba) {
 		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
 		
 		Reclamo reclamo = getReclamoById(prueba.getIdReclamo());

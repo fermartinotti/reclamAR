@@ -11,8 +11,8 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
-import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
 @Path("/rest")
@@ -77,7 +77,7 @@ public interface ReclamarApi {
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response asignarCuadrilla(Prueba prueba);
+	Response asignarCuadrilla(AsignarCuadrillaDTO prueba);
 	
 	@POST
 	@Path("/reclamos/finalizarReclamo")

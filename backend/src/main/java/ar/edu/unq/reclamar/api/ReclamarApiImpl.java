@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
-import ar.edu.unq.reclamar.modelo.Prueba;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.ReclamoService;
@@ -103,7 +103,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 //	}
 	
 	@Override
-	public Response asignarCuadrilla(Prueba prueba) {
+	public Response asignarCuadrilla(AsignarCuadrillaDTO prueba) {
 		securityService.setUsuarioLogueado();
 		try {
 			reclamoService.asignacionCuadrilla(prueba);			
