@@ -9,7 +9,7 @@ import {CuadrillaService} from "../services/cuadrilla.service";
 })
 export class AdminCuadrillaComponent implements OnInit {
 
-  cuadrilla:Cuadrilla = new Cuadrilla(null,null,true, null);
+  cuadrilla:Cuadrilla = new Cuadrilla(null,null, null);
 
   cuadrillas:Array<Cuadrilla>;
 
