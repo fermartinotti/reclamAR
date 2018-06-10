@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
@@ -91,17 +92,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		return Response.ok(reclamoService.todosLosReclamos()).build();
 	}
 
-//	@Override
-//	public Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion) {
-//		securityService.setUsuarioLogueado();
-//		try {
-//			reclamoService.asignacionCuadrilla(reclamo, cuadrilla, fechaTerminacion);			
-//			return Response.ok(reclamo).build();
-//		}catch(Exception e) {
-//			return Response.status(500).build();
-//		}	
-//	}
-	
 	@Override
 	public Response asignarCuadrilla(AsignarCuadrillaDTO prueba) {
 		securityService.setUsuarioLogueado();
@@ -130,6 +120,18 @@ public class ReclamarApiImpl implements ReclamarApi {
 		
 		try {
 			reclamoService.finalizarReclamo(cerrar);		
+			return Response.ok().build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}
+	}
+	
+	@Override
+	public Response reabrirReclamo(ReabrirReclamoDTO cerrar) {
+		securityService.setUsuarioLogueado();
+		
+		try {
+			reclamoService.reabrirReclamo(cerrar);		
 			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();

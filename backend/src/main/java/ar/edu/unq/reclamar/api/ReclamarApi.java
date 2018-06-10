@@ -10,8 +10,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
-import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -69,11 +70,6 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getCuadrillas();
 
-//	@POST
-//	@Path("/reclamos/asignarCuadrilla")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
-	
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -83,6 +79,11 @@ public interface ReclamarApi {
 	@Path("/reclamos/finalizarReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response finalizarReclamo(CerrarReclamoDTO cerrar);	
+	
+	@POST
+	@Path("/reclamos/reabrirReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response reabrirReclamo(ReabrirReclamoDTO cerrar);	
 
 	@GET
     @Path("/login")

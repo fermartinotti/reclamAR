@@ -22,7 +22,8 @@ import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
     @Type(value = Abierto.class, name = "Abierto"),
     @Type(value = EnReparacion.class, name = "Reparacion"),
     @Type(value = Demorado.class, name="Demorado"),
-    @Type(value = Cerrado.class, name= "Cerrado")
+    @Type(value = Cerrado.class, name= "Cerrado"),
+    @Type(value = Reabierto.class, name= "Reabierto")
     }
 )
 public abstract class Estado extends AbstractPersistable<Long>{
