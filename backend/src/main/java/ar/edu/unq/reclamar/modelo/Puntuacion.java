@@ -25,7 +25,7 @@ public class Puntuacion extends AbstractPersistable<Long> {
 		return puntuacion;
 	}
 	public void setPuntuacion(Integer puntuacion) throws DatoInvalidoException{
-		if(puntuacion > 5) {
+		if(puntuacion > 5 || puntuacion < 1) {
 			throw new DatoInvalidoException("Ah ingresado una calificación erronea (1 - Calificacion mínima , 5 - Calificación máxima)");
 		}
 		this.puntuacion = puntuacion;
@@ -37,11 +37,6 @@ public class Puntuacion extends AbstractPersistable<Long> {
 		this.comentario = comentario;
 	}
 	
-	public Puntuacion(Integer puntuacion, String comentario) {
-		super();
-		this.puntuacion = puntuacion;
-		this.comentario = comentario;
-	}
 	public Puntuacion() {
 		super();
 	}
