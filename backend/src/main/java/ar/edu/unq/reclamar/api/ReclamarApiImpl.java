@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
@@ -127,14 +128,27 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 	
 	@Override
-	public Response reabrirReclamo(ReabrirReclamoDTO cerrar) {
+	public Response reabrirReclamo(ReabrirReclamoDTO reabrir) {
 		securityService.setUsuarioLogueado();
 		
 		try {
-			reclamoService.reabrirReclamo(cerrar);		
+			reclamoService.reabrirReclamo(reabrir);		
 			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}
+	}
+	
+	@Override
+	public Response puntuarReclamo(PuntuacionReclamoDTO puntuar) {
+		securityService.setUsuarioLogueado();
+		
+		try {
+			reclamoService.puntuarReclamo(puntuar);		
+			return Response.ok().build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}	
+		
 	}
 }

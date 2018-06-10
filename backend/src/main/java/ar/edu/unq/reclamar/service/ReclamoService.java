@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -25,5 +26,7 @@ public interface ReclamoService {
 	void finalizarReclamo(CerrarReclamoDTO cerrar);
 	
 	void reabrirReclamo(ReabrirReclamoDTO reabrir);
+	
+	void puntuarReclamo(PuntuacionReclamoDTO puntuacionR);
 
 }

@@ -12,6 +12,7 @@ import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
@@ -83,7 +84,12 @@ public interface ReclamarApi {
 	@POST
 	@Path("/reclamos/reabrirReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response reabrirReclamo(ReabrirReclamoDTO cerrar);	
+	Response reabrirReclamo(ReabrirReclamoDTO reabrir);	
+	
+	@POST
+	@Path("/reclamos/puntuarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response puntuarReclamo(PuntuacionReclamoDTO puntuar);	
 
 	@GET
     @Path("/login")

@@ -14,6 +14,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
@@ -22,11 +23,13 @@ import ar.edu.unq.reclamar.modelo.Cerrado;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
+import ar.edu.unq.reclamar.modelo.Puntuacion;
 import ar.edu.unq.reclamar.modelo.Reabierto;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.repository.CuadrillaRepository;
 import ar.edu.unq.reclamar.repository.EstadoRepository;
 import ar.edu.unq.reclamar.repository.LocalizacionRepository;
+import ar.edu.unq.reclamar.repository.PuntuacionRepository;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
 import ar.edu.unq.reclamar.repository.TipodDeReclamoRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
@@ -55,6 +58,10 @@ public class ReclamoServiceImpl implements ReclamoService {
 	
 	@Autowired
 	private CuadrillaRepository cuadrillaRepository;
+	
+	@Autowired 
+	private PuntuacionRepository puntuacionRepository;
+	
 
 	@Override
 	public List<Reclamo> misReclamos() {
@@ -165,6 +172,22 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		repository.save(reclamo);
 		usuarioRepository.save(userLogeado);	
+		
+	}
+	
+	@Override
+	public void puntuarReclamo(PuntuacionReclamoDTO puntuacionR) {
+		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
+		
+		Reclamo reclamo = getReclamoById(puntuacionR.getIdReclamo());
+		
+		Puntuacion puntuacion = new Puntuacion(puntuacionR.getPuntuacion().getPuntuacion(), puntuacionR.getPuntuacion().getComentario());
+		
+		reclamo.setPuntuacion(puntuacion);
+		
+		puntuacionRepository.save(puntuacion);
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);
 		
 	}
 }
