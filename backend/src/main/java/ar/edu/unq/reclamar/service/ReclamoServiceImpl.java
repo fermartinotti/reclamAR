@@ -98,12 +98,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Reclamo reclamo = getReclamoById(asignar.getIdReclamo());
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(asignar.getIdCuadrilla());
 		
-		if(cuadrilla.isEstaDisponible()) {
-			reclamo.setCuadrilla(cuadrilla);
-			cuadrilla.setEstaDisponible(false);
-		}
-		
-		
+		reclamo.setCuadrilla(cuadrilla);
+	
 		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
 		estado.setFechaDeReparacion(asignar.getFecha());
@@ -138,7 +134,6 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
 		
-		reclamo.getCuadrilla().setEstaDisponible(true);
 		cuadrillaRepository.save(reclamo.getCuadrilla());
 		
 		Cerrado estadoCerrado = new Cerrado();

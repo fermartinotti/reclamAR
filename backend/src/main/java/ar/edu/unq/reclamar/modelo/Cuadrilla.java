@@ -16,9 +16,6 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	@Column
 	int cantIntegrantes; 
 	
-	@Column
-	boolean estaDisponible = true;
-	
 	@Column 
 	String nombre;
 	
@@ -28,12 +25,7 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	public void setCantIntegrantes(int cantIntegrantes) {
 		this.cantIntegrantes = cantIntegrantes;
 	}
-	public boolean isEstaDisponible() {
-		return estaDisponible;
-	}
-	public void setEstaDisponible(boolean estaDisponible) {
-		this.estaDisponible = estaDisponible;
-	}
+	
 	public String getNombre() {
 		return nombre;
 	}

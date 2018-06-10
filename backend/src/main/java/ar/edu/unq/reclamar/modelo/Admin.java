@@ -29,25 +29,6 @@ public class Admin extends Usuario {
 		this.cuadrillas = cuadrillas;
 	}
 	
-	public boolean hayCuadrillaDisponible() {
-		for(Cuadrilla c : cuadrillas) {
-			if(c.isEstaDisponible()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public void asignarCuadrilla(Reclamo reclamo) {
-		for(Cuadrilla c : cuadrillas) {
-			if(c.isEstaDisponible()) {
-				reclamo.setCuadrilla(c);
-				c.setEstaDisponible(false);
-				break;
-			}
-		}
-	}
-	
 	public Admin() {
 		this.setEsAdmin(true);
 	}
