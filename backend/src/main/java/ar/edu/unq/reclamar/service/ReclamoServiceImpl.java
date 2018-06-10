@@ -181,7 +181,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		Reclamo reclamo = getReclamoById(puntuacionR.getIdReclamo());
 		
-		Puntuacion puntuacion = new Puntuacion(puntuacionR.getPuntuacion().getPuntuacion(), puntuacionR.getPuntuacion().getComentario());
+		Puntuacion puntuacion = new Puntuacion();
+		puntuacion.setPuntuacion(puntuacionR.getPuntuacion().getPuntuacion());
+		puntuacion.setComentario(puntuacionR.getPuntuacion().getComentario());
 		
 		reclamo.setPuntuacion(puntuacion);
 		
