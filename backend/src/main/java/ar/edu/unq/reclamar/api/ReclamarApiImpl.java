@@ -81,7 +81,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 		securityService.setUsuarioLogueado();
 		try {
 			cuadrillaService.crearCuadrilla(cuadrilla);		
-			return Response.ok().build();
+			return Response.ok(cuadrilla).build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}		

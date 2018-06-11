@@ -7,6 +7,7 @@ import {CuadrillaService} from "../services/cuadrilla.service";
   templateUrl: './admin-cuadrilla.component.html',
   styleUrls: ['./admin-cuadrilla.component.css']
 })
+
 export class AdminCuadrillaComponent implements OnInit {
 
   cuadrilla:Cuadrilla = new Cuadrilla(null,null, null);
@@ -14,14 +15,17 @@ export class AdminCuadrillaComponent implements OnInit {
   cuadrillas:Array<Cuadrilla>;
 
   constructor(private cuadrillaService: CuadrillaService) {
-    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas);
+    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
 
   ngOnInit() {
   }
 
   async crearCuadrilla():Promise<void>{
-    this.cuadrillaService.crearCuadrilla(this.cuadrilla)
-    this.cuadrillas = [this.cuadrilla].concat(this.cuadrillas)
+    try{
+        var nuevoReclamo = await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+        .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
+      this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
+    }catch(error){}
   }
 }
