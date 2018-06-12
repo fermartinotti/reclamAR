@@ -149,6 +149,18 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}	
-		
 	}
+
+	@Override
+	public Response eliminarCuadrilla(Cuadrilla cuadrilla) {
+		securityService.setUsuarioLogueado();
+		try {
+			cuadrillaService.eliminarCuadrilla(cuadrilla);	
+			return Response.ok().build();
+		}catch(Exception e) {
+			return Response.status(500).build();
+		}	
+	}
+	
+	
 }
