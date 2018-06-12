@@ -14,6 +14,8 @@ export class AdminCuadrillaComponent implements OnInit {
 
   cuadrillas:Array<Cuadrilla>;
 
+  cuadrillaABorrar: Cuadrilla = null;
+
   constructor(private cuadrillaService: CuadrillaService) {
     this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
@@ -27,5 +29,13 @@ export class AdminCuadrillaComponent implements OnInit {
         .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
       this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
     }catch(error){}
+  }
+
+  public puedeBorrar(): boolean{
+    return this.cuadrillaABorrar!= null;
+  }
+
+  async borrarCuadrilla():Promise<void>{
+
   }
 }
