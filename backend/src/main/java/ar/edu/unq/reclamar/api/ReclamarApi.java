@@ -104,6 +104,5 @@ public interface ReclamarApi {
 	@DELETE
 	@Path("/eliminarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response eliminarCuadrilla(Cuadrilla cuadrilla);
-	
+	Response eliminarCuadrilla(Long idCuadrilla);	
 }

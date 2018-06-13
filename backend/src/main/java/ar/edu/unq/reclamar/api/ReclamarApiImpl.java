@@ -7,10 +7,10 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
-import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
@@ -37,16 +37,42 @@ public class ReclamarApiImpl implements ReclamarApi {
 	public Response isAlive() {
 		return Response.ok().build();
 	}
-
+	
 	@Override
-	public Response reclamos(){
+	public Response login() {
 		securityService.setUsuarioLogueado();
-		return Response.ok(reclamoService.misReclamos()).build();
+		return Response.ok().build();
 	}
 
 	@Override
 	public Response usuarios() {
 		return Response.ok(usuarioService.getAllUsuarios()).build();
+	}
+	
+	@Override
+	public Response usuarioLogueado() {
+		return Response.ok(securityService.getUsuarioLogeado()).build();
+	}
+	
+	@Override
+	public Response reclamos(){
+		securityService.setUsuarioLogueado();
+		return Response.ok(reclamoService.misReclamos()).build();
+	}
+	
+	@Override
+	public Response getReclamoById(Long id) {
+		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);		
+		if(reclamo.isPresent()) {
+			return Response.ok(reclamo.get()).build();
+		}else {
+			return Response.status(404).build();
+		}
+	}
+	
+	@Override
+	public Response getTodosLosReclamos() {
+		return Response.ok(reclamoService.todosLosReclamos()).build();
 	}
 
 	@Override
@@ -59,17 +85,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 			return Response.status(500).build();
 		}		
 	}
-	
-	@Override
-	public Response getReclamoById(Long id) {
-		Optional<Reclamo> reclamo = reclamoService.getReclamo(id);		
-		if(reclamo.isPresent()) {
-			return Response.ok(reclamo.get()).build();
-		}else {
-			return Response.status(404).build();
-		}
-}
-	
+
 	@Override
 	public Response getCuadrillas(){
 		securityService.setUsuarioLogueado();
@@ -87,12 +103,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}		
 	}
 
-
-	@Override
-	public Response getTodosLosReclamos() {
-		return Response.ok(reclamoService.todosLosReclamos()).build();
-	}
-
 	@Override
 	public Response asignarCuadrilla(AsignarCuadrillaDTO prueba) {
 		securityService.setUsuarioLogueado();
@@ -102,17 +112,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}	
-	}
-
-	@Override
-	public Response login() {
-		securityService.setUsuarioLogueado();
-		return Response.ok().build();
-	}
-
-	@Override
-	public Response usuarioLogueado() {
-		return Response.ok(securityService.getUsuarioLogeado()).build();
 	}
 
 	@Override
@@ -152,15 +151,14 @@ public class ReclamarApiImpl implements ReclamarApi {
 	}
 
 	@Override
-	public Response eliminarCuadrilla(Cuadrilla cuadrilla) {
+	public Response eliminarCuadrilla(Long idCuadrilla) {
 		securityService.setUsuarioLogueado();
 		try {
-			cuadrillaService.eliminarCuadrilla(cuadrilla);	
+			cuadrillaService.eliminarCuadrilla(idCuadrilla);	
 			return Response.ok().build();
 		}catch(Exception e) {
 			return Response.status(500).build();
 		}	
 	}
-	
 	
 }

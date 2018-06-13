@@ -53,10 +53,6 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.EAGER)
 	Localizacion lugarDeIncidente;
 	
-	@JoinColumn(name="cuadrillaAsignada")
-	@ManyToOne(fetch = FetchType.EAGER)
-	Cuadrilla cuadrilla;
-	
 	@JoinColumn(name="puntuacion")
 	@ManyToOne(fetch = FetchType.EAGER)
 	Puntuacion puntuacion;
@@ -132,14 +128,6 @@ public class Reclamo  extends AbstractPersistable<Long>{
 
 	public void setEstados(Set<Estado> estados) {
 		this.estados = estados;
-	}
-
-	public Cuadrilla getCuadrilla() {
-		return cuadrilla;
-	}
-
-	public void setCuadrilla(Cuadrilla cuadrilla) {
-		this.cuadrilla = cuadrilla;
 	}
 
 	public Puntuacion getPuntuacion() {

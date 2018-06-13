@@ -10,6 +10,6 @@ public interface CuadrillaService {
 	
 	List<Cuadrilla> todasLasCuadrillas();
 	
-	void eliminarCuadrilla(Cuadrilla cuadrilla);
+	void eliminarCuadrilla(Long idCuadrilla);
 	
 }

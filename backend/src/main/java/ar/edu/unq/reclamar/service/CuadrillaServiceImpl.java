@@ -42,12 +42,14 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		return (List<Cuadrilla>) repository.findAll();	
 	}
 	
+	
 	@Override
-	public void eliminarCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
-		if(repository.getCuadrillasAsignadas().contains(cuadrilla)) {
+	public void eliminarCuadrilla(Long idCuadrilla) throws DatoInvalidoException {
+		Cuadrilla cuadrilla = repository.findOne(idCuadrilla);
+		
+		if(cuadrilla.getReclamos().size() != 0) {
 			throw new DatoInvalidoException("La cuadrilla se encuentra asignada a un reclamo"); 
 		}
 		repository.delete(cuadrilla);
 	}
-
 }
