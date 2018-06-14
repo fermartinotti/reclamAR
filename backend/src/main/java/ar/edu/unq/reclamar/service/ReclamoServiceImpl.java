@@ -37,31 +37,30 @@ import ar.edu.unq.reclamar.utils.EmailSender;
 
 @Service
 public class ReclamoServiceImpl implements ReclamoService {
-	
+
 	@Autowired
 	private ReclamoRepository repository;
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	private SecurityService securityService;
-	
+
 	@Autowired
 	private EstadoRepository estadoRepository;
-	
+
 	@Autowired
 	private TipodDeReclamoRepository tipoDeReclamoRepository;
-	
+
 	@Autowired
 	private LocalizacionRepository localizacionRepository;
-	
+
 	@Autowired
 	private CuadrillaRepository cuadrillaRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private PuntuacionRepository puntuacionRepository;
-	
 
 	@Override
 	public List<Reclamo> misReclamos() {
@@ -74,26 +73,25 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
 		reclamo.setAutor(userLogeado);
 		reclamo.setFechaDeCreacion(LocalDateTime.now());
-		
+
 		Abierto estado = new Abierto();
 		estadoRepository.save(estado);
-		
-		reclamo.setEstado(estado);		
+
+		reclamo.setEstado(estado);
 		reclamo.getEstados().add(estado);
-		
+
 		localizacionRepository.save(reclamo.getLugarDeIncidente());
 		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
-		
+
 		repository.save(reclamo);
 		userLogeado.getReclamos().add(reclamo);
-		usuarioRepository.save(userLogeado);	
+		usuarioRepository.save(userLogeado);
 		try {
-			EmailSender.sendEmail(userLogeado.getEmail(),
-					"Su reclamo se creo con exito", 
-					"Muchas gracias por reportar la problematica. Su reclamo numero: " 
-					+ reclamo.getId() + "fue creado con exito. ");
+			EmailSender.sendEmail(userLogeado.getEmail(), "Su reclamo se creo con exito",
+					"Muchas gracias por reportar la problematica. Su reclamo numero: " + reclamo.getId()
+							+ "fue creado con exito. ");
 		} catch (UnirestException e) {
-			
+
 		}
 	}
 
@@ -101,23 +99,23 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Transactional
 	public void asignacionCuadrilla(AsignarCuadrillaDTO asignar) {
 		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
-		
+
 		Reclamo reclamo = getReclamoById(asignar.getIdReclamo());
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(asignar.getIdCuadrilla());
-		
+
 		cuadrilla.getReclamos().add(reclamo);
-	
+
 		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
 		estado.setFechaDeReparacion(asignar.getFecha());
 		estadoRepository.save(estado);
-		
-		reclamo.setEstado(estado);		
+
+		reclamo.setEstado(estado);
 		reclamo.getEstados().add(estado);
-	
+
 		repository.save(reclamo);
-		usuarioRepository.save(userLogeado);	
-		
+		usuarioRepository.save(userLogeado);
+
 	}
 
 	@Override
@@ -134,65 +132,63 @@ public class ReclamoServiceImpl implements ReclamoService {
 	public Reclamo getReclamoById(Long id) {
 		return repository.findOne(id);
 	}
-	
+
 	@Override
 	public void finalizarReclamo(CerrarReclamoDTO cerrar) {
 		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
-		
+
 		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
-		
+
 		Cerrado estadoCerrado = new Cerrado();
 		estadoCerrado.setComentario(cerrar.getComentario());
 		estadoCerrado.setFechaFinalizacion(LocalDate.now());
 		estadoRepository.save(estadoCerrado);
-		
-		Cuadrilla cuadrilla= cuadrillaRepository.findOne(cerrar.getIdCuadrilla());
+
+		Cuadrilla cuadrilla = cuadrillaRepository.findOne(cerrar.getIdCuadrilla());
 		cuadrilla.getReclamos().remove(reclamo);
-		
+
 		cuadrillaRepository.save(cuadrilla);
-		
+
 		reclamo.setEstado(estadoCerrado);
 		reclamo.getEstados().add(estadoCerrado);
-	
+
 		repository.save(reclamo);
-		usuarioRepository.save(userLogeado);	
-	
+		usuarioRepository.save(userLogeado);
+
 	}
-	
+
 	@Override
 	public void reabrirReclamo(ReabrirReclamoDTO reabrir) {
 		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
-		
+
 		Reclamo reclamo = getReclamoById(reabrir.getIdReclamo());
-		
+
 		Reabierto reabierto = new Reabierto();
 		reabierto.setMotivoReapertura(reabrir.getMotivoReapertura());
-		
+
 		estadoRepository.save(reabierto);
-		
+
 		reclamo.setEstado(reabierto);
 		reclamo.getEstados().add(reabierto);
-		
+
 		repository.save(reclamo);
-		usuarioRepository.save(userLogeado);	
-		
+		usuarioRepository.save(userLogeado);
+
 	}
-	
+
 	@Override
 	public void puntuarReclamo(PuntuacionReclamoDTO puntuacionR) {
 		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
-		
 		Reclamo reclamo = getReclamoById(puntuacionR.getIdReclamo());
-		
+
 		Puntuacion puntuacion = new Puntuacion();
-		puntuacion.setPuntuacion(puntuacionR.getPuntuacion().getPuntuacion());
+		puntuacion.calificar(puntuacionR.getPuntuacion().getPuntuacion());
 		puntuacion.setComentario(puntuacionR.getPuntuacion().getComentario());
-		
+
 		reclamo.setPuntuacion(puntuacion);
-		
+
 		puntuacionRepository.save(puntuacion);
 		repository.save(reclamo);
 		usuarioRepository.save(userLogeado);
-		
 	}
 }

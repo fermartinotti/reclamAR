@@ -44,7 +44,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	
 	
 	@Override
-	public void eliminarCuadrilla(Long idCuadrilla) throws DatoInvalidoException {
+	public void eliminarCuadrilla(Long idCuadrilla) {
 		Cuadrilla cuadrilla = repository.findOne(idCuadrilla);
 		
 		if(cuadrilla.getReclamos().size() != 0) {
