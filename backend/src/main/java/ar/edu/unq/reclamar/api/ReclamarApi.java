@@ -71,6 +71,11 @@ public interface ReclamarApi {
 	@Path("/cuadrillas")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getCuadrillas();
+	
+	@GET
+	@Path("/cuadrillas/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getCuadrillasById(@PathParam("id") Long id);
 
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
@@ -104,5 +109,7 @@ public interface ReclamarApi {
 	@DELETE
 	@Path("/eliminarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
-	Response eliminarCuadrilla(Long idCuadrilla);	
+	Response eliminarCuadrilla(Long idCuadrilla);
+	
+	
 }

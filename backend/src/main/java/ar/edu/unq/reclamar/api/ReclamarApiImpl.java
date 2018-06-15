@@ -187,5 +187,17 @@ public class ReclamarApiImpl implements ReclamarApi {
 			return Response.status(500).entity(objectNode.toString()).build();
 		}
 	}
+	
+	@Override
+	public Response getCuadrillasById(Long id) {
+		Optional<Cuadrilla> cuadrilla = cuadrillaService.getCuadrilla(id);
+
+		if (cuadrilla.isPresent()) {
+			return Response.ok(cuadrilla.get()).build();
+		} else {
+			return Response.status(404).build();
+		}
+	}
+
 
 }

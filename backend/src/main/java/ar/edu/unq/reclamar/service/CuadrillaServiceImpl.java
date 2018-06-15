@@ -1,6 +1,7 @@
 package ar.edu.unq.reclamar.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -51,5 +52,10 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 			throw new DatoInvalidoException("La cuadrilla se encuentra asignada a un reclamo"); 
 		}
 		repository.delete(cuadrilla);
+	}
+
+	@Override
+	public Optional<Cuadrilla> getCuadrilla(Long id) {
+		return Optional.ofNullable(repository.findOne(id));
 	}
 }
