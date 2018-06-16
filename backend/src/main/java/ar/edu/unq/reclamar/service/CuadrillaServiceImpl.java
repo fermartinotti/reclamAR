@@ -47,10 +47,12 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	@Override
 	public void eliminarCuadrilla(Long idCuadrilla) {
 		Cuadrilla cuadrilla = repository.findOne(idCuadrilla);
+		if(cuadrilla == null)
+			throw new DatoInvalidoException("No se encuentra la cuadrilla que quiere borrar"); 
 		
-		if(cuadrilla.getReclamos().size() != 0) {
+		if(cuadrilla.getReclamos().size() != 0) 
 			throw new DatoInvalidoException("La cuadrilla se encuentra asignada a un reclamo"); 
-		}
+		
 		repository.delete(cuadrilla);
 	}
 
