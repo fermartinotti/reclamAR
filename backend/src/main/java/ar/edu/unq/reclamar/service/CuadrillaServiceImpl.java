@@ -31,6 +31,10 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	 @Transactional
 	 public void crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
 		 Admin adminLogeado = (Admin) securityService.getUsuarioLogeado();
+		 
+		 if(cuadrilla.getCantIntegrantes() <= 0)
+			 throw new DatoInvalidoException("El valor ingresado es incorrecto");
+		 
 		 repository.save(cuadrilla);
 		   
 		 adminLogeado.getCuadrillas().add(cuadrilla);
