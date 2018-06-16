@@ -7,6 +7,7 @@ import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
 public interface ReclamoService {
@@ -28,5 +29,7 @@ public interface ReclamoService {
 	void reabrirReclamo(ReabrirReclamoDTO reabrir);
 	
 	void puntuarReclamo(PuntuacionReclamoDTO puntuacionR);
+	
+	void reprogramarReclamo(ReprogramarReclamoDTO reprogamarR);
 
 }

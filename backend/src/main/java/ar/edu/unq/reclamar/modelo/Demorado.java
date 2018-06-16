@@ -1,7 +1,5 @@
 package ar.edu.unq.reclamar.modelo;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -17,11 +15,11 @@ public class Demorado extends Estado {
 	public String motivo;
 	
 	@Column
-	public LocalDate nuevaFecha;
+	public String nuevaFecha;
 	
 	public Demorado() {}
 	
-	public Demorado(LocalDate fecha, String motivo){
+	public Demorado(String fecha, String motivo){
 		this.motivo = motivo;
 		this.nuevaFecha = fecha;
 	}
@@ -34,13 +32,11 @@ public class Demorado extends Estado {
 		this.motivo = motivo;
 	}
 
-	public LocalDate getNuevaFecha() {
+	public String getNuevaFecha() {
 		return nuevaFecha;
 	}
 
-	public void setNuevaFecha(LocalDate nuevaFecha) {
+	public void setNuevaFecha(String nuevaFecha) {
 		this.nuevaFecha = nuevaFecha;
-	}
-
-	
+	}	
 }

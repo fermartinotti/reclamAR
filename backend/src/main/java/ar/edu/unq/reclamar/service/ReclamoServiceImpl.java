@@ -16,11 +16,13 @@ import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.modelo.Abierto;
 import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Cerrado;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
+import ar.edu.unq.reclamar.modelo.Demorado;
 import ar.edu.unq.reclamar.modelo.EnReparacion;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Puntuacion;
@@ -190,5 +192,30 @@ public class ReclamoServiceImpl implements ReclamoService {
 		puntuacionRepository.save(puntuacion);
 		repository.save(reclamo);
 		usuarioRepository.save(userLogeado);
+	}
+	
+	@Override
+	public void reprogramarReclamo(ReprogramarReclamoDTO reprogamarR) {
+		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		
+		Cuadrilla cuadrilla = cuadrillaRepository.findOne(reprogamarR.getIdCuadrilla());
+		Reclamo reclamo = getReclamoById(reprogamarR.getIdReclamo());
+		
+		Demorado demorado = new Demorado();
+		demorado.setNuevaFecha(reprogamarR.getFecha());
+		demorado.setMotivo(reprogamarR.getMotivo());
+		
+		estadoRepository.save(demorado);
+		
+		cuadrilla.getReclamos().remove(reclamo);
+
+		cuadrillaRepository.save(cuadrilla);
+
+		reclamo.setEstado(demorado);
+		reclamo.getEstados().add(demorado);
+
+		repository.save(reclamo);
+		usuarioRepository.save(userLogeado);
+		
 	}
 }

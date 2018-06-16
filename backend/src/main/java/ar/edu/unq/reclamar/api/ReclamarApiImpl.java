@@ -14,6 +14,7 @@ import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.service.CuadrillaService;
@@ -196,6 +197,20 @@ public class ReclamarApiImpl implements ReclamarApi {
 			return Response.ok(cuadrilla.get()).build();
 		} else {
 			return Response.status(404).build();
+		}
+	}
+
+	@Override
+	public Response reprogramarReclamo(ReprogramarReclamoDTO reprogramarR) {
+		securityService.setUsuarioLogueado();
+		ObjectNode objectNode = new ObjectMapper().createObjectNode();
+		try {
+			reclamoService.reprogramarReclamo(reprogramarR);
+			return Response.ok().build();
+		} catch (Exception e) {
+			e.printStackTrace();
+			objectNode.put("Error", e.getMessage());
+			return Response.status(500).entity(objectNode.toString()).build();
 		}
 	}
 

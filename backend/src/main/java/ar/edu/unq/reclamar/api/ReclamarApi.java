@@ -1,8 +1,8 @@
 package ar.edu.unq.reclamar.api;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -15,6 +15,7 @@ import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -96,6 +97,11 @@ public interface ReclamarApi {
 	@Path("/reclamos/puntuarReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response puntuarReclamo(PuntuacionReclamoDTO puntuar);	
+	
+	@POST
+	@Path("/reclamos/reprogramarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response reprogramarReclamo(ReprogramarReclamoDTO reprogramar);	
 
 	@GET
     @Path("/login")
