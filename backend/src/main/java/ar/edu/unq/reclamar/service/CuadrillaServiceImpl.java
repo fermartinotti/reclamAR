@@ -35,6 +35,9 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		 if(cuadrilla.getCantIntegrantes() <= 0)
 			 throw new DatoInvalidoException("El valor ingresado es incorrecto");
 		 
+		 if(cuadrilla.getNombre().length() > 30)
+			 throw new DatoInvalidoException("La cuadrilla puede tener solo 30 caracteres");
+		 
 		 repository.save(cuadrilla);
 		   
 		 adminLogeado.getCuadrillas().add(cuadrilla);
