@@ -11,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 
 export class AdminCuadrillaComponent implements OnInit {
 
-  cuadrilla:Cuadrilla = new Cuadrilla(null,null, null);
+  cuadrilla:Cuadrilla = new Cuadrilla(null,null, null,[]);
 
   cuadrillas:Array<Cuadrilla>;
 
@@ -23,8 +23,8 @@ export class AdminCuadrillaComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+  async ngOnInit() {
+    await this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
 
   async crearCuadrilla():Promise<void>{

@@ -1,5 +1,56 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<h1 class="h2">Cuadrilla {{cuadrilla?.nombre}} | integrantes: {{cuadrilla?.cantIntegrantes}}</h1>
+<h2>Cuadrilla {{cuadrilla?.nombre}} | integrantes: {{cuadrilla?.cantIntegrantes}}</h2>
   <button type="button" class="btn btn-primary btn-sm" (click)="borrarCuadrilla()">Eliminar Cuadrilla</button>
+
+</div>
+
+<div class="container">
+
+  <h4>Asignar Reclamos</h4>
+  <br>
+
+  <h6>Seleccionar fecha de resolucion:</h6>
+  <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+  <br>
+
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Tipo de reclamo</th>
+      <th>Direccion</th>
+      <th>Estado</th>
+      <th>Fecha</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+    <tr *ngFor="let r of todosLosReclamos">
+      <td>{{r.id}}</td>
+      <td>{{r.tipoDeReclamo.type}}</td>
+      <td>{{r.lugarDeIncidente.direccionFisica}}</td>
+      <td>{{r.estado.type}}</td>
+      <td>{{r.fechaDeCreacion}}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" (click)="asignarReclamo(r.id)">Asignar</button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <h4>Reclamos Asignados</h4>
+      <div class="media text-muted pt-3" *ngFor="let r of cuadrilla?.reclamos">
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <div class="d-flex justify-content-between align-items-center w-100">
+            <strong class="d-block text-gray-dark"> Reclamo #{{r.id}}</strong>
+          </div>
+          <span class="d-block">
+              Reclamo de {{r?.tipoDeReclamo?.type}}. Ubicacion:  <i>{{r?.lugarDeIncidente?.direccionFisica}} Hs</i>
+            </span>
+        </div>
+      </div>
 
 </div>

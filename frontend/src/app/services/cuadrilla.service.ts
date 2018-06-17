@@ -5,9 +5,11 @@ import {Cuadrilla} from "../model/cuadrilla";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {baseURL} from "./reclamo.service";
+import {AsignarDTO} from "../model/asignarDTO";
 
 @Injectable()
 export class CuadrillaService {
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -31,6 +33,13 @@ export class CuadrillaService {
 
   async borrarCuadrilla(id: number): Promise<any>{
     return await this.httpClient.delete(baseURL+`/api/rest/cuadrillas/${id}`,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      }).toPromise()
+  }
+
+  async asignarCuadrilla(dto: AsignarDTO):Promise<any>{
+    return await this.httpClient.post(baseURL+'/api/rest/reclamos/asignarCuadrilla', dto,
       {
         headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       }).toPromise()
