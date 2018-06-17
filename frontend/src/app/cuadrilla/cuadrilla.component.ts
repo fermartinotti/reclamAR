@@ -7,6 +7,7 @@ import {Reclamo} from "../model/reclamo";
 import {ReclamoService} from "../services/reclamo.service";
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {AsignarDTO} from "../model/asignarDTO";
+import {FinalizarReclamoDTO} from "../model/finalizarReclamoDTO";
 
 @Component({
   selector: 'app-cuadrilla',
@@ -51,6 +52,16 @@ export class CuadrillaComponent implements OnInit {
          this.model.day+"/"+this.model.month+"/"+this.model.year)
     this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
 
-  }
+    this.agregarReclamoALaLista(idReclamo)
 
+  }
+    private agregarReclamoALaLista(idReclamo : number):void{
+    this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
+    this.cuadrilla.reclamos = [reclamo].concat(this.cuadrilla.reclamos))
+
+    }
+
+    async finalizarReclamo(idReclamo: number): Promise<void>{
+    await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+    }
 }

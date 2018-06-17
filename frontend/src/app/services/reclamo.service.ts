@@ -35,4 +35,11 @@ export class ReclamoService {
   async todosLosReclamos(): Promise<Array<Reclamo>>{
     return await this.httpClient.get<Array<Reclamo>>(baseURL+'/api/rest/reclamos/todos').toPromise()
   }
+
+  async finalizarReclamo(dto: any):Promise<any>{
+    return await this.httpClient.post(baseURL+'/api/rest/reclamos/finalizarReclamo', dto,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      }).toPromise()
+  }
 }

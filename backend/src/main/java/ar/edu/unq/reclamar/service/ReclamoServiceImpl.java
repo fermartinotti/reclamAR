@@ -142,7 +142,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
 
 		Cerrado estadoCerrado = new Cerrado();
-		estadoCerrado.setComentario(cerrar.getComentario());
+		//estadoCerrado.setComentario(cerrar.getComentario());
 		estadoCerrado.setFechaFinalizacion(LocalDate.now());
 		estadoRepository.save(estadoCerrado);
 
