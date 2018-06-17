@@ -113,7 +113,7 @@ public interface ReclamarApi {
 	Response usuarioLogueado();
 	
 	@DELETE
-	@Path("/eliminarCuadrilla/{id}")
+	@Path("/cuadrillas/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response eliminarCuadrilla(@PathParam("id") Long idCuadrilla);
 	

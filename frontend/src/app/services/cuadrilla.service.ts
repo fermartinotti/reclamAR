@@ -24,5 +24,17 @@ export class CuadrillaService {
     }).toPromise()
   }
 
+  async buscarCuadrilla(id: number): Promise<Cuadrilla>{
+    return await this.httpClient.get((baseURL+`/api/rest/cuadrillas/${id}`))
+      .map(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla)).toPromise()
+  }
+
+  async borrarCuadrilla(id: number): Promise<any>{
+    return await this.httpClient.delete(baseURL+`/api/rest/cuadrillas/${id}`,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      }).toPromise()
+  }
+
 
 }

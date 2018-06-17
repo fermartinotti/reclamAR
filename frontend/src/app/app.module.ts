@@ -36,6 +36,7 @@ import {UsuarioService} from "./services/usuario.service";
 import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.component';
 import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
 import {CuadrillaService} from "./services/cuadrilla.service";
+import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {CuadrillaService} from "./services/cuadrilla.service";
     CallbackComponent,
     AdminPanelComponent,
     AdminCuadrillaComponent,
-    AdminReclamosComponent
+    AdminReclamosComponent,
+    CuadrillaComponent
   ],
   imports: [
     HttpModule,

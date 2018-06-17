@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Cuadrilla} from "../model/cuadrilla";
 import {CuadrillaService} from "../services/cuadrilla.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-admin-cuadrilla',
@@ -14,13 +15,16 @@ export class AdminCuadrillaComponent implements OnInit {
 
   cuadrillas:Array<Cuadrilla>;
 
-  cuadrillaABorrar: Cuadrilla = null;
-
-  constructor(private cuadrillaService: CuadrillaService) {
+  constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute) {
     this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+    ruta.params.subscribe(val => {
+      this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+
+    });
   }
 
   ngOnInit() {
+    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
 
   async crearCuadrilla():Promise<void>{
@@ -31,11 +35,4 @@ export class AdminCuadrillaComponent implements OnInit {
     }catch(error){}
   }
 
-  public puedeBorrar(): boolean{
-    return this.cuadrillaABorrar!= null;
-  }
-
-  async borrarCuadrilla():Promise<void>{
-
-  }
 }
