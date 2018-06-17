@@ -7,14 +7,19 @@
     <div class="form-row align-items-center">
       <div class="col-auto">
        <label class="sr-only" for="exampleFormControlTextarea1">nombre:</label>
-        <input placeholder="Nombre de cuadrilla" type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="cuadrilla.nombre" name="nombre">
+       <input placeholder="Nombre de cuadrilla" type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="cuadrilla.nombre" name="nombre" maxlength="30">
+       <div id="div_der" *ngIf="cuadrilla.nombre == null"> 0 / 30 </div>
+       <div id="div_der" *ngIf="cuadrilla.nombre != null"> {{cuadrilla.nombre.length}} / 30 </div>
+      
       </div>
+      
+  
       <div class="col-auto">
         <label class="sr-only" for="exampleFormControlTextarea1">Integrantes:</label>
         <input placeholder="Cant. Integrantes"  type="number" class="form-control" id="example2" rows="3" [(ngModel)]="cuadrilla.cantIntegrantes" name="nombre" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
       </div>
       <div class="col-auto">
-      <button type="button" class="btn btn-primary mb-2" (click)="crearCuadrilla()">Crear Cuadrilla</button>
+      <button id= "button_crear_cuadrilla" type="button" class="btn btn-primary mb-2" (click)="crearCuadrilla()">Crear Cuadrilla</button>
       </div>
     </div>
   </form>
