@@ -66,13 +66,13 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 	@Override
 	public List<Reclamo> misReclamos() {
-		return repository.getReclamosByUsuario(securityService.getUsuarioLogeado());
+		return repository.getReclamosByUsuario(securityService.setUsuarioLogueado());
 	}
 
 	@Override
 	@Transactional
 	public void agregarReclamo(Reclamo reclamo) throws DatoInvalidoException {
-		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
+		Operador userLogeado = (Operador) securityService.setUsuarioLogueado();
 		reclamo.setAutor(userLogeado);
 		reclamo.setFechaDeCreacion(LocalDateTime.now());
 
@@ -100,7 +100,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 	@Override
 	@Transactional
 	public void asignacionCuadrilla(AsignarCuadrillaDTO asignar) {
-		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		Admin userLogeado = (Admin) securityService.setUsuarioLogueado();
 
 		Reclamo reclamo = getReclamoById(asignar.getIdReclamo());
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(asignar.getIdCuadrilla());
@@ -136,8 +136,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	}
 
 	@Override
+	@Transactional
 	public void finalizarReclamo(CerrarReclamoDTO cerrar) {
-		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		Admin userLogeado = (Admin) securityService.setUsuarioLogueado();
 
 		Reclamo reclamo = getReclamoById(cerrar.getIdReclamo());
 
@@ -160,8 +161,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	}
 
 	@Override
+	@Transactional
 	public void reabrirReclamo(ReabrirReclamoDTO reabrir) {
-		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
+		Operador userLogeado = (Operador) securityService.setUsuarioLogueado();
 
 		Reclamo reclamo = getReclamoById(reabrir.getIdReclamo());
 
@@ -179,8 +181,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	}
 
 	@Override
+	@Transactional
 	public void puntuarReclamo(PuntuacionReclamoDTO puntuacionR) {
-		Operador userLogeado = (Operador) securityService.getUsuarioLogeado();
+		Operador userLogeado = (Operador) securityService.setUsuarioLogueado();
 		Reclamo reclamo = getReclamoById(puntuacionR.getIdReclamo());
 
 		Puntuacion puntuacion = new Puntuacion();
@@ -195,8 +198,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	}
 	
 	@Override
+	@Transactional
 	public void reprogramarReclamo(ReprogramarReclamoDTO reprogamarR) {
-		Admin userLogeado = (Admin) securityService.getUsuarioLogeado();
+		Admin userLogeado = (Admin) securityService.setUsuarioLogueado();
 		
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(reprogamarR.getIdCuadrilla());
 		Reclamo reclamo = getReclamoById(reprogamarR.getIdReclamo());

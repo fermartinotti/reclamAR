@@ -102,10 +102,6 @@ public interface ReclamarApi {
 	@Path("/reclamos/reprogramarReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response reprogramarReclamo(ReprogramarReclamoDTO reprogramar);	
-
-	@GET
-    @Path("/login")
-    Response login();
 	
 	@GET
 	@Path("/usuarioLogueado")

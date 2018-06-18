@@ -26,10 +26,11 @@ public class SecurityServiceImpl implements SecurityService {
 	@Autowired
 	private HttpServletRequest request;
 
-	@Override
-	public Usuario getUsuarioLogeado() {
-		return this.logeado;
-	}
+//	@Override
+//	public Usuario getUsuarioLogeado() {
+//		this.setUsuarioLogueado();
+//		return this.logeado;
+//	}
 
 	@Override
 	public DecodedJWT decode(String token) throws JWTDecodeException {	
@@ -42,28 +43,28 @@ public class SecurityServiceImpl implements SecurityService {
 	}
 	
 	@Override
-	public void setUsuarioLogueado(){
+	public Usuario setUsuarioLogueado(){
 		String token = request.getHeader("Authorization");
 		System.out.println(token);
 		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
 		String subId = jwt.getSubject();
 		Usuario usuario = usuarioRepository.getUsuarioBySubId(subId);
 		if (usuario != null) {
-			this.logeado = usuario;
+			return usuario;
 		}else {
 			String nombre = jwt.getClaim("given_name").asString();
 			String apellido = jwt.getClaim("family_name").asString();
 			String email = jwt.getClaim("email").asString();
-			crearNuevoUsuarioYLoguear(subId, nombre, apellido, email); 
+			return crearNuevoUsuarioYLoguear(subId, nombre, apellido, email); 
 		}		
 	}
 	
-	private void crearNuevoUsuarioYLoguear(String subId, String nombre, String apellido, String email) {
+	private Usuario crearNuevoUsuarioYLoguear(String subId, String nombre, String apellido, String email) {
 		Usuario usuario = new Operador(subId);
 		usuario.setNombre(nombre);
 		usuario.setApellido(apellido);
 		usuario.setEmail(email);
 		usuarioRepository.save(usuario);
-		this.logeado = usuario;
+		return usuario;
 	}
 }

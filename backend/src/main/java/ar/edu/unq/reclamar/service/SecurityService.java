@@ -13,13 +13,13 @@ public interface SecurityService {
  * 
  */
 	
-	public Usuario getUsuarioLogeado();
+	//public Usuario getUsuarioLogeado();
 	
 //	public Admin getAdminLogueado();
 	
 	public DecodedJWT decode (String token) throws JWTDecodeException;  
 	
-	public void setUsuarioLogueado();
+	public Usuario setUsuarioLogueado();
 	
 //	public void setAdminLogueado(String token);
 }

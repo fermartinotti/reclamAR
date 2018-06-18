@@ -42,11 +42,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		return Response.ok().build();
 	}
 
-	@Override
-	public Response login() {
-		securityService.setUsuarioLogueado();
-		return Response.ok().build();
-	}
 
 	@Override
 	public Response usuarios() {
@@ -55,7 +50,7 @@ public class ReclamarApiImpl implements ReclamarApi {
 
 	@Override
 	public Response usuarioLogueado() {
-		return Response.ok(securityService.getUsuarioLogeado()).build();
+		return Response.ok(securityService.setUsuarioLogueado()).build();
 	}
 
 	@Override

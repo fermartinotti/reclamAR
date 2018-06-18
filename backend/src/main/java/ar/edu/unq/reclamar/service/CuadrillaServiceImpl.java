@@ -30,7 +30,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	 @Override
 	 @Transactional
 	 public void crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
-		 Admin adminLogeado = (Admin) securityService.getUsuarioLogeado();
+		 Admin adminLogeado = (Admin) securityService.setUsuarioLogueado();
 		 
 		 if(cuadrilla.getCantIntegrantes() <= 0)
 			 throw new DatoInvalidoException("El valor ingresado es incorrecto");
