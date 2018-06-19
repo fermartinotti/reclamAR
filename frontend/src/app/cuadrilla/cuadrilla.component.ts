@@ -42,7 +42,7 @@ export class CuadrillaComponent implements OnInit {
 
 
   async borrarCuadrilla():Promise<void>{
-    this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
+    await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
     this.router.navigate(['admin-panel', 'cuadrillas'])
   }
 
