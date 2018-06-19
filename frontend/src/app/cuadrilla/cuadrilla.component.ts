@@ -35,8 +35,8 @@ export class CuadrillaComponent implements OnInit {
       .subscribe(cuadrilla => {this.cuadrilla = cuadrilla})
 
     this.reclamoService.todosLosReclamos().then(reclamos=>
-      this.todosLosReclamos = reclamos);
-
+      this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
+    
     this.spinner.hide()
   }
 
