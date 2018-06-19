@@ -36,7 +36,7 @@ export class CuadrillaComponent implements OnInit {
 
     this.reclamoService.todosLosReclamos().then(reclamos=>
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
-    
+
     this.spinner.hide()
   }
 
@@ -55,13 +55,30 @@ export class CuadrillaComponent implements OnInit {
     this.agregarReclamoALaLista(idReclamo)
 
   }
-    private agregarReclamoALaLista(idReclamo : number):void{
-    this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
-    this.cuadrilla.reclamos = [reclamo].concat(this.cuadrilla.reclamos))
+    async agregarReclamoALaLista(idReclamo : number):Promise<void>{
+    var reclamoAsignado: Reclamo ;
+    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
+    reclamoAsignado = reclamo)
+
+    this.cuadrilla.reclamos = [reclamoAsignado].concat(this.cuadrilla.reclamos)
+
+      const index = this.todosLosReclamos.indexOf(reclamoAsignado);
+      this.todosLosReclamos.splice(index, 1);
 
     }
 
     async finalizarReclamo(idReclamo: number): Promise<void>{
-    await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+
+      await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+      this.sacarDeListaAsignado(idReclamo);
+    }
+
+    async sacarDeListaAsignado(idReclamo: number){
+      var reclamoAFinalizar: Reclamo
+      await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
+        reclamoAFinalizar = reclamo)
+
+      const index = this.cuadrilla.reclamos.indexOf(reclamoAFinalizar);
+      this.cuadrilla.reclamos.splice(index, 1);
     }
 }
