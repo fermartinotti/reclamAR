@@ -36,6 +36,7 @@ import ar.edu.unq.reclamar.repository.ReclamoRepository;
 import ar.edu.unq.reclamar.repository.TipodDeReclamoRepository;
 import ar.edu.unq.reclamar.repository.UsuarioRepository;
 import ar.edu.unq.reclamar.utils.EmailSender;
+import ar.edu.unq.reclamar.utils.StringToLocalDate;
 
 @Service
 public class ReclamoServiceImpl implements ReclamoService {
@@ -110,7 +111,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
-		estado.setFechaDeReparacion(asignar.getFecha());
+		
+		estado.setFechaDeReparacion(StringToLocalDate.convertStringToLocalDate(asignar.getFecha()));
 		estadoRepository.save(estado);
 
 		reclamo.setEstado(estado);
@@ -207,7 +209,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Reclamo reclamo = getReclamoById(reprogamarR.getIdReclamo());
 		
 		Demorado demorado = new Demorado();
-		demorado.setNuevaFecha(reprogamarR.getFecha());
+		demorado.setNuevaFecha(StringToLocalDate.convertStringToLocalDate(reprogamarR.getFecha()));
 		demorado.setMotivo(reprogamarR.getMotivo());
 		
 		estadoRepository.save(demorado);
