@@ -8,7 +8,6 @@ import {ReclamoService} from "./services/reclamo.service";
 import { MisReclamosComponent } from './mis-reclamos/mis-reclamos.component';
 import { LuminariaComponent } from './luminaria/luminaria.component';
 import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclamos.component';
-
 import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
@@ -37,6 +36,7 @@ import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.compo
 import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
 import {CuadrillaService} from "./services/cuadrilla.service";
 import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -65,15 +65,16 @@ import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
   imports: [
     HttpModule,
     BrowserModule,
-	CommonModule,
+	  CommonModule,
     RoutingModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-	AgmCoreModule.forRoot({
+	  AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
     }),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [
     ReclamoService,
