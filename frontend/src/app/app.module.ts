@@ -37,6 +37,7 @@ import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.componen
 import {CuadrillaService} from "./services/cuadrilla.service";
 import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
       apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
     }),
     Ng4LoadingSpinnerModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     ReclamoService,

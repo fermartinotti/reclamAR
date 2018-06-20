@@ -36,6 +36,11 @@ export class ReclamoService {
     return await this.httpClient.get<Array<Reclamo>>(baseURL+'/api/rest/reclamos/todos').toPromise()
   }
 
+  // async todosLosReclamos(): Promise<Array<Reclamo>>{
+  //   return await this.httpClient.get<Array<Reclamo>>(baseURL+'/api/rest/reclamos/todos')
+  //     .map(respuesta => respuesta.map(reclamo => Reclamo.crearDesdeJson(reclamo))).toPromise()
+  // }
+
   async finalizarReclamo(dto: any):Promise<any>{
     return await this.httpClient.post(baseURL+'/api/rest/reclamos/finalizarReclamo', dto,
       {

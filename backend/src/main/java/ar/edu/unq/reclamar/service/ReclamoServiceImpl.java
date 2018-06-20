@@ -83,6 +83,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		reclamo.getEstados().add(estado);
 
 		localizacionRepository.save(reclamo.getLugarDeIncidente());
+		reclamo.setDireccionFisica(reclamo.getLugarDeIncidente().getDireccionFisica());
 		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
 
 		repository.save(reclamo);

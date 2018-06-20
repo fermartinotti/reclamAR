@@ -17,6 +17,7 @@ export class AdminCuadrillaComponent implements OnInit {
 
   constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute) {
     this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+
     ruta.params.subscribe(val => {
       this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
 

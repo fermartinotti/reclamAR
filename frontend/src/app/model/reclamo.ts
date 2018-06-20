@@ -13,6 +13,7 @@ export class Reclamo{
   fechaDeCreacion:string;
   estado: Estado;
   estados: Array<Estado>;
+  direccionFisica:string;
 
   public get getTipoDeReclamo():TipoDeReclamo{
     return this.tipoDeReclamo

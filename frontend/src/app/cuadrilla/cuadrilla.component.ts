@@ -31,6 +31,7 @@ export class CuadrillaComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show()
+
     this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id')))
       .subscribe(cuadrilla => {this.cuadrilla = cuadrilla})
 

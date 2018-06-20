@@ -57,6 +57,17 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.EAGER)
 	Puntuacion puntuacion;
 	
+	@Column
+	String direccionFisica;
+	
+	public String getDireccionFisica() {
+		return direccionFisica;
+	}
+
+	public void setDireccionFisica(String direccionFisica) {
+		this.direccionFisica = direccionFisica;
+	}
+
 	public Reclamo() {};
 	
 	public Reclamo(Usuario autor, String mensaje) {
