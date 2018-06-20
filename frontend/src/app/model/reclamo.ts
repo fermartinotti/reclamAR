@@ -46,7 +46,7 @@ export class Reclamo{
 
   static crearDesdeJson(json:any): Reclamo{
     const reclamo = new Reclamo(json.id, Autor.crearDesdeJson(json.autor),
-      json.fechaDeCreacion, json.detalle, Estado.crearDesdeJson(json.estado)
+      json.fechaDeCreacion, json.detalle, json.estado
       , (json.tipoDeReclamo), Localizacion.crearDesdeJson(json.lugarDeIncidente), json.estados)
     return reclamo;
   }
