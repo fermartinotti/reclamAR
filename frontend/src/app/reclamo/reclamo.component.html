@@ -23,7 +23,7 @@
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h6>Iniciado el dia:</h6> {{reclamo.fechaDeCreacion}}</li>
-            <li class="list-group-item" *ngIf="reclamo.estado"><h6>Su reclamo se encuentra:</h6> {{reclamo.estado.type}}</li>
+            <li class="list-group-item" *ngIf="reclamo.estado"><h6>El estado de su reclamo es:</h6> {{reclamo.estado.type}}</li>
           </ul>
           <div class="card-body">
             <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
@@ -35,12 +35,12 @@
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <h6 class="border-bottom border-gray pb-2 mb-0">Ultimas actualizaciones</h6>
-    <div class="media text-muted pt-3"*ngFor="let e of reclamo.estados | paginate: { itemsPerPage: 5, currentPage: p }">
-    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-      <strong class="d-block text-gray-dark">Reclamo {{e.type}}</strong>
-      Su estado ahora es {{e.type}}.
-      <i>24/04/2018</i>
-    </p>
+    <div class="media text-muted pt-3"*ngFor="let e of reclamo.estados.reverse() | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div [ngSwitch]="e?.type">
+      <estado-abierto *ngSwitchCase="'Abierto'"  [estado]="e" ></estado-abierto>
+      <estado-reparacion *ngSwitchCase="'Reparacion'"  [estado]="e"></estado-reparacion>
+      <estado-finalizado *ngSwitchCase="'Cerrado'"  [estado]="e"> </estado-finalizado>
+    </div>
   </div>
 
     <small class="d-block text-right mt-3">

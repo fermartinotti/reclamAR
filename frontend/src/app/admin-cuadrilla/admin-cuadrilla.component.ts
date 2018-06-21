@@ -34,6 +34,8 @@ export class AdminCuadrillaComponent implements OnInit {
         .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
       this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
     }catch(error){}
+    this.cuadrilla.nombre = null
+    this.cuadrilla.cantIntegrantes= null;
   }
 
 }
