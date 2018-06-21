@@ -8,15 +8,15 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-public class MiLocalDateSerializer  extends StdSerializer<LocalDateTime> {
+public class MiLocalDateTimeSerializer  extends StdSerializer<LocalDateTime> {
 
 private static final long serialVersionUID = 1L;
 	
-	public MiLocalDateSerializer() {
+	public MiLocalDateTimeSerializer() {
 		this(null);
 	}
 
-	public MiLocalDateSerializer(Class<LocalDateTime> t) {
+	public MiLocalDateTimeSerializer(Class<LocalDateTime> t) {
 		super(t);
 	}
 

@@ -147,7 +147,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 		Cerrado estadoCerrado = new Cerrado();
 		//estadoCerrado.setComentario(cerrar.getComentario());
-		estadoCerrado.setFechaFinalizacion(LocalDate.now());
+		estadoCerrado.setFechaFinalizacion(LocalDateTime.now());
 		estadoRepository.save(estadoCerrado);
 
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(cerrar.getIdCuadrilla());

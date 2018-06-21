@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.utils.Localizacion;
-import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
+import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer;
 
 @Entity
 @JsonIgnoreProperties(value = {"new"})
@@ -31,7 +31,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	Usuario autor;
 	
 	@Column
-	@JsonSerialize(using= MiLocalDateSerializer.class)
+	@JsonSerialize(using= MiLocalDateTimeSerializer.class)
 	LocalDateTime fechaDeCreacion;
 	
 	@Column
