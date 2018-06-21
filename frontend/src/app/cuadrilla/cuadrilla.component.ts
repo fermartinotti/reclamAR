@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Subject} from 'rxjs/Subject'; 
+import {debounceTime} from 'rxjs/operator/debounceTime'; 
 import {CuadrillaService} from "../services/cuadrilla.service";
 import {Ng4LoadingSpinnerService} from "ng4-loading-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -9,6 +11,7 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {AsignarDTO} from "../model/asignarDTO";
 import {FinalizarReclamoDTO} from "../model/finalizarReclamoDTO";
 
+
 @Component({
   selector: 'app-cuadrilla',
   templateUrl: './cuadrilla.component.html',
@@ -18,6 +21,13 @@ export class CuadrillaComponent implements OnInit {
 
   model: NgbDateStruct;
   date: {year: number, month: number};
+
+  fechaActual = new Date(); 
+ 
+  minDate: NgbDateStruct = {year: this.fechaActual.getFullYear(), month: this.fechaActual.getMonth() + 1, day: this.fechaActual.getDate()};
+  
+  warningMessage: string; 
+  private _success = new Subject<string>(); 
 
   cuadrilla : Cuadrilla;
 
@@ -38,6 +48,9 @@ export class CuadrillaComponent implements OnInit {
     this.reclamoService.todosLosReclamos().then(reclamos=>
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
 
+    this._success.subscribe((message) => this.warningMessage = message); 
+    debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null); 
+
     this.spinner.hide()
   }
 
@@ -48,14 +61,17 @@ export class CuadrillaComponent implements OnInit {
   }
 
   public asignarReclamo(idReclamo: number) : void{
-     this.asignarDTO=
-       new AsignarDTO(idReclamo, this.cuadrilla.id,
-         this.model.day+"/"+this.model.month+"/"+this.model.year)
-    this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
+    if(this.model == null){ 
+      this.mensajeAlertaFechaSinDefinir("Seleccione una fecha para continuar"); 
+    } 
+    else{
+      this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day+"/"+this.model.month+"/"+this.model.year)
+      this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
 
-    this.agregarReclamoALaLista(idReclamo)
-
+      this.agregarReclamoALaLista(idReclamo)
+    }
   }
+
     async agregarReclamoALaLista(idReclamo : number):Promise<void>{
     var reclamoAsignado: Reclamo ;
     await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
@@ -82,4 +98,8 @@ export class CuadrillaComponent implements OnInit {
       const index = this.cuadrilla.reclamos.indexOf(reclamoAFinalizar);
       this.cuadrilla.reclamos.splice(index, 1);
     }
+
+    public mensajeAlertaFechaSinDefinir(msj : string) { 
+      this._success.next(msj); 
+    } 
 }
