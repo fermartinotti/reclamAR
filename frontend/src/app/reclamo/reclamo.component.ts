@@ -7,6 +7,7 @@ import {MapComponent} from "../map/map.component";
 import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
 import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ReabrirDTO} from "../model/reabrirDTO";
 
 
 @Component({
@@ -19,6 +20,8 @@ export class ReclamoComponent implements OnInit {
   @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null,[])
 
   @ViewChild('map') map: MapComponent;
+
+  motivoReapertura:string
 
   constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute,
               public router: Router, private spinner: Ng4LoadingSpinnerService,
@@ -40,6 +43,18 @@ export class ReclamoComponent implements OnInit {
     this.spinner.hide()
   }
 
+  reclamoCerrado() : boolean{
+    return this.reclamo.estado.type === "Cerrado";
+  }
+
+  reclamoReAbierto():boolean{
+    return (this.reclamo.estado.type === "Abierto" && this.reclamo.estado.comentarioReapertura != null)
+  }
+
+  ReAbrirReclamo(): void{
+    this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
+  }
+
   volver(){
     this.router.navigate(['mis-reclamos']);
   }
@@ -48,6 +63,8 @@ export class ReclamoComponent implements OnInit {
     const modalRef = this.modalService.open(NgModalContentComponent)
     modalRef.componentInstance.status = status
   }
+
+
 }
 interface marker {
   lat: number;

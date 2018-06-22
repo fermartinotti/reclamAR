@@ -17,7 +17,7 @@
             <label for="exampleFormControlTextarea1">Detalle:</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="reclamo.detalle" name="detalle" maxlength="250"></textarea>
             <div id="div_der" *ngIf="reclamo.detalle == null"> 0 / 250 </div>
-            <div id="div_der" *ngIf="reclamo.detalle != null"> {{reclamo.detalle.length}} / 250 </div>
+            <div id="div_der2" *ngIf="reclamo.detalle != null"> {{reclamo.detalle.length}} / 250 </div>
             <ngb-alert *ngIf="warningMessageDetalle" type="danger" (close)="warningMessageDetalle = null">{{ warningMessageDetalle }}</ngb-alert>
           </div>
           <div class="form-group">

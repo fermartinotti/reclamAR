@@ -170,8 +170,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 
 		Reclamo reclamo = getReclamoById(reabrir.getIdReclamo());
 
-		Reabierto reabierto = new Reabierto();
-		reabierto.setMotivoReapertura(reabrir.getMotivoReapertura());
+		Abierto reabierto = new Abierto();
+		reabierto.setComentarioReapertura(reabrir.getMotivoReapertura());
 
 		estadoRepository.save(reabierto);
 

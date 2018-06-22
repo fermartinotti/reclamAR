@@ -7,13 +7,19 @@ import {Estado} from "../model/estado";
   template: `<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
               <strong class="d-block text-gray-dark">Reclamo {{estado?.type}}</strong>
               Su estado paso a {{estado?.type}}.
-              <i>{{estado?.fechaIninio}}</i>
-            </p>`
+              <i>{{estado?.fechaIninio}}</i>    
+            </p>
+    
+  `
 
 })
 
 export class EstadoAbiertoComponent{
   @Input() estado: Estado;
+
+  reclamoReAbierto():boolean{
+    return (this.estado.comentarioReapertura != null)
+  }
 
 }
 

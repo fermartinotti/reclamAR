@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Reclamo} from "../model/reclamo";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import {ReabrirDTO} from "../model/reabrirDTO";
 
 export const baseURL = 'http://localhost:8080'
 
@@ -47,4 +48,14 @@ export class ReclamoService {
         headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       }).toPromise()
   }
+
+
+  async reabrirReclamo(dto: ReabrirDTO): Promise<any>{
+    return await this.httpClient.post(baseURL+'/api/rest/reclamos/reabrirReclamo', dto,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      }).toPromise()
+  }
+
+
 }

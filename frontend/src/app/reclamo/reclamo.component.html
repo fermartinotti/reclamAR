@@ -10,20 +10,34 @@
       <div class="col-md-8">
         <div class="container " *ngIf="reclamo">
           <div class="card-body" >
-            <h5 class="card-title" *ngIf="reclamo.tipoDeReclamo"></h5>
+            <h5 class="card-title" *ngIf="reclamo?.tipoDeReclamo"></h5>
             <h6>Reclamo numero #{{reclamo.id}}</h6>
             <br><h6>Problema:</h6>
             <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">
               <reverse-checkbox-luminaria    *ngSwitchCase="'Luminaria'"    [reclamo]="reclamo"></reverse-checkbox-luminaria>
               <reverse-checkbox-arboleda      *ngSwitchCase="'Arboleda'"    [reclamo]="reclamo"></reverse-checkbox-arboleda>
               <reverse-checkbox-bacheo      *ngSwitchCase="'Bacheo'"    [reclamo]="reclamo"></reverse-checkbox-bacheo>
-              <reverse-checkbox-semaforo      *ngSwitchCase="'Semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>          </div>
+              <reverse-checkbox-semaforo      *ngSwitchCase="'Semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>
+            </div>
             <br><h6>Detalle del reclamo:</h6>
             <p class="card-text">{{reclamo.detalle}}</p>
+            <div *ngIf="reclamoReAbierto()">
+            <h6> Reclamo Re-Abierto con motivo: </h6> <p>{{this.reclamo.estado.comentarioReapertura}}</p>
+            </div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><h6>Iniciado el dia:</h6> {{reclamo.fechaDeCreacion}}</li>
-            <li class="list-group-item" *ngIf="reclamo.estado"><h6>El estado de su reclamo es:</h6> {{reclamo.estado.type}}</li>
+            <li class="list-group-item"><h6>Iniciado el dia:</h6> {{reclamo?.fechaDeCreacion}}</li>
+            <li class="list-group-item" *ngIf="reclamo?.estado"><h6>El estado de su reclamo es:</h6> {{reclamo?.estado?.type}}</li>
+
+
+            <div class="card-body" *ngIf="reclamoCerrado()">
+              <h6>¿Quiere reabrir su reclamo?</h6>
+              <label for="exampleFormControlTextarea1">Motivo:</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="motivoReapertura" name="detalle" maxlength="250"></textarea>
+              <div id="div_der1" *ngIf="motivoReapertura == null"> 0 / 250 </div>
+              <div id="div_der2" *ngIf="motivoReapertura != null"> {{motivoReapertura.length}} / 250 </div>
+              <button  (click)="ReAbrirReclamo()" class="btn btn-dark btn-sm">Re abrir</button>
+            </div>
           </ul>
           <div class="card-body">
             <button (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
@@ -35,7 +49,7 @@
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <h6 class="border-bottom border-gray pb-2 mb-0">Ultimas actualizaciones</h6>
-    <div class="media text-muted pt-3"*ngFor="let e of reclamo.estados.reverse() | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div class="media text-muted pt-3"*ngFor="let e of reclamo?.estados.reverse() | paginate: { itemsPerPage: 5, currentPage: p }">
     <div [ngSwitch]="e?.type">
       <estado-abierto *ngSwitchCase="'Abierto'"  [estado]="e" ></estado-abierto>
       <estado-reparacion *ngSwitchCase="'Reparacion'"  [estado]="e"></estado-reparacion>
