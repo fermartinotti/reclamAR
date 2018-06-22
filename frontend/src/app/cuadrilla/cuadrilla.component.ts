@@ -102,9 +102,15 @@ export class CuadrillaComponent implements OnInit {
   }
 
   async finalizarReclamo(idReclamo: number): Promise<void> {
-
-    await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
-    this.sacarDeListaAsignado(idReclamo);
+    try{
+      var link = await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+      this.sacarDeListaAsignado(idReclamo);
+      console.log(link)
+      this.open("reclamo-finalizado", "")
+    }
+    catch(error){
+      this.open("cuadrilla-error", "")
+    }  
   }
 
   async sacarDeListaAsignado(idReclamo: number) {

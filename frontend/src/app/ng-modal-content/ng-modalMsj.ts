@@ -47,5 +47,13 @@ export class CuadrillaErrorComponent{
 export class CuadrillaBorrarComponent{
 }
 
+@Component({
+  selector: 'reclamo-finalizado',
+  template: 'El reclamo se ha finalizado de forma exitosa'
+})
+
+export class ReclamoFinalizadoComponent{
+}
+
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent];
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent, ReclamoFinalizadoComponent ];
