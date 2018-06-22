@@ -40,7 +40,5 @@ public class Demorado extends Estado {
 
 	public void setNuevaFecha(LocalDate nuevaFecha) {
 		this.nuevaFecha = nuevaFecha;
-	}
-
-	
+	}	
 }

@@ -3,7 +3,7 @@ package ar.edu.unq.reclamar.dto;
 public class CerrarReclamoDTO {
 	
 	Long idReclamo;
-	String comentario;
+	Long idCuadrilla;
 	
 	public Long getIdReclamo() {
 		return idReclamo;
@@ -11,16 +11,18 @@ public class CerrarReclamoDTO {
 	public void setIdReclamo(Long idReclamo) {
 		this.idReclamo = idReclamo;
 	}
-	public String getComentario() {
-		return comentario;
+
+	public Long getIdCuadrilla() {
+		return idCuadrilla;
 	}
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setIdCuadrilla(Long idCuadrilla) {
+		this.idCuadrilla = idCuadrilla;
 	}
-	public CerrarReclamoDTO(Long idReclamo, String comentario) {
+	
+	public CerrarReclamoDTO(Long idReclamo, Long idCuadrilla, String comentario) {
 		super();
 		this.idReclamo = idReclamo;
-		this.comentario = comentario;
+		this.idCuadrilla = idCuadrilla;
 	}
 	public CerrarReclamoDTO() {
 		super();

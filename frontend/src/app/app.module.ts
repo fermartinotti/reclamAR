@@ -8,7 +8,6 @@ import {ReclamoService} from "./services/reclamo.service";
 import { MisReclamosComponent } from './mis-reclamos/mis-reclamos.component';
 import { LuminariaComponent } from './luminaria/luminaria.component';
 import { TodosLosReclamosComponent } from './todos-los-reclamos/todos-los-reclamos.component';
-
 import { NgModule, ApplicationRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
@@ -36,6 +35,10 @@ import {UsuarioService} from "./services/usuario.service";
 import { AdminCuadrillaComponent } from './admin-cuadrilla/admin-cuadrilla.component';
 import { AdminReclamosComponent } from './admin-reclamos/admin-reclamos.component';
 import {CuadrillaService} from "./services/cuadrilla.service";
+import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {estadosViewComponent} from "./reclamo/estados";
 
 @NgModule({
   declarations: [
@@ -58,20 +61,24 @@ import {CuadrillaService} from "./services/cuadrilla.service";
     CallbackComponent,
     AdminPanelComponent,
     AdminCuadrillaComponent,
-    AdminReclamosComponent
+    AdminReclamosComponent,
+    CuadrillaComponent,
+    estadosViewComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
-	CommonModule,
+	  CommonModule,
     RoutingModule,
     HttpClientModule,
     FormsModule,
     NgbModule.forRoot(),
-	AgmCoreModule.forRoot({
+	  AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCCmSSC-ooBccku86fEmRa1coVThfluAU0'
     }),
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     ReclamoService,

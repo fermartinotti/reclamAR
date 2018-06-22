@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h2>Cuadrilla {{cuadrilla?.nombre}} | integrantes: {{cuadrilla?.cantIntegrantes}}</h2>
+
+  <button type="button" (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
+</div>
+
+
+  <h4>Asignar Reclamos</h4>
+  <br>
+
+  <h6>Seleccionar fecha de resolucion:</h6>
+
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="d2" #c2="ngModel" [(ngModel)]="model" ngbDatepicker #d2="ngbDatepicker"
+          [minDate]="minDate">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
+            <img src="http://pluspng.com/img-png/calendar-png-file-512.png" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div style="width: 25%">
+    <ngb-alert Style="width:90%;" *ngIf="warningMessage" type="danger" (close)="warningMessage = null">{{ warningMessage }}</ngb-alert>
+  </div>
+
+  <br>
+
+  <input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Buscar por direccion o fecha ...">
+  <br>
+  <table class="table table-striped table-bordered dt-responsive nowrap">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Tipo de reclamo</th>
+        <th>Direccion</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr *ngFor="let r of todosLosReclamos | filter:filter | paginate: { itemsPerPage: 5, currentPage: p } ">
+        <td>{{r.id}}</td>
+        <td>{{r.tipoDeReclamo.type}}</td>
+        <td>{{r.lugarDeIncidente.direccionFisica}}</td>
+        <td>{{r.estado.type}}</td>
+        <td>{{r.fechaDeCreacion}}</td>
+        <td>
+          <button type="button" class="btn btn-primary btn-sm" (click)="asignarReclamo(r.id)">Asignar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  <h4>Reclamos Asignados</h4>
+  <div class="media text-muted pt-3" *ngFor="let r of cuadrilla?.reclamos">
+    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <strong class="d-block text-gray-dark"> Reclamo #{{r.id}}</strong>
+      </div>
+      <span class="d-block">
+        Reclamo de {{r?.tipoDeReclamo?.type}}. Ubicacion:
+        <i>{{r?.lugarDeIncidente?.direccionFisica}}. </i>
+        <button type="button" class="btn btn-primary btn-sm" (click)="finalizarReclamo(r.id)">Finalizar</button>
+      </span>
+    </div>
+  </div>
+
+    <footer class="mastfoot mt-auto float-right">
+      <div class="inner">
+        <button type="button" class="btn btn-primary btn-sm" (click)="borrarCuadrilla()">Eliminar Cuadrilla</button>
+      </div>
+    </footer>
+
+  </main>
+</div>

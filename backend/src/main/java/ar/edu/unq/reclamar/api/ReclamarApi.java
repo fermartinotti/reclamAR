@@ -1,5 +1,6 @@
 package ar.edu.unq.reclamar.api;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,8 +11,11 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
-import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
+import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
+import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -68,12 +72,12 @@ public interface ReclamarApi {
 	@Path("/cuadrillas")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getCuadrillas();
-
-//	@POST
-//	@Path("/reclamos/asignarCuadrilla")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	Response asignarCuadrilla(Reclamo reclamo, Cuadrilla cuadrilla, LocalDate fechaTerminacion);
 	
+	@GET
+	@Path("/cuadrillas/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getCuadrillasById(@PathParam("id") Long id);
+
 	@POST
 	@Path("/reclamos/asignarCuadrilla")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -83,13 +87,31 @@ public interface ReclamarApi {
 	@Path("/reclamos/finalizarReclamo")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response finalizarReclamo(CerrarReclamoDTO cerrar);	
-
-	@GET
-    @Path("/login")
-    Response login();
+	
+	@POST
+	@Path("/reclamos/reabrirReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response reabrirReclamo(ReabrirReclamoDTO reabrir);	
+	
+	@POST
+	@Path("/reclamos/puntuarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response puntuarReclamo(PuntuacionReclamoDTO puntuar);	
+	
+	@POST
+	@Path("/reclamos/reprogramarReclamo")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response reprogramarReclamo(ReprogramarReclamoDTO reprogramar);	
 	
 	@GET
 	@Path("/usuarioLogueado")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response usuarioLogueado();
+	
+	@DELETE
+	@Path("/cuadrillas/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response eliminarCuadrilla(@PathParam("id") Long idCuadrilla);
+	
+	
 }

@@ -1,3 +1,21 @@
 [role="main"] {
   padding-top: 48px; /* Space for fixed navbar */
 }
+
+#div_der {
+  text-align:right;
+  font-size:12px;
+  font-weight: bold;
+}
+
+#exampleFormControlTextarea1 {
+  margin-top:20px;
+}
+
+#button_crear_cuadrilla {
+  margin-top:8px;
+}
+
+#exampleFormControlTextarea1 {
+  margin-top:20px;
+}

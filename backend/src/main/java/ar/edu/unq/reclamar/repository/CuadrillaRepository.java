@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 
 public interface CuadrillaRepository extends CrudRepository<Cuadrilla, Long>{
-
+	
+//	@Query("SELECT cuadrilla FROM Reclamo")
+//	public List<Cuadrilla> getCuadrillasAsignadas();
 }

@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ar.edu.unq.reclamar.exceptions.DatoInvalidoException;
 import ar.edu.unq.reclamar.utils.Localizacion;
-import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
+import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer;
 
 @Entity
 @JsonIgnoreProperties(value = {"new"})
@@ -31,7 +31,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	Usuario autor;
 	
 	@Column
-	@JsonSerialize(using= MiLocalDateSerializer.class)
+	@JsonSerialize(using= MiLocalDateTimeSerializer.class)
 	LocalDateTime fechaDeCreacion;
 	
 	@Column
@@ -53,10 +53,21 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.EAGER)
 	Localizacion lugarDeIncidente;
 	
-	@JoinColumn(name="cuadrillaAsignada")
+	@JoinColumn(name="puntuacion")
 	@ManyToOne(fetch = FetchType.EAGER)
-	Cuadrilla cuadrilla;
+	Puntuacion puntuacion;
 	
+	@Column
+	String direccionFisica;
+	
+	public String getDireccionFisica() {
+		return direccionFisica;
+	}
+
+	public void setDireccionFisica(String direccionFisica) {
+		this.direccionFisica = direccionFisica;
+	}
+
 	public Reclamo() {};
 	
 	public Reclamo(Usuario autor, String mensaje) {
@@ -89,6 +100,10 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	public void setDetalle(String detalle) throws DatoInvalidoException {
 		if(detalle == null || detalle.isEmpty()) {
 			throw new DatoInvalidoException("El detalle no ha sido ingresado");
+		}
+		
+		if(detalle.length() >= 250) {
+			throw new DatoInvalidoException("El detalle solo puede tener 250 caracteres");
 		}
 		
 		this.detalle = detalle;
@@ -130,11 +145,12 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		this.estados = estados;
 	}
 
-	public Cuadrilla getCuadrilla() {
-		return cuadrilla;
+	public Puntuacion getPuntuacion() {
+		return puntuacion;
 	}
 
-	public void setCuadrilla(Cuadrilla cuadrilla) {
-		this.cuadrilla = cuadrilla;
+	public void setPuntuacion(Puntuacion puntuacion) {
+		this.puntuacion = puntuacion;
 	}
+	
 }

@@ -31,7 +31,9 @@
     "popper.js": "^1.14.3",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19",
-    "auth0-js": "^9.5.1"
+    "auth0-js": "^9.5.1",
+    "ngx-pagination": "3.1.1",
+    "ng2-search-filter": "^0.4.7"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",

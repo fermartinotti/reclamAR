@@ -1,6 +1,7 @@
 package ar.edu.unq.reclamar.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -29,7 +30,14 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	 @Override
 	 @Transactional
 	 public void crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
-		 Admin adminLogeado = (Admin) securityService.getUsuarioLogeado();
+		 Admin adminLogeado = (Admin) securityService.setUsuarioLogueado();
+		 
+		 if(cuadrilla.getCantIntegrantes() <= 0)
+			 throw new DatoInvalidoException("El valor ingresado es incorrecto");
+		 
+		 if(cuadrilla.getNombre().length() > 30)
+			 throw new DatoInvalidoException("La cuadrilla puede tener solo 30 caracteres");
+		 
 		 repository.save(cuadrilla);
 		   
 		 adminLogeado.getCuadrillas().add(cuadrilla);
@@ -41,5 +49,22 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	public List<Cuadrilla> todasLasCuadrillas() {
 		return (List<Cuadrilla>) repository.findAll();	
 	}
+	
+	
+	@Override
+	public void eliminarCuadrilla(Long idCuadrilla) {
+		Cuadrilla cuadrilla = repository.findOne(idCuadrilla);
+		if(cuadrilla == null)
+			throw new DatoInvalidoException("No se encuentra la cuadrilla que quiere borrar"); 
+		
+		if(cuadrilla.getReclamos().size() != 0) 
+			throw new DatoInvalidoException("La cuadrilla se encuentra asignada a un reclamo"); 
+		
+		repository.delete(cuadrilla);
+	}
 
+	@Override
+	public Optional<Cuadrilla> getCuadrilla(Long id) {
+		return Optional.ofNullable(repository.findOne(id));
+	}
 }

@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
+import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer;
 
 @Entity
 @JsonIgnoreProperties(value = {"new"})
@@ -22,7 +22,8 @@ import ar.edu.unq.reclamar.utils.MiLocalDateSerializer;
     @Type(value = Abierto.class, name = "Abierto"),
     @Type(value = EnReparacion.class, name = "Reparacion"),
     @Type(value = Demorado.class, name="Demorado"),
-    @Type(value = Cerrado.class, name= "Cerrado")
+    @Type(value = Cerrado.class, name= "Cerrado"),
+    @Type(value = Reabierto.class, name= "Reabierto")
     }
 )
 public abstract class Estado extends AbstractPersistable<Long>{
@@ -30,7 +31,7 @@ public abstract class Estado extends AbstractPersistable<Long>{
 	private static final long serialVersionUID = 1L;
 
 	@Column
-	@JsonSerialize(using= MiLocalDateSerializer.class)
+	@JsonSerialize(using= MiLocalDateTimeSerializer.class)
 	public LocalDateTime fechaIninio = LocalDateTime.now();
 
 	public LocalDateTime getFechaIninio() {

@@ -64,7 +64,6 @@ export class AuthService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
-    await this.usuarioService.loguearUsuario();
     await this.usuarioService.usuarioLogueado()
       .then(usuario => this.usuarioLogueado = usuario);
   }
@@ -74,6 +73,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.usuarioLogueado = new Usuario(null,null,null,false);
     // Go back to the home route
     this.router.navigate(['/']);
   }
@@ -86,7 +86,7 @@ export class AuthService {
   }
 
   public esAdmin(): boolean {
-    return this.isAuthenticated() && this.usuarioLogueado.esAdmin
+    return (this.isAuthenticated() && this.usuarioLogueado.esAdmin)
   }
 
 

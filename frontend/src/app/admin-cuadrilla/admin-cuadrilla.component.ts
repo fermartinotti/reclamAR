@@ -1,27 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import {Cuadrilla} from "../model/cuadrilla";
 import {CuadrillaService} from "../services/cuadrilla.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-admin-cuadrilla',
   templateUrl: './admin-cuadrilla.component.html',
   styleUrls: ['./admin-cuadrilla.component.css']
 })
+
 export class AdminCuadrillaComponent implements OnInit {
 
-  cuadrilla:Cuadrilla = new Cuadrilla(null,null,true, null);
+  cuadrilla:Cuadrilla = new Cuadrilla(null,null, null,[]);
 
   cuadrillas:Array<Cuadrilla>;
 
-  constructor(private cuadrillaService: CuadrillaService) {
-    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas);
+  constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute) {
+    this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+
+    ruta.params.subscribe(val => {
+      this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+
+    });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
 
   async crearCuadrilla():Promise<void>{
-    this.cuadrillaService.crearCuadrilla(this.cuadrilla)
-    this.cuadrillas = [this.cuadrilla].concat(this.cuadrillas)
+    try{
+        var nuevoReclamo = await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+        .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
+      this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
+    }catch(error){}
+    this.cuadrilla.nombre = null
+    this.cuadrilla.cantIntegrantes= null;
   }
+
 }
