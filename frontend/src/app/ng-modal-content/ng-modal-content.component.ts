@@ -15,6 +15,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
       <div [ngSwitch]="status">
         <reclamo-success    *ngSwitchCase="'success'"    [link]="link"></reclamo-success>
         <reclamo-error      *ngSwitchCase="'error'"    ></reclamo-error>
+        <cuadrilla-error      *ngSwitchCase="'cuadrilla-error'"    ></cuadrilla-error>
+        <cuadrilla-borrar      *ngSwitchCase="'cuadrilla-borrar'"  ></cuadrilla-borrar>
         <error-buscando-reclamo *ngSwitchCase="'errorBuscando'"> </error-buscando-reclamo>
       </div>
     </div>
@@ -26,7 +28,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 export class NgModalContentComponent{
   @Input() link;
   @Input() status;
-  @Input() tittle = "Reclamo";
+  @Input() tittle = "Información";
 
   constructor(public activeModal: NgbActiveModal) { }
 

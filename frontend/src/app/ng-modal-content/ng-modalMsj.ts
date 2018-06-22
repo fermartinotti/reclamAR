@@ -31,5 +31,21 @@ export  class ErrorBuscandoReclamoComponent{
   @Input() tittle;
 }
 
+@Component({
+  selector: 'cuadrilla-error',
+  template: 'No se puede borrar la cuadrilla ya que tiene uno o mas reclamos asignados'
+})
+
+export class CuadrillaErrorComponent{
+}
+
+@Component({
+  selector: 'cuadrilla-borrar',
+  template: 'La cuadrilla se ha eliminado del sistema'
+})
+
+export class CuadrillaBorrarComponent{
+}
+
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent];
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent];
