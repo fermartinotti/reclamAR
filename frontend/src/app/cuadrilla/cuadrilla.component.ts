@@ -102,4 +102,8 @@ export class CuadrillaComponent implements OnInit {
     public mensajeAlertaFechaSinDefinir(msj : string) {
       this._success.next(msj);
     }
+
+  volver(){
+    this.router.navigate(['admin-panel']);
+  }
 }
