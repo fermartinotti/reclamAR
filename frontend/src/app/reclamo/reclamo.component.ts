@@ -10,6 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ReabrirDTO} from "../model/reabrirDTO";
 
 
+
 @Component({
   selector: 'app-reclamo',
   templateUrl: './reclamo.component.html',
@@ -52,7 +53,16 @@ export class ReclamoComponent implements OnInit {
   }
 
   ReAbrirReclamo(): void{
-    this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
+    var link = this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
+    console.log(link)
+    this.open("reclamo-reabierto", "")
+  }
+
+  open(status: string, link: string) {
+    const modalRef = this.modalService.open(NgModalContentComponent)
+    modalRef.componentInstance.status = status
+    modalRef.componentInstance.link = link;
+    this.router.navigate(['mis-reclamos']);
   }
 
   volver(){

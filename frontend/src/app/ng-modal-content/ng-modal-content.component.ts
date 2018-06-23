@@ -16,6 +16,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         <reclamo-success    *ngSwitchCase="'success'"    [link]="link"></reclamo-success>
         <reclamo-error      *ngSwitchCase="'error'"    ></reclamo-error>
         <reclamo-finalizado      *ngSwitchCase="'reclamo-finalizado'"    ></reclamo-finalizado>
+        <reclamo-reabierto      *ngSwitchCase="'reclamo-reabierto'"    ></reclamo-reabierto>
         <cuadrilla-error      *ngSwitchCase="'cuadrilla-error'"    ></cuadrilla-error>
         <cuadrilla-borrar      *ngSwitchCase="'cuadrilla-borrar'"  ></cuadrilla-borrar>
         <error-buscando-reclamo *ngSwitchCase="'errorBuscando'"> </error-buscando-reclamo>
