@@ -4,14 +4,14 @@ export class Cuadrilla{
   id: number;
   cantIntegrantes: number;
   nombre: string
-  reclamos: Array<Reclamo>;
+  reclamosAsignados: Array<Reclamo>;
 
 
   constructor (id: number, cantIntegrantes: number, nombre: string , reclamos: Array<Reclamo>){
     this.id = id
     this.cantIntegrantes = cantIntegrantes
     this.nombre= nombre
-    this.reclamos= reclamos
+    this.reclamosAsignados= reclamos
 
   }
 

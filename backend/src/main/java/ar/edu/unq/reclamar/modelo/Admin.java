@@ -19,7 +19,6 @@ public class Admin extends Usuario {
 	
 	@JoinColumn(name="cuadrillas")
 	@OneToMany(fetch=FetchType.EAGER)
-	@JsonIgnore
 	Set<Cuadrilla> cuadrillas = new HashSet<Cuadrilla>();
 	
 	public Set<Cuadrilla> getCuadrillas() {

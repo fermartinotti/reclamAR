@@ -25,9 +25,9 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	@Column 
 	String nombre;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name="reclamos")
-	Set<Reclamo> reclamos = new HashSet<Reclamo>();
+	@JoinColumn(name="reclamosAsignados")
+	@OneToMany(fetch = FetchType.EAGER )
+	Set<Reclamo> reclamosAsignados = new HashSet<Reclamo>();
 	
 	public int getCantIntegrantes() {
 		return cantIntegrantes;
@@ -41,12 +41,14 @@ public class Cuadrilla extends AbstractPersistable<Long> {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Set<Reclamo> getReclamos() {
-		return reclamos;
+	
+	public Set<Reclamo> getReclamosAsignados() {
+		return reclamosAsignados;
 	}
-	public void setReclamos(Set<Reclamo> reclamos) {
-		this.reclamos = reclamos;
+	public void setReclamosAsignados(Set<Reclamo> reclamosAsignados) {
+		this.reclamosAsignados = reclamosAsignados;
 	}
+
 	public Cuadrilla() {}	
 	
 	public Cuadrilla(int cantIntegrantes, String nombre) {

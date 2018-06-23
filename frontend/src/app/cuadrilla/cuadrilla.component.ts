@@ -40,7 +40,9 @@ export class CuadrillaComponent implements OnInit {
 
   constructor(private cuadrillaService: CuadrillaService, private ruta: ActivatedRoute,
     private router: Router, private spinner: Ng4LoadingSpinnerService,
-    private reclamoService: ReclamoService, private modalService: NgbModal) { }
+    private reclamoService: ReclamoService, private modalService: NgbModal) {
+
+  }
 
   ngOnInit() {
     this.spinner.show()
@@ -86,6 +88,7 @@ export class CuadrillaComponent implements OnInit {
       this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
 
       this.agregarReclamoALaLista(idReclamo)
+
     }
   }
 
@@ -94,7 +97,7 @@ export class CuadrillaComponent implements OnInit {
     await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
       reclamoAsignado = reclamo)
 
-    this.cuadrilla.reclamos = [reclamoAsignado].concat(this.cuadrilla.reclamos)
+    this.cuadrilla.reclamosAsignados = [reclamoAsignado].concat(this.cuadrilla.reclamosAsignados)
 
     const index = this.todosLosReclamos.indexOf(reclamoAsignado);
     this.todosLosReclamos.splice(index, 1);
@@ -110,7 +113,7 @@ export class CuadrillaComponent implements OnInit {
     }
     catch(error){
       this.open("cuadrilla-error", "")
-    }  
+    }
   }
 
   async sacarDeListaAsignado(idReclamo: number) {
@@ -118,8 +121,8 @@ export class CuadrillaComponent implements OnInit {
     await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
       reclamoAFinalizar = reclamo)
 
-    const index = this.cuadrilla.reclamos.indexOf(reclamoAFinalizar);
-    this.cuadrilla.reclamos.splice(index, 1);
+    const index = this.cuadrilla.reclamosAsignados.indexOf(reclamoAFinalizar);
+    this.cuadrilla.reclamosAsignados.splice(index, 1);
   }
 
   public mensajeAlertaFechaSinDefinir(msj: string) {
