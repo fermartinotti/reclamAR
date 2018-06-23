@@ -55,5 +55,13 @@ export class CuadrillaBorrarComponent{
 export class ReclamoFinalizadoComponent{
 }
 
+
+@Component({
+  selector: 'reclamo-reabierto',
+  template: 'El reclamo se ha reabierto de forma exitosa'
+})
+
+export class ReclamoReabiertoComponent{
+}
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent, ReclamoFinalizadoComponent ];
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent, ReclamoFinalizadoComponent, ReclamoReabiertoComponent ];
