@@ -18,27 +18,24 @@ export class AdminCuadrillaComponent implements OnInit {
   constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute) {
     this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
 
-    // ruta.params.subscribe(val => {
-    //   this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
-    //
-    // });
+    ruta.params.subscribe(val => {
+      this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+
+    });
   }
 
   async ngOnInit() {
-   // await this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
+    await this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
   }
 
   async crearCuadrilla():Promise<void>{
     try{
-        await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
-          //.then(cuadrilla => this.cuadrilla = Cuadrilla.crearDesdeJson(cuadrilla))
-      this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas)
-
-      //this.cuadrillas = [this.cuadrilla].concat(this.cuadrillas)
+      var nuevoReclamo = await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+        .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
+      this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
     }catch(error){}
-
-      this.cuadrilla.nombre = null
-      this.cuadrilla.cantIntegrantes= null;
+    this.cuadrilla.nombre = null
+    this.cuadrilla.cantIntegrantes= null;
   }
 
 }

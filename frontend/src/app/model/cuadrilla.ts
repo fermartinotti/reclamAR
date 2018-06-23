@@ -16,7 +16,7 @@ export class Cuadrilla{
   }
 
   static crearDesdeJson(json:any): Cuadrilla{
-    const cuadrilla = new Cuadrilla(json.id, json.cantIntegrantes, json.nombre, json.reclamos)
+    const cuadrilla = new Cuadrilla(json.id, json.cantIntegrantes, json.nombre, json.reclamosAsignados)
     return cuadrilla
   }
 }
