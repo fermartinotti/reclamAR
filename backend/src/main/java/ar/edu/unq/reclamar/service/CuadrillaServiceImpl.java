@@ -29,7 +29,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 	 
 	 @Override
 	 @Transactional
-	 public void crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
+	 public Cuadrilla crearCuadrilla(Cuadrilla cuadrilla) throws DatoInvalidoException {
 		 Admin adminLogeado = (Admin) securityService.setUsuarioLogueado();
 		 
 		 if(cuadrilla.getCantIntegrantes() <= 0)
@@ -38,10 +38,14 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		 if(cuadrilla.getNombre().length() > 30)
 			 throw new DatoInvalidoException("La cuadrilla puede tener solo 30 caracteres");
 		 
-		 repository.save(cuadrilla);
+		 Cuadrilla cuadrillaNueva = new Cuadrilla(cuadrilla.getCantIntegrantes(), 
+				 cuadrilla.getNombre());
+		 
+		 repository.save(cuadrillaNueva);
 		   
-		 adminLogeado.getCuadrillas().add(cuadrilla);
-		 usuarioRepository.save(adminLogeado);    
+		 adminLogeado.getCuadrillas().add(cuadrillaNueva);
+		 usuarioRepository.save(adminLogeado);
+		 return cuadrillaNueva;
 		 
 	}
 	 	 
@@ -57,7 +61,7 @@ public class CuadrillaServiceImpl implements CuadrillaService {
 		if(cuadrilla == null)
 			throw new DatoInvalidoException("No se encuentra la cuadrilla que quiere borrar"); 
 		
-		if(cuadrilla.getReclamos().size() != 0) 
+		if(cuadrilla.getReclamosAsignados().size() != 0) 
 			throw new DatoInvalidoException("La cuadrilla se encuentra asignada a un reclamo"); 
 		
 		repository.delete(cuadrilla);

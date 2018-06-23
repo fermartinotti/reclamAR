@@ -26,6 +26,7 @@ import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer;
     @Type(value = Reabierto.class, name= "Reabierto")
     }
 )
+
 public abstract class Estado extends AbstractPersistable<Long>{
 	
 	private static final long serialVersionUID = 1L;

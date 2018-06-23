@@ -100,8 +100,8 @@ public class ReclamarApiImpl implements ReclamarApi {
 		securityService.setUsuarioLogueado();
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
 		try {
-			cuadrillaService.crearCuadrilla(cuadrilla);
-			return Response.ok(cuadrilla).build();
+			;
+			return Response.ok(cuadrillaService.crearCuadrilla(cuadrilla)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			objectNode.put("Error", e.getMessage());
