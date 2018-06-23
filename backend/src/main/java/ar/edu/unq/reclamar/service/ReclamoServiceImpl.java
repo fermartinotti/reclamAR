@@ -91,9 +91,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 		userLogeado.getReclamos().add(reclamo);
 		usuarioRepository.save(userLogeado);
 		try {
-			EmailSender.sendEmail(userLogeado.getEmail(), "Su reclamo se creo con exito",
+			EmailSender.sendEmail(userLogeado.getEmail(), "Su reclamo se creo con exito. ",
 					"Muchas gracias por reportar la problematica. Su reclamo numero: " + reclamo.getId()
-							+ "fue creado con exito. ");
+							+ " fue creado con exito. ");
 		} catch (UnirestException e) {
 
 		}
@@ -107,7 +107,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		Reclamo reclamo = getReclamoById(asignar.getIdReclamo());
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(asignar.getIdCuadrilla());
 
-		cuadrilla.getReclamos().add(reclamo);
+		cuadrilla.getReclamosAsignados().add(reclamo);
 
 		cuadrillaRepository.save(cuadrilla);
 		EnReparacion estado = new EnReparacion();
@@ -151,7 +151,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		estadoRepository.save(estadoCerrado);
 
 		Cuadrilla cuadrilla = cuadrillaRepository.findOne(cerrar.getIdCuadrilla());
-		cuadrilla.getReclamos().remove(reclamo);
+		cuadrilla.getReclamosAsignados().remove(reclamo);
 
 		cuadrillaRepository.save(cuadrilla);
 
@@ -214,7 +214,7 @@ public class ReclamoServiceImpl implements ReclamoService {
 		
 		estadoRepository.save(demorado);
 		
-		cuadrilla.getReclamos().remove(reclamo);
+		cuadrilla.getReclamosAsignados().remove(reclamo);
 
 		cuadrillaRepository.save(cuadrilla);
 
