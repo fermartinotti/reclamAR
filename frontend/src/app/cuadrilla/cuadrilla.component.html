@@ -16,7 +16,7 @@
   <form class="form-inline">
     <div class="form-group">
       <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd" name="d2" #c2="ngModel" [(ngModel)]="model" ngbDatepicker #d2="ngbDatepicker"
+        <input style="background-color:transparent; " readonly="readonly" class="form-control" placeholder="Ingrese un fecha" name="d2" #c2="ngModel" [(ngModel)]="model" ngbDatepicker #d2="ngbDatepicker"
           [minDate]="minDate">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
