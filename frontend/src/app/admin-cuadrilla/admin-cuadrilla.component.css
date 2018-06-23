@@ -8,6 +8,12 @@
   font-weight: bold;
 }
 
+#div_der2 {
+  text-align:right;
+  font-size:12px;
+  font-weight: bold;
+}
+
 #exampleFormControlTextarea1 {
   margin-top:20px;
 }
