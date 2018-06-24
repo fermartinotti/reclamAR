@@ -88,6 +88,7 @@ export class CuadrillaComponent implements OnInit {
       this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
 
       this.agregarReclamoALaLista(idReclamo)
+      this.model = null
 
     }
   }
