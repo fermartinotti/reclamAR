@@ -61,16 +61,24 @@ export class CuadrillaComponent implements OnInit {
 
 
   async borrarCuadrilla(): Promise<void> {
-    try {
-      var link = await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
+    this.open("cuadrilla-borrar", "")
+    await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
+    .then(res => {
       this.router.navigate(['admin-panel', 'cuadrillas'])
-      console.log(link)
+      
+    },
+      (err)=> {
+        if(err.status === 500) {
+          this.openDlgError("cuadrilla-error")
+         console.log(err.error)
+        }
+      }
+    )
+  }
 
-      this.open("cuadrilla-borrar", "")
-    }
-    catch (error) {
-      this.open("cuadrilla-error", "")
-    }
+  openDlgError(status: string){
+    const modalRef = this.modalService.open(NgModalContentComponent)
+    modalRef.componentInstance.status = status
   }
 
   open(status: string, link: string) {
