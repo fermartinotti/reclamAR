@@ -65,7 +65,7 @@ export class CuadrillaComponent implements OnInit {
     await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
     .then(res => {
       this.router.navigate(['admin-panel', 'cuadrillas'])
-      
+
     },
       (err)=> {
         if(err.status === 500) {
@@ -87,37 +87,24 @@ export class CuadrillaComponent implements OnInit {
     modalRef.componentInstance.link = link;
   }
 
-  public asignarReclamo(idReclamo: number): void {
+  async asignarReclamo(idReclamo: number): Promise<void> {
     if (this.model == null) {
       this.mensajeAlertaFechaSinDefinir("Seleccione una fecha para continuar");
     }
     else {
       this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day + "/" + this.model.month + "/" + this.model.year)
-      this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
+      await this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
 
-      this.agregarReclamoALaLista(idReclamo)
+      this.actualizarListas(idReclamo)
       this.model = null
 
     }
   }
 
-  async agregarReclamoALaLista(idReclamo: number): Promise<void> {
-    var reclamoAsignado: Reclamo;
-    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
-      reclamoAsignado = reclamo)
-
-    this.cuadrilla.reclamosAsignados = [reclamoAsignado].concat(this.cuadrilla.reclamosAsignados)
-
-    const index = this.todosLosReclamos.indexOf(reclamoAsignado);
-    this.todosLosReclamos.splice(index, 1);
-
-  }
-
   async finalizarReclamo(idReclamo: number): Promise<void> {
     try{
       var link = await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
-      this.sacarDeListaAsignado(idReclamo);
-      console.log(link)
+      this.actualizarListas(idReclamo);
       this.open("reclamo-finalizado", "")
     }
     catch(error){
@@ -125,14 +112,18 @@ export class CuadrillaComponent implements OnInit {
     }
   }
 
-  async sacarDeListaAsignado(idReclamo: number) {
-    var reclamoAFinalizar: Reclamo
+  async actualizarListas(idReclamo: number): Promise<void> {
+    var reclamoAsignado: Reclamo;
     await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
-      reclamoAFinalizar = reclamo)
+      reclamoAsignado = reclamo)
 
-    const index = this.cuadrilla.reclamosAsignados.indexOf(reclamoAFinalizar);
-    this.cuadrilla.reclamosAsignados.splice(index, 1);
+    this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id')))
+      .subscribe(cuadrilla => { this.cuadrilla = cuadrilla })
+
+    this.reclamoService.todosLosReclamos().then(reclamos =>
+      this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
   }
+
 
   public mensajeAlertaFechaSinDefinir(msj: string) {
     this._success.next(msj);
