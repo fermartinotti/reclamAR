@@ -30,12 +30,12 @@ export class AdminCuadrillaComponent implements OnInit {
 
   async crearCuadrilla():Promise<void>{
     try{
-      var nuevoReclamo = await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
-        .then(cuadrilla => Cuadrilla.crearDesdeJson(cuadrilla))
-      this.cuadrillas = [nuevoReclamo].concat(this.cuadrillas)
+      await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
+      this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
     }catch(error){}
     this.cuadrilla.nombre = null
     this.cuadrilla.cantIntegrantes= null;
+
   }
 
 }
