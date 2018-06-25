@@ -1,5 +1,7 @@
 package ar.edu.unq.reclamar.api;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -21,7 +23,11 @@ public class StartUp implements ApplicationRunner {
 		admin.setNombre("Administrador");
 		admin.setApellido("ReclamAR");
 		admin.setEmail("administrador@reclamar.com.ar");
-		this.usuarioRepository.save(admin);
+		Optional<Usuario> adminExistente = Optional.ofNullable( this.usuarioRepository.getUsuarioBySubId("auth0|5b17261c157859716f2c7518"));
+		
+		if(!adminExistente.isPresent()) {
+			this.usuarioRepository.save(admin);
+		}
 		
 	}
 
