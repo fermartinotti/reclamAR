@@ -11,8 +11,9 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AsignarDTO } from "../model/asignarDTO";
 import { FinalizarReclamoDTO } from "../model/finalizarReclamoDTO";
 
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { NgModalContentComponent } from "../ng-modal-content/ng-modal-content.component";
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 
 
 @Component({
@@ -24,19 +25,18 @@ export class CuadrillaComponent implements OnInit {
 
   model: NgbDateStruct;
   date: { year: number, month: number };
-
-  fechaActual = new Date();
-
-  minDate: NgbDateStruct = { year: this.fechaActual.getFullYear(), month: this.fechaActual.getMonth() + 1, day: this.fechaActual.getDate() };
+  minDate: NgbDateStruct = { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() };
 
   warningMessage: string;
+  warningMessageEC:string;
   private _success = new Subject<string>();
-
+  private _successEC = new Subject<string>();
   cuadrilla: Cuadrilla;
 
   todosLosReclamos: Array<Reclamo>
 
   asignarDTO: AsignarDTO;
+  modalOptions: NgbModalOptions;
 
   constructor(private cuadrillaService: CuadrillaService, private ruta: ActivatedRoute,
     private router: Router, private spinner: Ng4LoadingSpinnerService,
@@ -56,24 +56,28 @@ export class CuadrillaComponent implements OnInit {
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
 
+    this._successEC.subscribe((message) => this.warningMessageEC = message);
+    debounceTime.call(this._successEC, 4000).subscribe(() => this.warningMessageEC = null);
+
     this.spinner.hide()
   }
 
 
   async borrarCuadrilla(): Promise<void> {
-    this.open("cuadrilla-borrar", "")
-    await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
-    .then(res => {
-      this.router.navigate(['admin-panel', 'cuadrillas'])
-
-    },
-      (err)=> {
-        if(err.status === 500) {
-          this.openDlgError("cuadrilla-error")
-         console.log(err.error)
-        }
-      }
-    )
+    const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
+    modalRef.result.then(() => {
+      this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
+      .then(res => { 
+        //this.router.navigate(['admin-panel', 'cuadrillas'])
+        this.mensajeEliminarCuadrilla("La cuadrilla se ha eliminado del sistema")        
+      }, 
+        (err)=> {
+          console.log(err.error)
+          this.mensajeEliminarCuadrilla("No se puede borrar la cuadrilla ya que tiene uno o mas reclamos asignados")
+        } 
+      )
+    })
+    .catch(() => {}); 
   }
 
   openDlgError(status: string){
@@ -127,6 +131,10 @@ export class CuadrillaComponent implements OnInit {
 
   public mensajeAlertaFechaSinDefinir(msj: string) {
     this._success.next(msj);
+  }
+
+  public mensajeEliminarCuadrilla(msj: string) {
+    this._successEC.next(msj);
   }
 
   volver() {
