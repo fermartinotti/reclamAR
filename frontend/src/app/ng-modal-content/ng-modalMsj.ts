@@ -40,11 +40,11 @@ export class CuadrillaErrorComponent{
 }
 
 @Component({
-  selector: 'cuadrilla-borrar',
-  template: 'La cuadrilla se ha eliminado del sistema'
+  selector: 'cuadrilla-borrado-exitoso',
+  template: 'La cuadrilla se ha borrado de forma exitosa '
 })
 
-export class CuadrillaBorrarComponent{
+export class CuadrillaBorradoExitosoComponent{
 }
 
 @Component({
@@ -55,6 +55,13 @@ export class CuadrillaBorrarComponent{
 export class ReclamoFinalizadoComponent{
 }
 
+@Component({
+  selector: 'reclamo-finalizado-error',
+  template: 'No se ha podido finalizar el reclamo, por favor intente mas tarde'
+})
+
+export class ReclamoFinalizadoErrorComponent{
+}
 
 @Component({
   selector: 'reclamo-reabierto',
@@ -64,4 +71,5 @@ export class ReclamoFinalizadoComponent{
 export class ReclamoReabiertoComponent{
 }
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, CuadrillaBorrarComponent, ReclamoFinalizadoComponent, ReclamoReabiertoComponent ];
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
+    ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent ];
