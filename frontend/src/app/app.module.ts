@@ -40,6 +40,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {estadosViewComponent} from "./reclamo/estados";
 import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
+import {ConfirmacionMsjComponent} from './modal-confirmacion/modalConfirmacionMsj';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +67,8 @@ import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmac
     AdminReclamosComponent,
     CuadrillaComponent,
     estadosViewComponent,
-    ModalConfirmacionComponent
+    ModalConfirmacionComponent, 
+    ConfirmacionMsjComponent
   ],
   imports: [
     HttpModule,
