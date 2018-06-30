@@ -5,8 +5,9 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-ng-modal-content',
   template: `
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="modal-header">
-      <h4 class="modal-title">{{tittle}}</h4>
+      <h4 class="modal-title"><i class="fa fa-info-circle"></i> {{tittle}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -24,7 +25,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-info" (click)="activeModal.close('Close click')">Cerrar</button>
     </div>
   `
 })

@@ -24,14 +24,14 @@
         class="btn btn-primary my-2 my-sm-0"
         *ngIf="!auth.isAuthenticated()"
         (click)="auth.login()" type="button">
-          Log In
+          Ingresar
       </button>
 
       <button id="qsLogoutBtn"
         class="btn btn-primary my-2 my-sm-0"
         *ngIf="auth.isAuthenticated()"
         (click)="auth.logout()" type="button">
-          Log Out
+          Cerrrar sesión
       </button>
 
     </form>

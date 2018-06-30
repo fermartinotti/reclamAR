@@ -57,10 +57,9 @@ export class CuadrillaComponent implements OnInit {
     modalRef.componentInstance.status = "cuadrilla-borrado"
     modalRef.result.then(() => {
       this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
-      .then(res => { 
+      .then(res => {
         this.router.navigate(['admin-panel']);
         this.openDlgError("cuadrilla-borrado-exitoso");
-          
       }, 
         (err)=> {
           console.log(err.error);
@@ -68,7 +67,7 @@ export class CuadrillaComponent implements OnInit {
          
         })
     })
-    .catch(() => {}); 
+    .catch(() => {});
   }
 
   openDlgError(status: string){
@@ -83,7 +82,6 @@ export class CuadrillaComponent implements OnInit {
     else {
       this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day + "/" + this.model.month + "/" + this.model.year)
       await this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
-
       this.actualizarListas(idReclamo)
       this.model = null
 
@@ -103,8 +101,7 @@ export class CuadrillaComponent implements OnInit {
 
   async actualizarListas(idReclamo: number): Promise<void> {
     var reclamoAsignado: Reclamo;
-    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
-      reclamoAsignado = reclamo)
+    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo => reclamoAsignado = reclamo)
 
     this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id')))
       .subscribe(cuadrilla => { this.cuadrilla = cuadrilla })
@@ -113,14 +110,15 @@ export class CuadrillaComponent implements OnInit {
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
   }
 
-
-  public mensajeAlertaFechaSinDefinir(msj: string) {
+public mensajeAlertaFechaSinDefinir(msj: string) {
     const _success = new Subject<string>();
     _success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(_success, 2000).subscribe(() => this.warningMessage = null);
     _success.next(msj);
   }
+  
   volver() {
     this.router.navigate(['admin-panel']);
   }
+
 }
