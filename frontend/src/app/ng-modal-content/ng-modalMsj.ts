@@ -70,6 +70,16 @@ export class ReclamoFinalizadoErrorComponent{
 
 export class ReclamoReabiertoComponent{
 }
+
+@Component({
+  selector: 'cuadrilla-error-generico',
+  template: 'No se ha podido eliminar esta cuadrilla, por favor intenta mas tarde'
+})
+
+export class CuadrillaErrorGenericoComponent{
+}
+
 export const ReclamoMsjComponent =
   [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
-    ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent ];
+    ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
+    CuadrillaErrorGenericoComponent ];

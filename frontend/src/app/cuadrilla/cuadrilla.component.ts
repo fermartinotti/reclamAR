@@ -63,7 +63,13 @@ export class CuadrillaComponent implements OnInit {
       }, 
         (err)=> {
           console.log(err.error);
-          this.openDlgError("cuadrilla-error");
+          if(this.todosLosReclamos.length > 0){
+            this.openDlgError("cuadrilla-error");
+          }
+          else{
+            this.openDlgError("cuadrilla-error-generico");
+          }
+          
          
         })
     })
@@ -95,7 +101,8 @@ export class CuadrillaComponent implements OnInit {
       this.openDlgError("reclamo-finalizado")
     }
     catch(error){
-      this.openDlgError("cuadrilla-error")
+      console.log(error.error);
+      this.openDlgError("reclamo-finalizado-error")
     }
   }
 
