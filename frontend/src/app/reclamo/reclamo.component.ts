@@ -18,9 +18,10 @@ import {ReabrirDTO} from "../model/reabrirDTO";
 })
 export class ReclamoComponent implements OnInit {
 
-  @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null,[])
+  @Input() reclamo: Reclamo = new Reclamo(null,null,null,null,null,null,null,[],0)
 
   @ViewChild('map') map: MapComponent;
+  public isCollapsed = true;
 
   motivoReapertura:string
 

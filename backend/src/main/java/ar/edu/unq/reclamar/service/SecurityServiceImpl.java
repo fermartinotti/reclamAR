@@ -44,7 +44,7 @@ public class SecurityServiceImpl implements SecurityService {
 	
 	@Override
 	public Usuario setUsuarioLogueado(){
-		String token = request.getHeader("Authorization");
+ 		String token = request.getHeader("Authorization");
 		System.out.println(token);
 		DecodedJWT jwt = this.decode(token.substring(7)); // Para sacar el "Bearer" del inicio del token
 		String subId = jwt.getSubject();

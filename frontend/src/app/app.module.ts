@@ -39,6 +39,7 @@ import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {estadosViewComponent} from "./reclamo/estados";
+import {NgbdRatingEvents} from "./rating/rating";
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import {estadosViewComponent} from "./reclamo/estados";
     AdminCuadrillaComponent,
     AdminReclamosComponent,
     CuadrillaComponent,
-    estadosViewComponent
+    estadosViewComponent,
+    NgbdRatingEvents
   ],
   imports: [
     HttpModule,

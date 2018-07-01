@@ -83,6 +83,8 @@ public class ReclamoServiceImpl implements ReclamoService {
 		reclamo.setEstado(estado);
 		reclamo.getEstados().add(estado);
 
+		reclamo.setPuntuacion(0);
+
 		localizacionRepository.save(reclamo.getLugarDeIncidente());
 		reclamo.setDireccionFisica(reclamo.getLugarDeIncidente().getDireccionFisica());
 		tipoDeReclamoRepository.save(reclamo.getTipoDeReclamo());
@@ -188,14 +190,9 @@ public class ReclamoServiceImpl implements ReclamoService {
 	public void puntuarReclamo(PuntuacionReclamoDTO puntuacionR) {
 		Operador userLogeado = (Operador) securityService.setUsuarioLogueado();
 		Reclamo reclamo = getReclamoById(puntuacionR.getIdReclamo());
-
-		Puntuacion puntuacion = new Puntuacion();
-		puntuacion.calificar(puntuacionR.getPuntuacion().getPuntuacion());
-		puntuacion.setComentario(puntuacionR.getPuntuacion().getComentario());
-
-		reclamo.setPuntuacion(puntuacion);
-
-		puntuacionRepository.save(puntuacion);
+		
+		reclamo.setPuntuacion(puntuacionR.getPuntuacion());
+		
 		repository.save(reclamo);
 		usuarioRepository.save(userLogeado);
 	}

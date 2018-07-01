@@ -44,7 +44,7 @@ export class NuevoReclamoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reclamo = new Reclamo(null,null,null,null,null,null,null, [])
+    this.reclamo = new Reclamo(null,null,null,null,null,null,null, [], 0)
     // logica cierre alert
     this._success.subscribe((message) => this.warningMessage = message);
     debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
