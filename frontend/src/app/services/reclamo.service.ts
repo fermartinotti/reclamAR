@@ -5,6 +5,7 @@ import {Reclamo} from "../model/reclamo";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import {ReabrirDTO} from "../model/reabrirDTO";
+import {PuntuacionReclamoDTO} from "../model/puntuacionReclamoDTO";
 
 export const baseURL = 'http://localhost:8080'
 
@@ -52,6 +53,13 @@ export class ReclamoService {
 
   async reabrirReclamo(dto: ReabrirDTO): Promise<any>{
     return await this.httpClient.post(baseURL+'/api/rest/reclamos/reabrirReclamo', dto,
+      {
+        headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
+      }).toPromise()
+  }
+
+  async puntuarReclamo(dto: PuntuacionReclamoDTO): Promise<any>{
+    return await this.httpClient.post(baseURL+'/api/rest/reclamos/puntuarReclamo', dto,
       {
         headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('id_token')}`)
       }).toPromise()

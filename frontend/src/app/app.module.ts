@@ -39,6 +39,10 @@ import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {estadosViewComponent} from "./reclamo/estados";
+import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
+import {ConfirmacionMsjComponent} from './modal-confirmacion/modalConfirmacionMsj';
+import {NgbdRatingEvents} from "./rating/rating";
+
 
 @NgModule({
   declarations: [
@@ -63,7 +67,11 @@ import {estadosViewComponent} from "./reclamo/estados";
     AdminCuadrillaComponent,
     AdminReclamosComponent,
     CuadrillaComponent,
-    estadosViewComponent
+    estadosViewComponent,
+    ModalConfirmacionComponent, 
+    ConfirmacionMsjComponent
+    estadosViewComponent,
+    NgbdRatingEvents
   ],
   imports: [
     HttpModule,
@@ -90,6 +98,6 @@ import {estadosViewComponent} from "./reclamo/estados";
     AuthGuardAdminService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NgModalContentComponent],
+  entryComponents: [NgModalContentComponent, ModalConfirmacionComponent],
 })
 export class AppModule { }

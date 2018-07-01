@@ -5,8 +5,9 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-ng-modal-content',
   template: `
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="modal-header">
-      <h4 class="modal-title">{{tittle}}</h4>
+      <h4 class="modal-title"><i class="fa fa-info-circle"></i> {{tittle}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -16,14 +17,16 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         <reclamo-success    *ngSwitchCase="'success'"    [link]="link"></reclamo-success>
         <reclamo-error      *ngSwitchCase="'error'"    ></reclamo-error>
         <reclamo-finalizado      *ngSwitchCase="'reclamo-finalizado'"    ></reclamo-finalizado>
+        <reclamo-finalizado-error      *ngSwitchCase="'reclamo-finalizado-error'"    ></reclamo-finalizado-error>
         <reclamo-reabierto      *ngSwitchCase="'reclamo-reabierto'"    ></reclamo-reabierto>
         <cuadrilla-error      *ngSwitchCase="'cuadrilla-error'"    ></cuadrilla-error>
-        <cuadrilla-borrar      *ngSwitchCase="'cuadrilla-borrar'"  ></cuadrilla-borrar>
+        <cuadrilla-borrado-exitoso      *ngSwitchCase="'cuadrilla-borrado-exitoso'"    ></cuadrilla-borrado-exitoso>
+        <cuadrilla-error-generico      *ngSwitchCase="'cuadrilla-error-generico'"    ></cuadrilla-error-generico>
         <error-buscando-reclamo *ngSwitchCase="'errorBuscando'"> </error-buscando-reclamo>
       </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cerrar</button>
+      <button type="button" class="btn btn-info" (click)="activeModal.close('Close click')">Cerrar</button>
     </div>
   `
 })

@@ -160,7 +160,6 @@ public class ReclamarApiImpl implements ReclamarApi {
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
 
 		try {
-			puntuar.getPuntuacion().calificar(puntuar.getPuntuacion().getPuntuacion());
 			reclamoService.puntuarReclamo(puntuar);
 			return Response.ok().build();
 		} catch (RuntimeException e) {

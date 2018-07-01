@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light box-shadow border-bottom">
+<nav class="navbar navbar-expand-lg navbar-light box-shadow border-bottom">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#">{{title}}</a>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+  <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
         <a class="nav-link" routerLink="/crear-reclamo">Nuevo Reclamo</a>
@@ -24,14 +24,14 @@
         class="btn btn-primary my-2 my-sm-0"
         *ngIf="!auth.isAuthenticated()"
         (click)="auth.login()" type="button">
-          Log In
+          Ingresar
       </button>
 
       <button id="qsLogoutBtn"
         class="btn btn-primary my-2 my-sm-0"
         *ngIf="auth.isAuthenticated()"
         (click)="auth.logout()" type="button">
-          Log Out
+          Cerrrar sesión
       </button>
 
     </form>

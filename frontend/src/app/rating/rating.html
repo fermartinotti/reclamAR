@@ -1,0 +1,6 @@
+<ngb-rating [(rate)]="selected" [readonly]="readonly"></ngb-rating>
+<button class="btn btn-sm btn-outline-{{!readonly ? 'danger' : 'success'}}" (click)="calificar()">
+  {{ !readonly ? "Guardar" : "Editar"}}
+</button>
+<hr>
+

@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container-fluid">
   <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h2>Cuadrilla {{cuadrilla?.nombre}} | integrantes: {{cuadrilla?.cantIntegrantes}}</h2>
+  <h2>Cuadrilla {{cuadrilla?.nombre}} | Integrantes: {{cuadrilla?.cantIntegrantes}}</h2>
 
   <button type="button" (click)="volver()" class="btn btn-dark btn-sm">Volver</button>
 </div>
@@ -16,7 +17,7 @@
   <form class="form-inline">
     <div class="form-group">
       <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd" name="d2" #c2="ngModel" [(ngModel)]="model" ngbDatepicker #d2="ngbDatepicker"
+        <input id="input-datepicker" readonly="readonly" class="form-control" placeholder="Seleccione una fecha" name="d2" #c2="ngModel" [(ngModel)]="model" ngbDatepicker #d2="ngbDatepicker"
           [minDate]="minDate">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
@@ -69,14 +70,16 @@
       <span class="d-block">
         Reclamo de {{r?.tipoDeReclamo?.type}}. Ubicacion:
         <i>{{r?.lugarDeIncidente?.direccionFisica}}. </i>
-        <button type="button" class="btn btn-primary btn-sm" (click)="finalizarReclamo(r.id)">Finalizar</button>
+        <button type="button" class="btn btn-success" (click)="finalizarReclamo(r.id)">Finalizar</button>
       </span>
     </div>
   </div>
 
     <footer class="mastfoot mt-auto float-right">
       <div class="inner">
-        <button type="button" class="btn btn-primary btn-sm" (click)="borrarCuadrilla()">Eliminar Cuadrilla</button>
+        
+        <button type="button" class="btn btn-danger" (click)="borrarCuadrilla()"><i class="fa fa-trash"></i> Eliminar Cuadrilla</button>
+        
       </div>
     </footer>
 

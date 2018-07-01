@@ -14,6 +14,7 @@ export class Reclamo{
   estado: Estado;
   estados: Array<Estado>;
   direccionFisica:string;
+  puntuacion:number;
 
   public get getTipoDeReclamo():TipoDeReclamo{
     return this.tipoDeReclamo
@@ -33,7 +34,7 @@ export class Reclamo{
 
   constructor(id: number, autor: Autor, fechaDeCreacion:string, detalle: string, estado: Estado,
               tipoDeReclamo: TipoDeReclamo, lugarDeIncidente: Localizacion,
-              estados: Array<Estado> ){
+              estados: Array<Estado>, puntuacion:number ){
     this.id = id
     this.autor = autor
     this.fechaDeCreacion = fechaDeCreacion
@@ -42,12 +43,13 @@ export class Reclamo{
     this.tipoDeReclamo = tipoDeReclamo
     this.lugarDeIncidente = lugarDeIncidente
     this.estados = estados
+    this.puntuacion = puntuacion
   }
 
   static crearDesdeJson(json:any): Reclamo{
     const reclamo = new Reclamo(json.id, Autor.crearDesdeJson(json.autor),
       json.fechaDeCreacion, json.detalle, json.estado
-      , (json.tipoDeReclamo), Localizacion.crearDesdeJson(json.lugarDeIncidente), json.estados)
+      , (json.tipoDeReclamo), Localizacion.crearDesdeJson(json.lugarDeIncidente), json.estados, json.puntuacion)
     return reclamo;
   }
 }

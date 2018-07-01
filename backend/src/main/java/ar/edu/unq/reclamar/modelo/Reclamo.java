@@ -53,9 +53,8 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	@ManyToOne(fetch = FetchType.EAGER)
 	Localizacion lugarDeIncidente;
 	
-	@JoinColumn(name="puntuacion")
-	@ManyToOne(fetch = FetchType.EAGER)
-	Puntuacion puntuacion;
+	@Column
+	int puntuacion;
 	
 	@Column
 	String direccionFisica;
@@ -75,6 +74,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		this.autor = autor;
 		this.fechaDeCreacion = LocalDateTime.now();
 		this.detalle = mensaje;
+		this.puntuacion= 0;
 	}
 		
 	public Usuario getAutor() {
@@ -145,11 +145,11 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		this.estados = estados;
 	}
 
-	public Puntuacion getPuntuacion() {
+	public int getPuntuacion() {
 		return puntuacion;
 	}
 
-	public void setPuntuacion(Puntuacion puntuacion) {
+	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
 	

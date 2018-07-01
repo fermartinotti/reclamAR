@@ -17,7 +17,7 @@ export class TodosLosReclamosComponent implements OnInit {
   constructor(private reclamoService: ReclamoService, private spinner: Ng4LoadingSpinnerService) {
     this.spinner.show()
     this.reclamoService.todosLosReclamos().then(reclamos=>
-      this.map.cargarMarkers(this.todosLosReclamos = reclamos));
+      this.map.cargarMarkers(this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto" || reclamo.estado.type === "Reparacion")));
     this.spinner.hide()
   }
 

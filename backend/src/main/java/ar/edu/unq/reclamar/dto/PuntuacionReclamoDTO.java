@@ -4,7 +4,7 @@ import ar.edu.unq.reclamar.modelo.Puntuacion;
 
 public class PuntuacionReclamoDTO {
 	Long idReclamo;
-	Puntuacion puntuacion;
+	int puntuacion;
 	
 	public Long getIdReclamo() {
 		return idReclamo;
@@ -12,14 +12,15 @@ public class PuntuacionReclamoDTO {
 	public void setIdReclamo(Long idReclamo) {
 		this.idReclamo = idReclamo;
 	}
-	public Puntuacion getPuntuacion() {
+	
+	
+	public int getPuntuacion() {
 		return puntuacion;
 	}
-	public void setPuntuacion(Puntuacion puntuacion) {
+	public void setPuntuacion(int puntuacion) {
 		this.puntuacion = puntuacion;
 	}
-	
-	public PuntuacionReclamoDTO(Long idReclamo, Puntuacion puntuacion) {
+	public PuntuacionReclamoDTO(Long idReclamo, int puntuacion) {
 		super();
 		this.idReclamo = idReclamo;
 		this.puntuacion = puntuacion;
