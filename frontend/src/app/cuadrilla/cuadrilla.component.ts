@@ -10,9 +10,9 @@ import { ReclamoService } from "../services/reclamo.service";
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AsignarDTO } from "../model/asignarDTO";
 import { FinalizarReclamoDTO } from "../model/finalizarReclamoDTO";
-
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { NgModalContentComponent } from "../ng-modal-content/ng-modal-content.component";
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 
 
 @Component({
@@ -24,19 +24,14 @@ export class CuadrillaComponent implements OnInit {
 
   model: NgbDateStruct;
   date: { year: number, month: number };
-
   fechaActual = new Date();
-
-  minDate: NgbDateStruct = { year: this.fechaActual.getFullYear(), month: this.fechaActual.getMonth() + 1, day: this.fechaActual.getDate() };
-
+  minDate: NgbDateStruct = { year: this.fechaActual.getFullYear(),month: this.fechaActual.getMonth() + 1, day: this.fechaActual.getDate() };
   warningMessage: string;
-  private _success = new Subject<string>();
-
   cuadrilla: Cuadrilla;
-
   todosLosReclamos: Array<Reclamo>
-
   asignarDTO: AsignarDTO;
+  modalOptions: NgbModalOptions;
+
 
   constructor(private cuadrillaService: CuadrillaService, private ruta: ActivatedRoute,
     private router: Router, private spinner: Ng4LoadingSpinnerService,
@@ -53,38 +48,37 @@ export class CuadrillaComponent implements OnInit {
     this.reclamoService.todosLosReclamos().then(reclamos =>
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
 
-    this._success.subscribe((message) => this.warningMessage = message);
-    debounceTime.call(this._success, 2000).subscribe(() => this.warningMessage = null);
-
-    this.spinner.hide()
+      this.spinner.hide()
   }
 
 
   async borrarCuadrilla(): Promise<void> {
-    this.open("cuadrilla-borrar", "")
-    await this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
-    .then(res => {
-      this.router.navigate(['admin-panel', 'cuadrillas'])
-
-    },
-      (err)=> {
-        if(err.status === 500) {
-          this.openDlgError("cuadrilla-error")
-         console.log(err.error)
-        }
-      }
-    )
+    const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
+    modalRef.componentInstance.status = "cuadrilla-borrado"
+    modalRef.result.then(() => {
+      this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
+      .then(res => {
+        this.router.navigate(['admin-panel']);
+        this.openDlgError("cuadrilla-borrado-exitoso");
+      }, 
+        (err)=> {
+          console.log(err.error);
+          if(this.todosLosReclamos.length > 0){
+            this.openDlgError("cuadrilla-error");
+          }
+          else{
+            this.openDlgError("cuadrilla-error-generico");
+          }
+          
+         
+        })
+    })
+    .catch(() => {});
   }
 
   openDlgError(status: string){
     const modalRef = this.modalService.open(NgModalContentComponent)
     modalRef.componentInstance.status = status
-  }
-
-  open(status: string, link: string) {
-    const modalRef = this.modalService.open(NgModalContentComponent)
-    modalRef.componentInstance.status = status
-    modalRef.componentInstance.link = link;
   }
 
   async asignarReclamo(idReclamo: number): Promise<void> {
@@ -94,7 +88,6 @@ export class CuadrillaComponent implements OnInit {
     else {
       this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day + "/" + this.model.month + "/" + this.model.year)
       await this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
-
       this.actualizarListas(idReclamo)
       this.model = null
 
@@ -105,17 +98,17 @@ export class CuadrillaComponent implements OnInit {
     try{
       var link = await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
       this.actualizarListas(idReclamo);
-      this.open("reclamo-finalizado", "")
+      this.openDlgError("reclamo-finalizado")
     }
     catch(error){
-      this.open("cuadrilla-error", "")
+      console.log(error.error);
+      this.openDlgError("reclamo-finalizado-error")
     }
   }
 
   async actualizarListas(idReclamo: number): Promise<void> {
     var reclamoAsignado: Reclamo;
-    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo =>
-      reclamoAsignado = reclamo)
+    await this.reclamoService.buscarReclamo(idReclamo).then(reclamo => reclamoAsignado = reclamo)
 
     this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id')))
       .subscribe(cuadrilla => { this.cuadrilla = cuadrilla })
@@ -124,12 +117,15 @@ export class CuadrillaComponent implements OnInit {
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
   }
 
-
-  public mensajeAlertaFechaSinDefinir(msj: string) {
-    this._success.next(msj);
+public mensajeAlertaFechaSinDefinir(msj: string) {
+    const _success = new Subject<string>();
+    _success.subscribe((message) => this.warningMessage = message);
+    debounceTime.call(_success, 2000).subscribe(() => this.warningMessage = null);
+    _success.next(msj);
   }
-
+  
   volver() {
     this.router.navigate(['admin-panel']);
   }
+
 }
