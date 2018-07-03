@@ -69,7 +69,7 @@ import {NgbdRatingEvents} from "./rating/rating";
     CuadrillaComponent,
     estadosViewComponent,
     ModalConfirmacionComponent, 
-    ConfirmacionMsjComponent
+    ConfirmacionMsjComponent,
     estadosViewComponent,
     NgbdRatingEvents
   ],

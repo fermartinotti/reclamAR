@@ -6,8 +6,9 @@ import 'rxjs/add/operator/switchMap';
 import {MapComponent} from "../map/map.component";
 import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
 import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {ReabrirDTO} from "../model/reabrirDTO";
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 
 
 
@@ -24,6 +25,7 @@ export class ReclamoComponent implements OnInit {
   public isCollapsed = true;
 
   motivoReapertura:string
+  modalOptions: NgbModalOptions;
 
   constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute,
               public router: Router, private spinner: Ng4LoadingSpinnerService,
@@ -54,9 +56,19 @@ export class ReclamoComponent implements OnInit {
   }
 
   ReAbrirReclamo(): void{
-    var link = this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
-    console.log(link)
-    this.open("reclamo-reabierto", "")
+    const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
+    modalRef.componentInstance.status = "reabrir-reclamo"
+    modalRef.result.then(() => {
+      this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
+      .then(res => {
+        this.open("reclamo-reabierto", "")
+      },
+      (err)=> {
+        console.log(err.error);
+        this.openDlgError("");
+      })
+    })
+    .catch(() => {});
   }
 
   open(status: string, link: string) {

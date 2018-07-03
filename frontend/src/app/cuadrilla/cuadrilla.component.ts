@@ -41,14 +41,11 @@ export class CuadrillaComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show()
-
-    this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id')))
-      .subscribe(cuadrilla => { this.cuadrilla = cuadrilla })
-
-    this.reclamoService.todosLosReclamos().then(reclamos =>
+    this.ruta.paramMap.switchMap(paramMap => this.cuadrillaService.buscarCuadrilla(+paramMap.get('id'))).subscribe(cuadrilla => 
+      { this.cuadrilla = cuadrilla })
+    this.reclamoService.todosLosReclamos().then(reclamos => 
       this.todosLosReclamos = reclamos.filter(reclamo => reclamo.estado.type === "Abierto"));
-
-      this.spinner.hide()
+    this.spinner.hide()
   }
 
 
@@ -64,13 +61,11 @@ export class CuadrillaComponent implements OnInit {
         (err)=> {
           console.log(err.error);
           if(this.todosLosReclamos.length > 0){
-            this.openDlgError("cuadrilla-error");
-          }
-          else{
+            this.openDlgError("cuadrilla-borrar-error");
+          }else{
+            console.log(err.error);
             this.openDlgError("cuadrilla-error-generico");
           }
-          
-         
         })
     })
     .catch(() => {});
@@ -86,11 +81,16 @@ export class CuadrillaComponent implements OnInit {
       this.mensajeAlertaFechaSinDefinir("Seleccione una fecha para continuar");
     }
     else {
-      this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day + "/" + this.model.month + "/" + this.model.year)
-      await this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
-      this.actualizarListas(idReclamo)
-      this.model = null
-
+      try {
+        this.asignarDTO = new AsignarDTO(idReclamo, this.cuadrilla.id, this.model.day + "/" + this.model.month + "/" + this.model.year)
+        await this.cuadrillaService.asignarCuadrilla(this.asignarDTO)
+        this.actualizarListas(idReclamo)
+        this.model = null
+      }
+      catch(error) {
+        console.log(error.error);
+        this.openDlgError("asignar-reclamo-error")
+      }
     }
   }
 

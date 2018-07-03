@@ -15,6 +15,7 @@ import {Input} from "@angular/core";
 <div class="modal-body">
 <div [ngSwitch]="status">
 <cuadrilla-borrado      *ngSwitchCase="'cuadrilla-borrado'"    ></cuadrilla-borrado>
+<reabrir-reclamo      *ngSwitchCase="'reabrir-reclamo'"    ></reabrir-reclamo>
 </div>
 </div>
 <div class="modal-footer">
