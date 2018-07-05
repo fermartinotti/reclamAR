@@ -1,3 +1,71 @@
-<p>
-  tickets-admin works!
-</p>
+<body>
+<div class="bg-gris">
+  <main role="main" class="container">
+
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="http://www.hms.cl/wp-content/uploads/2015/11/reclamo-300x300.png" alt="" width="72" height="72">
+      <h2>Sistema de tickets</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Todos los tickets</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div>
+              <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
+              <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
+            </div>
+          </li>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </ul>
+        
+      </div>
+
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Crear ticket de reclamo</h4>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Reclamo</label>
+          </div>
+          <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="reclamoId">
+            <option [ngValue]="null" disabled>Seleccione su reclamo</option>
+            <option [ngValue]="r.id"  *ngFor="let r of reclamos">Reclamo numero {{r.id}}. Estado actual: {{r.estado.type}}</option>
+          </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="motivo">Motivo</label>
+          </div>
+          <select class="custom-select" id="motivo" [(ngModel)]="motivo">
+            <option [ngValue]="null" disabled>Seleccione motivo</option>
+            <option [ngValue]="">Demorado</option>
+            <option [ngValue]="">Se cerro sin resolver</option>
+            <option [ngValue]="">El arreglo no fue correcto</option>
+            <option [ngValue]="">otro</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="detalle">Detalle:</label>
+          <textarea class="form-control" id="detalle" rows="3" [(ngModel)]="detalle" name="detalle" maxlength="250"></textarea>
+          <div id="div_der1" *ngIf="motivo == null"> 0 / 250 </div>
+          <div id="div_der2" *ngIf="motivo != null"> {{motivo.length}} / 250 </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
+
+
+      </div>
+    </div>
+
+  </main>
+
+
+</div>
+</body>

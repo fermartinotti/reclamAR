@@ -18,9 +18,6 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/todos-los-reclamos">Ver todos los reclamos</a>
       </li>
-      <!--<li class="nav-item" *ngIf="auth.esAdmin()">
-        <a class="nav-link" routerLink="/admin-panel">Panel Administrador</a>
-      </li>-->
       <li class="nav-item dropdown" *ngIf="auth.esAdmin()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Panel Administrador

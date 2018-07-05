@@ -2,6 +2,7 @@ import {Usuario} from "./usuario";
 import {Reclamo} from "./reclamo";
 
 export class Ticket{
+  id:number
   reclamo: Reclamo
   fechaDeCreacion: string
   motivo: string
@@ -9,8 +10,9 @@ export class Ticket{
   autor: Usuario
   respuesta: string
 
-  constructor(reclamo: Reclamo, fechaDeCreacion: string, motivo: string, detalle: string,
+  constructor(id:number, reclamo: Reclamo, fechaDeCreacion: string, motivo: string, detalle: string,
               autor: Usuario, respuesta: string){
+    this.id=id
     this.reclamo= reclamo
     this.fechaDeCreacion= fechaDeCreacion
     this.motivo=motivo
@@ -20,7 +22,7 @@ export class Ticket{
   }
 
   static crearDesdeJson(json:any): Ticket{
-    const ticket = new Ticket(Reclamo.crearDesdeJson(json.reclamo),
+    const ticket = new Ticket(json.id, Reclamo.crearDesdeJson(json.reclamo),
                               json.fechaDeCreacion, json.motivo, json.detalle,
                               Usuario.crearDesdeJson(json.autor), json.respuesta)
     return ticket;
