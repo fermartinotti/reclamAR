@@ -42,6 +42,8 @@ import {estadosViewComponent} from "./reclamo/estados";
 import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmacion.component';
 import {ConfirmacionMsjComponent} from './modal-confirmacion/modalConfirmacionMsj';
 import {NgbdRatingEvents} from "./rating/rating";
+import { QuejasComponent } from './quejas/quejas.component';
+import {TicketService} from "./services/ticket.service";
 
 
 @NgModule({
@@ -68,10 +70,11 @@ import {NgbdRatingEvents} from "./rating/rating";
     AdminReclamosComponent,
     CuadrillaComponent,
     estadosViewComponent,
-    ModalConfirmacionComponent, 
+    ModalConfirmacionComponent,
     ConfirmacionMsjComponent,
     estadosViewComponent,
-    NgbdRatingEvents
+    NgbdRatingEvents,
+    QuejasComponent
   ],
   imports: [
     HttpModule,
@@ -93,6 +96,7 @@ import {NgbdRatingEvents} from "./rating/rating";
     UsuarioService,
     CuadrillaService,
     DataSenderService,
+    TicketService,
     AuthService,
     AuthGuardService,
     AuthGuardAdminService

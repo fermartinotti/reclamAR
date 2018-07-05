@@ -12,6 +12,9 @@
       <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
         <a class="nav-link" routerLink="/mis-reclamos">Ver mis reclamos</a>
       </li>
+      <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
+        <a class="nav-link" routerLink="/tengo-un-problema">Tengo un problema</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/todos-los-reclamos">Ver todos los reclamos</a>
       </li>

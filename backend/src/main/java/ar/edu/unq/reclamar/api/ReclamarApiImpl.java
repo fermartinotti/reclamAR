@@ -12,14 +12,17 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.CrearTicketDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
+import ar.edu.unq.reclamar.modelo.Ticket;
 import ar.edu.unq.reclamar.service.CuadrillaService;
 import ar.edu.unq.reclamar.service.ReclamoService;
 import ar.edu.unq.reclamar.service.SecurityService;
+import ar.edu.unq.reclamar.service.TicketService;
 import ar.edu.unq.reclamar.service.UsuarioService;
 
 @Service
@@ -37,6 +40,9 @@ public class ReclamarApiImpl implements ReclamarApi {
 	@Autowired
 	private SecurityService securityService;
 
+	@Autowired
+	private TicketService ticketService;
+	
 	@Override
 	public Response isAlive() {
 		return Response.ok().build();
@@ -208,5 +214,30 @@ public class ReclamarApiImpl implements ReclamarApi {
 		}
 	}
 
+	@Override
+	public Response crearTicket(CrearTicketDTO dto) {
+		securityService.setUsuarioLogueado();
+		ObjectNode objectNode = new ObjectMapper().createObjectNode();
+		try {
+			Ticket ticket = ticketService.crearTicket(dto);
+			return Response.ok(ticket).build();
+		}catch(Exception e) {
+			e.printStackTrace();
+			objectNode.put("Error", e.getMessage());
+			return Response.status(500).entity(objectNode.toString()).build();
+		}
+	}
+	
+	@Override
+	public Response getTickets() {
+		ObjectNode objectNode = new ObjectMapper().createObjectNode();
+		try {
+			return Response.ok(ticketService.getTickets()).build();
+		}catch(Exception e) {
+			e.printStackTrace();
+			objectNode.put("Error", e.getMessage());
+			return Response.status(500).entity(objectNode.toString()).build();
+		}
+	}
 
 }
