@@ -97,7 +97,7 @@ export class CrearCuadrillaErrorComponent{
 
 @Component({
   selector: 'asignar-reclamo-error',
-  template: 'No se ha podido asignar el reclamo, por favor intenta mas tarde'
+  template: 'No se ha podido asignar el reclamo, por favor intente mas tarde'
 })
 
 export class AsignarReclamoErrorComponent{
@@ -105,14 +105,30 @@ export class AsignarReclamoErrorComponent{
 
 @Component({
   selector: 'puntuar-reclamo-error',
-  template: 'No se ha podido registrar su calificación, por favor intenta mas tarde'
+  template: 'No se ha podido registrar su calificación, por favor intente mas tarde'
 })
 
 export class PuntuarReclamoErrorComponent{
+}
+
+@Component({
+  selector: 'generar-ticket-ok',
+  template: 'El ticket se ha generado de forma satisfactoria'
+})
+
+export class GenerarTicketComponent{
+}
+
+@Component({
+  selector: 'generar-ticket-error',
+  template: 'No se ha podido generar el ticket, por favor intente mas tarde'
+})
+
+export class GenerarTicketErrorComponent{
 }
 
 export const ReclamoMsjComponent =
   [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
     ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
     CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
-    PuntuarReclamoErrorComponent];
+    PuntuarReclamoErrorComponent, GenerarTicketComponent, GenerarTicketErrorComponent ];
