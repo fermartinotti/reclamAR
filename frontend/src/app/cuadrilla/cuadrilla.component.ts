@@ -100,14 +100,20 @@ export class CuadrillaComponent implements OnInit {
   }
 
   async finalizarReclamo(idReclamo: number): Promise<void> {
+    this.spinner.show();
     try{
-      var link = await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
-      this.actualizarListas(idReclamo);
-      this.openDlgError("reclamo-finalizado")
+      await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+      setTimeout(() => {
+        this.spinner.hide();
+        this.actualizarListas(idReclamo);
+        this.openDlgError("reclamo-finalizado")
+      }, 5000);
     }
     catch(error){
-      console.log(error.error);
-      this.openDlgError("reclamo-finalizado-error")
+      setTimeout(() => {
+        console.log(error.error);
+        this.openDlgError("reclamo-finalizado-error")
+      }, 5000);
     }
   }
 

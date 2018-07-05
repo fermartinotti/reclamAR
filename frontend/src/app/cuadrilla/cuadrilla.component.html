@@ -70,6 +70,7 @@
       <span class="d-block">
         Reclamo de {{r?.tipoDeReclamo?.type}}. Ubicacion:
         <i>{{r?.lugarDeIncidente?.direccionFisica}}. </i>
+        <ng4-loading-spinner></ng4-loading-spinner>
         <button type="button" class="btn btn-success" (click)="finalizarReclamo(r.id)">Finalizar</button>
       </span>
     </div>
