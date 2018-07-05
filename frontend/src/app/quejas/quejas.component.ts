@@ -30,6 +30,9 @@ export class QuejasComponent implements OnInit {
   async generarTicket(): Promise<void>{
     var ticketDTO = new TicketDTO(this.reclamoId, this.motivo, this.detalle)
     await this.ticketService.generarTicket(ticketDTO)
+    this.motivo = null
+    this.reclamoId = null
+    this.detalle = null
     this.ticketService.misTickets().then(tickets => this.tickets = tickets);
   }
 }
