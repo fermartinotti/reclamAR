@@ -53,12 +53,17 @@ export class CuadrillaComponent implements OnInit {
     const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
     modalRef.componentInstance.status = "cuadrilla-borrado"
     modalRef.result.then(() => {
+      this.spinner.show()
       this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
       .then(res => {
-        this.router.navigate(['admin-panel']);
-        this.openDlgError("cuadrilla-borrado-exitoso");
+        setTimeout(() => {
+          this.spinner.hide()
+          this.router.navigate(['admin-panel']);
+           this.openDlgError("cuadrilla-borrado-exitoso");
+        }, 5000);
       }, 
         (err)=> {
+          this.spinner.hide()
           console.log(err.error);
           if(this.todosLosReclamos.length > 0){
             this.openDlgError("cuadrilla-borrar-error");
