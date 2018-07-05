@@ -6,6 +6,7 @@ import {TicketService} from "../services/ticket.service";
 import {Ticket} from "../model/ticket";
 import { NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { NgModalContentComponent } from "../ng-modal-content/ng-modal-content.component";
+import {Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
 
 
 @Component({
@@ -21,8 +22,9 @@ export class QuejasComponent implements OnInit {
   reclamoId:number = null;
   motivo: string = null
   detalle:string;
+  perro:boolean=false;
 
-  constructor(private reclamoService: ReclamoService, private ticketService: TicketService, private modalService: NgbModal) {
+  constructor(private reclamoService: ReclamoService, private ticketService: TicketService,  private spinner: Ng4LoadingSpinnerService, private modalService: NgbModal) {
     this.reclamoService.misReclamos().then(reclamos=> this.reclamos = reclamos);
     this.ticketService.misTickets().then(tickets => this.tickets = tickets);
   }
@@ -31,27 +33,37 @@ export class QuejasComponent implements OnInit {
   }
 
   async generarTicket(): Promise<void>{
-    
+    this.spinner.show()
     var ticketDTO = new TicketDTO(this.reclamoId, this.motivo, this.detalle)
+    
+    
     await this.ticketService.generarTicket(ticketDTO)
     .then(res => {
-      this.ticketService.misTickets().then(tickets => this.tickets = tickets);
-      this.openDlgError("generar-ticket-ok");
-
+      setTimeout(() => {
+          this.spinner.hide()
+          this.ticketService.misTickets().then(tickets => this.tickets = tickets);
+          this.openDlgError("generar-ticket-ok");
+          this.resetearCampos()
+        }, 5000);
     }, 
       (err)=> {
-        console.log(err.error);
-        this.openDlgError("generar-ticket-error");
+        setTimeout(() => {
+          this.spinner.hide()
+          console.log(err.error);
+          this.openDlgError("generar-ticket-error");
+          this.resetearCampos();
+        }, 5000);
       })
-    
-    this.motivo = null
-    this.reclamoId = null
-    this.detalle = null
-    
-  }
+    }
 
   openDlgError(status: string){
     const modalRef = this.modalService.open(NgModalContentComponent)
     modalRef.componentInstance.status = status
+  }
+
+  resetearCampos():void{
+    this.motivo = null
+    this.reclamoId = null
+    this.detalle = null 
   }
 }
