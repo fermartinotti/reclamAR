@@ -82,8 +82,7 @@
           <option [ngValue]="null" disabled>Seleccione motivo</option>
           <option [ngValue]="">Demorado</option>
           <option [ngValue]="">Se cerro sin resolver</option>
-          <option [ngValue]="">El arreglo no fue correcto</option>
-          <option [ngValue]="">otro</option>
+          <option [ngValue]="">Otro</option>
         </select>
       </div>
 
@@ -94,7 +93,7 @@
         <div id="div_der2" *ngIf="detalle != null"> {{detalle.length}} / 250 </div>
       </div>
 
-      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
+      <button [disabled]="reclamoId == null || motivo==null || (motivo == 'Otro' && detalle == null)" type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
 
 
     </div>
