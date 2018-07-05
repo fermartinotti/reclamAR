@@ -32,7 +32,7 @@ export  class ErrorBuscandoReclamoComponent{
 }
 
 @Component({
-  selector: 'cuadrilla-error',
+  selector: 'cuadrilla-borrar-error',
   template: 'No se puede borrar la cuadrilla ya que tiene uno o mas reclamos asignados'
 })
 
@@ -72,14 +72,47 @@ export class ReclamoReabiertoComponent{
 }
 
 @Component({
-  selector: 'cuadrilla-error-generico',
+  selector: 'cuadrilla-borrar-error-generico',
   template: 'No se ha podido eliminar esta cuadrilla, por favor intenta mas tarde'
 })
 
 export class CuadrillaErrorGenericoComponent{
 }
 
+@Component({
+  selector: 'reabrir-reclamo-error',
+  template: 'No se ha podido reabrir este reclamo, por favor intenta mas tarde'
+})
+
+export class ReabrirReclamoErrorComponent{
+}
+
+@Component({
+  selector: 'crear-cuadrilla-error',
+  template: 'No se ha podido crear la cuadrilla, por favor intenta mas tarde'
+})
+
+export class CrearCuadrillaErrorComponent{
+}
+
+@Component({
+  selector: 'asignar-reclamo-error',
+  template: 'No se ha podido asignar el reclamo, por favor intenta mas tarde'
+})
+
+export class AsignarReclamoErrorComponent{
+}
+
+@Component({
+  selector: 'puntuar-reclamo-error',
+  template: 'No se ha podido registrar su calificación, por favor intenta mas tarde'
+})
+
+export class PuntuarReclamoErrorComponent{
+}
+
 export const ReclamoMsjComponent =
   [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
     ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
-    CuadrillaErrorGenericoComponent ];
+    CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
+    PuntuarReclamoErrorComponent];

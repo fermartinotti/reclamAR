@@ -54,7 +54,7 @@
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <h6 class="border-bottom border-gray pb-2 mb-0">Ultimas actualizaciones</h6>
-    <div class="media text-muted pt-3"*ngFor="let e of reclamo?.estados | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div class="media text-muted pt-3"*ngFor="let e of reclamo?.estados.reverse() | paginate: { itemsPerPage: 5, currentPage: p }">
     <div [ngSwitch]="e?.type">
       <estado-abierto *ngSwitchCase="'Abierto'"  [estado]="e" ></estado-abierto>
       <estado-reparacion *ngSwitchCase="'Reparacion'"  [estado]="e"></estado-reparacion>

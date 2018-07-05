@@ -6,9 +6,14 @@ import {Input} from "@angular/core";
   template: '¿Está seguro de que desea borrar esta cuadrilla?'
 })
 
-export class CuadrillaBorradoComponent{
+export class CuadrillaBorradoComponent{}
 
-}
+@Component({
+  selector: 'reabrir-reclamo',
+  template: '¿Está seguro de que desea reabrir este reclamo?'
+})
+
+export class ReabrirReclamoComponent{}
 
 export const ConfirmacionMsjComponent =
-  [CuadrillaBorradoComponent];
+  [CuadrillaBorradoComponent, ReabrirReclamoComponent];
