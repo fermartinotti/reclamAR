@@ -40,6 +40,7 @@
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="motivoReapertura" name="detalle" maxlength="250"></textarea>
                   <div id="div_der1" *ngIf="motivoReapertura == null"> 0 / 250 </div>
                   <div id="div_der2" *ngIf="motivoReapertura != null"> {{motivoReapertura.length}} / 250 </div>
+                  <ng4-loading-spinner></ng4-loading-spinner>
                   <button  (click)="ReAbrirReclamo()" class="btn btn-dark btn-sm">Guardar</button>
             </div>
 
