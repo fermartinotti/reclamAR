@@ -49,13 +49,13 @@
     <div class="col-md-4 order-md-2 mb-4">
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Mis tickets</span>
-        <span class="badge badge-secondary badge-pill">1</span>
+        <span class="badge badge-secondary badge-pill">{{tickets?.length}}</span>
       </h4>
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets">
           <div>
-            <h6 class="my-0">Ticket sobre reclamo #3</h6>
-            <small class="text-muted">Problema: Demora</small>
+            <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
+            <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
           </div>
         </li>
       </ul>

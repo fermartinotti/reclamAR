@@ -43,6 +43,7 @@ import { ModalConfirmacionComponent } from './modal-confirmacion/modal-confirmac
 import {ConfirmacionMsjComponent} from './modal-confirmacion/modalConfirmacionMsj';
 import {NgbdRatingEvents} from "./rating/rating";
 import { QuejasComponent } from './quejas/quejas.component';
+import {TicketService} from "./services/ticket.service";
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { QuejasComponent } from './quejas/quejas.component';
     UsuarioService,
     CuadrillaService,
     DataSenderService,
+    TicketService,
     AuthService,
     AuthGuardService,
     AuthGuardAdminService

@@ -13,6 +13,7 @@ import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import ar.edu.unq.reclamar.dto.AsignarCuadrillaDTO;
 import ar.edu.unq.reclamar.dto.CerrarReclamoDTO;
+import ar.edu.unq.reclamar.dto.CrearTicketDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
@@ -112,6 +113,19 @@ public interface ReclamarApi {
 	@Path("/cuadrillas/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response eliminarCuadrilla(@PathParam("id") Long idCuadrilla);
+	
+	@POST
+	@Path("/tickets/")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response crearTicket(CrearTicketDTO dto);
+	
+	@GET
+	@Path("/tickets")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getTickets();
+	
+	
+	
 	
 	
 }
