@@ -19,6 +19,7 @@ import {AdminCuadrillaComponent} from "../admin-cuadrilla/admin-cuadrilla.compon
 import {AdminReclamosComponent} from "../admin-reclamos/admin-reclamos.component";
 import {CuadrillaComponent} from "../cuadrilla/cuadrilla.component";
 import {QuejasComponent} from "../quejas/quejas.component";
+import {TicketsAdminComponent} from "../tickets-admin/tickets-admin.component";
 
 const appRoutes: Routes = [
   {path: 'inicio', component:InicioComponent},
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     {path: 'arboleda', component: ArboledaComponent, canActivate: [AuthGuard]}
   ]},
   {path: 'admin-panel', component: AdminCuadrillaComponent, canActivate: [AuthGuard] },
+  {path: 'tickets', component: TicketsAdminComponent, canActivate: [AuthGuard] },
   {path: 'cuadrillas/:id', component: CuadrillaComponent, canActivate: [AuthGuard] },
   {path: 'tengo-un-problema', component: QuejasComponent, canActivate:[AuthGuard]},
 

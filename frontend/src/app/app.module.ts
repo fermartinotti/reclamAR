@@ -44,6 +44,7 @@ import {ConfirmacionMsjComponent} from './modal-confirmacion/modalConfirmacionMs
 import {NgbdRatingEvents} from "./rating/rating";
 import { QuejasComponent } from './quejas/quejas.component';
 import {TicketService} from "./services/ticket.service";
+import { TicketsAdminComponent } from './tickets-admin/tickets-admin.component';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {TicketService} from "./services/ticket.service";
     ConfirmacionMsjComponent,
     estadosViewComponent,
     NgbdRatingEvents,
-    QuejasComponent
+    QuejasComponent,
+    TicketsAdminComponent
   ],
   imports: [
     HttpModule,
