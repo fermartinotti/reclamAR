@@ -5,3 +5,14 @@
 body{
   background-color: #EEEEEE !important;
 }
+
+#div_der1 {
+  text-align:right;
+  font-weight: bold;
+}
+
+#div_der2 {
+  text-align:right;
+  font-weight: bold;
+}
+
