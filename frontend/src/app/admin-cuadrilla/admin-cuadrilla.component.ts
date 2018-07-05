@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Cuadrilla} from "../model/cuadrilla";
 import {CuadrillaService} from "../services/cuadrilla.service";
 import {ActivatedRoute} from "@angular/router";
+import { NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { NgModalContentComponent } from "../ng-modal-content/ng-modal-content.component";
 
 @Component({
   selector: 'app-admin-cuadrilla',
@@ -15,7 +17,7 @@ export class AdminCuadrillaComponent implements OnInit {
 
   cuadrillas:Array<Cuadrilla>;
 
-  constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute) {
+  constructor(private cuadrillaService: CuadrillaService, private  ruta: ActivatedRoute, private modalService: NgbModal) {
     this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
 
     ruta.params.subscribe(val => {
@@ -32,10 +34,18 @@ export class AdminCuadrillaComponent implements OnInit {
     try{
       await this.cuadrillaService.crearCuadrilla(this.cuadrilla)
       this.cuadrillaService.todasLasCuadrillas().then(cuadrillas => this.cuadrillas= cuadrillas.reverse());
-    }catch(error){}
+    }catch(error){
+      console.log(error.error);
+      this.openDlgError("crear-cuadrilla-error");
+    }
     this.cuadrilla.nombre = null
     this.cuadrilla.cantIntegrantes= null;
 
+  }
+
+  openDlgError(status: string){
+    const modalRef = this.modalService.open(NgModalContentComponent)
+    modalRef.componentInstance.status = status
   }
 
 }

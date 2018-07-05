@@ -19,10 +19,14 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         <reclamo-finalizado      *ngSwitchCase="'reclamo-finalizado'"    ></reclamo-finalizado>
         <reclamo-finalizado-error      *ngSwitchCase="'reclamo-finalizado-error'"    ></reclamo-finalizado-error>
         <reclamo-reabierto      *ngSwitchCase="'reclamo-reabierto'"    ></reclamo-reabierto>
-        <cuadrilla-error      *ngSwitchCase="'cuadrilla-error'"    ></cuadrilla-error>
+        <cuadrilla-borrar-error      *ngSwitchCase="'cuadrilla-borrar-error'"    ></cuadrilla-borrar-error>
         <cuadrilla-borrado-exitoso      *ngSwitchCase="'cuadrilla-borrado-exitoso'"    ></cuadrilla-borrado-exitoso>
-        <cuadrilla-error-generico      *ngSwitchCase="'cuadrilla-error-generico'"    ></cuadrilla-error-generico>
+        <cuadrilla-borrar-error-generico      *ngSwitchCase="'cuadrilla-borrar-error-generico'"    ></cuadrilla-borrar-error-generico>
         <error-buscando-reclamo *ngSwitchCase="'errorBuscando'"> </error-buscando-reclamo>
+        <reabrir-reclamo-error *ngSwitchCase="'reabrir-reclamo-error'"> </reabrir-reclamo-error>
+        <crear-cuadrilla-error *ngSwitchCase="'crear-cuadrilla-error'"> </crear-cuadrilla-error>
+        <asignar-reclamo-error *ngSwitchCase="'asignar-reclamo-error'"> </asignar-reclamo-error>
+        <puntuar-reclamo-error *ngSwitchCase="'puntuar-reclamo-error'"> </puntuar-reclamo-error>
       </div>
     </div>
     <div class="modal-footer">
