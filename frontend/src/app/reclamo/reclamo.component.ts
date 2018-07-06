@@ -59,13 +59,20 @@ export class ReclamoComponent implements OnInit {
     const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
     modalRef.componentInstance.status = "reabrir-reclamo"
     modalRef.result.then(() => {
+      this.spinner.show()
       this.reclamoService.reabrirReclamo(new ReabrirDTO(this.reclamo.id, this.motivoReapertura))
       .then(res => {
-        this.open("reclamo-reabierto", "")
+        setTimeout(() => {
+          this.spinner.hide()
+          this.open("reclamo-reabierto", "")
+        }, 3000);
       },
       (err)=> {
-        console.log(err.error);
-        this.openDlgError("");
+        setTimeout(() => {
+          this.spinner.hide()
+          console.log(err.error);
+          this.openDlgError("reabrir-reclamo-error");
+        }, 3000);
       })
     })
     .catch(() => {});
