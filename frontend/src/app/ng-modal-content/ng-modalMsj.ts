@@ -36,7 +36,7 @@ export  class ErrorBuscandoReclamoComponent{
   template: 'No se puede borrar la cuadrilla ya que tiene uno o mas reclamos asignados'
 })
 
-export class CuadrillaErrorComponent{
+export class CuadrillaBorrarErrorComponent{
 }
 
 @Component({
@@ -128,7 +128,7 @@ export class GenerarTicketErrorComponent{
 }
 
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaBorrarErrorComponent, 
     ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
     CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
     PuntuarReclamoErrorComponent, GenerarTicketComponent, GenerarTicketErrorComponent ];

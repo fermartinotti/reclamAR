@@ -60,17 +60,20 @@ export class CuadrillaComponent implements OnInit {
           this.spinner.hide()
           this.router.navigate(['admin-panel']);
            this.openDlgError("cuadrilla-borrado-exitoso");
-        }, 5000);
+        }, 3000);
       }, 
         (err)=> {
-          this.spinner.hide()
-          console.log(err.error);
-          if(this.todosLosReclamos.length > 0){
-            this.openDlgError("cuadrilla-borrar-error");
-          }else{
-            console.log(err.error);
-            this.openDlgError("cuadrilla-error-generico");
-          }
+          setTimeout(() => {
+            this.spinner.hide();
+            
+            if(this.cuadrilla.reclamosAsignados.length > 0){
+              console.log(err.error);
+              this.openDlgError("cuadrilla-borrar-error");
+            }else{
+              console.log(err.error);
+              this.openDlgError("cuadrilla-borrar-error-generico");
+            }
+          }, 3000)
         })
     })
     .catch(() => {});
@@ -107,13 +110,13 @@ export class CuadrillaComponent implements OnInit {
         this.spinner.hide();
         this.actualizarListas(idReclamo);
         this.openDlgError("reclamo-finalizado")
-      }, 5000);
+      }, 3000);
     }
     catch(error){
       setTimeout(() => {
         console.log(error.error);
         this.openDlgError("reclamo-finalizado-error")
-      }, 5000);
+      }, 3000);
     }
   }
 

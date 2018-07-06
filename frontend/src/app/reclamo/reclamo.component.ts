@@ -65,14 +65,14 @@ export class ReclamoComponent implements OnInit {
         setTimeout(() => {
           this.spinner.hide()
           this.open("reclamo-reabierto", "")
-        }, 5000);
+        }, 3000);
       },
       (err)=> {
         setTimeout(() => {
           this.spinner.hide()
           console.log(err.error);
           this.openDlgError("");
-        }, 5000);
+        }, 3000);
       })
     })
     .catch(() => {});

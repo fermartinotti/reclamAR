@@ -82,3 +82,14 @@ body {
 .lh-100 { line-height: 1; }
 .lh-125 { line-height: 1.25; }
 .lh-150 { line-height: 1.5; }
+
+#div_der1 {
+  text-align:right;
+  font-weight: bold;
+}
+
+#div_der2 {
+  text-align:right;
+  font-weight: bold;
+}
+

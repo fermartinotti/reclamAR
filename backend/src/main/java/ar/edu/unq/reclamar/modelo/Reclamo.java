@@ -106,7 +106,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 			throw new DatoInvalidoException("El detalle no ha sido ingresado");
 		}
 		
-		if(detalle.length() >= 250) {
+		if(detalle.length() > 250) {
 			throw new DatoInvalidoException("El detalle solo puede tener 250 caracteres");
 		}
 		
