@@ -4,6 +4,8 @@ import {ReclamoService} from "../services/reclamo.service";
 import {TicketDTO} from "../model/ticketDTO";
 import {TicketService} from "../services/ticket.service";
 import {Ticket} from "../model/ticket";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 
 @Component({
   selector: 'app-quejas',
@@ -19,7 +21,8 @@ export class QuejasComponent implements OnInit {
   motivo: string = null
   detalle:string;
 
-  constructor(private reclamoService: ReclamoService, private ticketService: TicketService) {
+  constructor(private reclamoService: ReclamoService, private ticketService: TicketService,
+              private modalService: NgbModal) {
     this.reclamoService.misReclamos().then(reclamos=> this.reclamos = reclamos);
     this.ticketService.misTickets().then(tickets => this.tickets = tickets);
   }

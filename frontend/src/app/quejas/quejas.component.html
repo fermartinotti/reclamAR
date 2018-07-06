@@ -14,11 +14,14 @@
         <span class="text-muted">Mis tickets</span>
         <span class="badge badge-secondary badge-pill">{{tickets?.length}}</span>
       </h4>
+
       <ul class="list-group mb-3">
         <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets">
           <div>
             <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
             <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
+            <span class="badge badge-secondary" *ngIf="t.respuesta!=null" >Respondido</span>
+            <button class="btn btn-link btn-sm" *ngIf="t.respuesta!=null">ver respuesta</button>
           </div>
         </li>
       </ul>

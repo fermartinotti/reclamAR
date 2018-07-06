@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {TicketService} from "../services/ticket.service";
 import {Ticket} from "../model/ticket";
 import {ContestarTicketDTO} from "../model/contestarTicketDTO";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-tickets-admin',
@@ -32,5 +33,10 @@ export class TicketsAdminComponent implements OnInit {
         ticket.respuesta === null));
   }
 
+
+  selectTicket(t: Ticket):void{
+    console.log(t)
+    this.ticketSeleccionado = t;
+  }
 
 }

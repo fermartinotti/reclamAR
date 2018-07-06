@@ -16,49 +16,36 @@
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
             <div>
-              <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
-              <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
+              <button class="btn btn-link my-0" (click)="selectTicket(t)">Ticket sobre reclamo {{t?.reclamo?.id}}</button>
+             <br><small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
             </div>
           </li>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </ul>
-        
+
       </div>
 
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Crear ticket de reclamo</h4>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">Reclamo</label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01" [(ngModel)]="reclamoId">
-            <option [ngValue]="null" disabled>Seleccione su reclamo</option>
-            <option [ngValue]="r.id"  *ngFor="let r of reclamos">Reclamo numero {{r.id}}. Estado actual: {{r.estado.type}}</option>
-          </select>
+          <h5>Ticket sobre el reclamo numero: {{ticketSeleccionado?.reclamo?.id}}</h5><br>
         </div>
-
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="motivo">Motivo</label>
-          </div>
-          <select class="custom-select" id="motivo" [(ngModel)]="motivo">
-            <option [ngValue]="null" disabled>Seleccione motivo</option>
-            <option [ngValue]="">Demorado</option>
-            <option [ngValue]="">Se cerro sin resolver</option>
-            <option [ngValue]="">El arreglo no fue correcto</option>
-            <option [ngValue]="">otro</option>
-          </select>
+          <h5>Motivo: {{ticketSeleccionado?.motivo}}</h5><br>
+        </div>
+        <div class="input-group mb-3">
+          <h5>Detalle: </h5><p class="text-justify"> {{ticketSeleccionado?.detalle}}</p> <br>
         </div>
 
         <div class="mb-3">
-          <label for="detalle">Detalle:</label>
-          <textarea class="form-control" id="detalle" rows="3" [(ngModel)]="detalle" name="detalle" maxlength="250"></textarea>
-          <div id="div_der1" *ngIf="motivo == null"> 0 / 250 </div>
-          <div id="div_der2" *ngIf="motivo != null"> {{motivo.length}} / 250 </div>
+          <label for="detalle">Responder:</label>
+          <textarea class="form-control" id="detalle" rows="3" [(ngModel)]="respuesta" name="respuesta" maxlength="250"></textarea>
+          <div id="div_der1" *ngIf="respuesta == null"> 0 / 250 </div>
+          <div id="div_der2" *ngIf="respuesta != null"> {{respuesta.length}} / 250 </div>
         </div>
 
-        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="responderTicket()">Responder Ticket</button>
 
 
       </div>

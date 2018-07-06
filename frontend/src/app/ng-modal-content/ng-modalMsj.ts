@@ -111,8 +111,10 @@ export class AsignarReclamoErrorComponent{
 export class PuntuarReclamoErrorComponent{
 }
 
+
+
 export const ReclamoMsjComponent =
-  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent, 
-    ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
+  [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent,
+    ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent,
     CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
     PuntuarReclamoErrorComponent];
