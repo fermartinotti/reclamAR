@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Input} from "@angular/core";
+import {Ticket} from "../model/ticket";
 
 @Component({
   selector: 'reclamo-success',
@@ -112,9 +113,24 @@ export class PuntuarReclamoErrorComponent{
 }
 
 
+@Component({
+  selector: 'respuesta-ticket',
+  template: '' +
+  '<p>Ticket: {{ticket.id}} <br>\n' +
+  'Generado sobre el reclamo: {{ticket.reclamo.id}}<br>\n'  +
+  'creado el: {{ticket.fechaDeCreacion}}<br>\n' +
+  'Motivo: {{ticket.motivo}}<br>\n' +
+  'Detalle: {{ticket.detalle}} <br>\n' +
+  '<div *ngIf="ticket?.respuesta!=null">Respuesta: {{ticket.respuesta}} </div><br>\n '
+})
+
+export class RespuestaTicketComponent{
+  @Input() ticket:Ticket;
+
+}
 
 export const ReclamoMsjComponent =
   [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaErrorComponent,
     ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent,
     CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
-    PuntuarReclamoErrorComponent];
+    PuntuarReclamoErrorComponent,RespuestaTicketComponent];
