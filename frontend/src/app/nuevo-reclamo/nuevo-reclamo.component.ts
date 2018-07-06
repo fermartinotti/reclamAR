@@ -95,6 +95,7 @@ export class NuevoReclamoComponent implements OnInit {
         console.log(link)
         this.open("success", link.toString())
       }catch(error){
+        console.log(error.error)
         this.open("error", "")
       }
     }

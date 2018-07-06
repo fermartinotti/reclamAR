@@ -53,19 +53,27 @@ export class CuadrillaComponent implements OnInit {
     const modalRef = this.modalService.open(ModalConfirmacionComponent,this.modalOptions);
     modalRef.componentInstance.status = "cuadrilla-borrado"
     modalRef.result.then(() => {
+      this.spinner.show()
       this.cuadrillaService.borrarCuadrilla(this.cuadrilla.id)
       .then(res => {
-        this.router.navigate(['admin-panel']);
-        this.openDlgError("cuadrilla-borrado-exitoso");
+        setTimeout(() => {
+          this.spinner.hide()
+          this.router.navigate(['admin-panel']);
+           this.openDlgError("cuadrilla-borrado-exitoso");
+        }, 3000);
       }, 
         (err)=> {
-          console.log(err.error);
-          if(this.todosLosReclamos.length > 0){
-            this.openDlgError("cuadrilla-borrar-error");
-          }else{
-            console.log(err.error);
-            this.openDlgError("cuadrilla-error-generico");
-          }
+          setTimeout(() => {
+            this.spinner.hide();
+            
+            if(this.cuadrilla.reclamosAsignados.length > 0){
+              console.log(err.error);
+              this.openDlgError("cuadrilla-borrar-error");
+            }else{
+              console.log(err.error);
+              this.openDlgError("cuadrilla-borrar-error-generico");
+            }
+          }, 3000)
         })
     })
     .catch(() => {});
@@ -95,14 +103,21 @@ export class CuadrillaComponent implements OnInit {
   }
 
   async finalizarReclamo(idReclamo: number): Promise<void> {
+    this.spinner.show();
     try{
-      var link = await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
-      this.actualizarListas(idReclamo);
-      this.openDlgError("reclamo-finalizado")
+      await this.reclamoService.finalizarReclamo(new FinalizarReclamoDTO(idReclamo, this.cuadrilla.id))
+      setTimeout(() => {
+        this.spinner.hide();
+        this.actualizarListas(idReclamo);
+        this.openDlgError("reclamo-finalizado")
+      }, 3000);
     }
     catch(error){
-      console.log(error.error);
-      this.openDlgError("reclamo-finalizado-error")
+      setTimeout(() => {
+        this.spinner.hide();
+        console.log(error.error);
+        this.openDlgError("reclamo-finalizado-error")
+      }, 3000);
     }
   }
 

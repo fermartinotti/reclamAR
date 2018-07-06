@@ -22,7 +22,7 @@
             <br><h6>Detalle del reclamo:</h6>
             <p class="card-text">{{reclamo.detalle}}</p>
             <div *ngIf="reclamoReAbierto()">
-            <h6> Reclamo Re-Abierto con motivo: </h6> <p>{{this.reclamo.estado.comentarioReapertura}}</p>
+            <h6> Reclamo Reabierto con motivo: </h6> <p>{{this.reclamo.estado.comentarioReapertura}}</p>
             </div>
           </div>
           <ul class="list-group list-group-flush">
@@ -33,13 +33,14 @@
             <div class="card-body" *ngIf="reclamoCerrado()">
               <h6>Califica tu reclamo!</h6>
               <ngbd-rating-events [idReclamo]="reclamo?.id" [selected]="reclamo?.puntuacion"></ngbd-rating-events>
-              <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" class="btn btn-dark btn-sm">Re abrir reclamo</button>
+              <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" class="btn btn-dark btn-sm">Reabrir reclamo</button>
             </div>
             <div id="collapseExample" [ngbCollapse]="isCollapsed">
                   <label for="exampleFormControlTextarea1">Motivo:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="motivoReapertura" name="detalle" maxlength="250"></textarea>
                   <div id="div_der1" *ngIf="motivoReapertura == null"> 0 / 250 </div>
                   <div id="div_der2" *ngIf="motivoReapertura != null"> {{motivoReapertura.length}} / 250 </div>
+                  <ng4-loading-spinner></ng4-loading-spinner>
                   <button  (click)="ReAbrirReclamo()" class="btn btn-dark btn-sm">Guardar</button>
             </div>
 

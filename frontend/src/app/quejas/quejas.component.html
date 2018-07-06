@@ -35,7 +35,6 @@
   <footer class="mastfoot mt-auto">
   </footer>
 </div>-->
-
 <div class="bg-gris">
   <main role="main" class="container">
 
@@ -61,7 +60,7 @@
       </ul>
     </div>
 
-    <div class="col-md-8 order-md-1">
+    <div id="crearTicket" *ngIf="!perro" class="col-md-8 order-md-1">
       <h4 class="mb-3">Crear ticket de reclamo</h4>
 
         <div class="input-group mb-3">
@@ -82,26 +81,24 @@
           <option [ngValue]="null" disabled>Seleccione motivo</option>
           <option [ngValue]="">Demorado</option>
           <option [ngValue]="">Se cerro sin resolver</option>
-          <option [ngValue]="">El arreglo no fue correcto</option>
-          <option [ngValue]="">otro</option>
+          <option [ngValue]="">Otro</option>
         </select>
       </div>
 
       <div class="mb-3">
         <label for="detalle">Detalle:</label>
         <textarea class="form-control" id="detalle" rows="3" [(ngModel)]="detalle" name="detalle" maxlength="250"></textarea>
-        <div id="div_der1" *ngIf="motivo == null"> 0 / 250 </div>
-        <div id="div_der2" *ngIf="motivo != null"> {{motivo.length}} / 250 </div>
+        <div id="div_der1" *ngIf="detalle == null"> 0 / 250 </div>
+        <div id="div_der2" *ngIf="detalle != null"> {{detalle.length}} / 250 </div>
       </div>
-
-      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
-
-
+      
+      <ng4-loading-spinner></ng4-loading-spinner>
+      <button [disabled]="reclamoId == null || motivo==null || (motivo == 'Otro' && detalle == null)" type="button" class="btn btn-primary btn-lg btn-block" (click)="generarTicket()">Generar Ticket</button>
+      
     </div>
   </div>
 
   </main>
-
 
 </div>
 </body>
