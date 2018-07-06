@@ -114,6 +114,7 @@ export class CuadrillaComponent implements OnInit {
     }
     catch(error){
       setTimeout(() => {
+        this.spinner.hide();
         console.log(error.error);
         this.openDlgError("reclamo-finalizado-error")
       }, 3000);

@@ -71,7 +71,7 @@ export class ReclamoComponent implements OnInit {
         setTimeout(() => {
           this.spinner.hide()
           console.log(err.error);
-          this.openDlgError("");
+          this.openDlgError("reabrir-reclamo-error");
         }, 3000);
       })
     })
