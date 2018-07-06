@@ -21,7 +21,7 @@
             <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
             <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
             <span class="badge badge-secondary" *ngIf="t.respuesta!=null" >Respondido</span>
-            <button class="btn btn-link btn-sm" *ngIf="t.respuesta!=null" (click)="open(t)">ver ticket</button>
+            <button class="btn btn-link btn-sm" (click)="open(t)">ver ticket</button>
           </div>
         </li>
       </ul>

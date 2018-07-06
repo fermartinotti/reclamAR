@@ -20,9 +20,9 @@
               <reverse-checkbox-semaforo      *ngSwitchCase="'Semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>
             </div>
             <br><h6>Detalle del reclamo:</h6>
-            <p class="card-text">{{reclamo.detalle}}</p>
+            <p style="word-wrap: break-word; overflow: auto;" class="card-text">{{reclamo.detalle}}</p>
             <div *ngIf="reclamoReAbierto()">
-            <h6> Reclamo Reabierto con motivo: </h6> <p>{{this.reclamo.estado.comentarioReapertura}}</p>
+            <h6> Reclamo reabierto con motivo: </h6> <p style="word-wrap: break-word;">{{this.reclamo.estado.comentarioReapertura}}</p>
             </div>
           </div>
           <ul class="list-group list-group-flush">

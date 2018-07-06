@@ -46,7 +46,7 @@ export class QuejasComponent implements OnInit {
           this.ticketService.misTickets().then(tickets => this.tickets = tickets);
           this.openDlgError("generar-ticket-ok");
           this.resetearCampos()
-        }, 5000);
+        }, 3000);
     }, 
       (err)=> {
         setTimeout(() => {
@@ -54,7 +54,7 @@ export class QuejasComponent implements OnInit {
           console.log(err.error);
           this.openDlgError("generar-ticket-error");
           this.resetearCampos();
-        }, 5000);
+        }, 3000);
       })
     }
 

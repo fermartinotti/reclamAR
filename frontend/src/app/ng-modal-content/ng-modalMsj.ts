@@ -133,9 +133,9 @@ export class GenerarTicketErrorComponent{
   template: '' +
   '<p>Ticket: {{ticket.id}} <br>\n' +
   'Generado sobre el reclamo: {{ticket.reclamo.id}}<br>\n'  +
-  'creado el: {{ticket.fechaDeCreacion}}<br>\n' +
+  'Creado el: {{ticket.fechaDeCreacion}}<br>\n' +
   'Motivo: {{ticket.motivo}}<br>\n' +
-  'Detalle: {{ticket.detalle}} <br>\n' +
+  '<p style="word-wrap: break-word;"> Detalle: {{ticket.detalle}}  <br>\n' +
   '<div *ngIf="ticket?.respuesta!=null">Respuesta: {{ticket.respuesta}} </div><br>\n '
 })
 
