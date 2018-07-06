@@ -4,10 +4,10 @@ import {ReclamoService} from "../services/reclamo.service";
 import {TicketDTO} from "../model/ticketDTO";
 import {TicketService} from "../services/ticket.service";
 import {Ticket} from "../model/ticket";
-import { NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import { NgModalContentComponent } from "../ng-modal-content/ng-modal-content.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
+import {NgModalContentComponent} from "../ng-modal-content/ng-modal-content.component";
 import {Ng4LoadingSpinnerService  } from 'ng4-loading-spinner';
-
 
 @Component({
   selector: 'app-quejas',
@@ -24,7 +24,9 @@ export class QuejasComponent implements OnInit {
   detalle:string;
   perro:boolean=false;
 
-  constructor(private reclamoService: ReclamoService, private ticketService: TicketService,  private spinner: Ng4LoadingSpinnerService, private modalService: NgbModal) {
+  constructor(private reclamoService: ReclamoService, private ticketService: TicketService,  
+              private spinner: Ng4LoadingSpinnerService, private modalService: NgbModal) {
+  
     this.reclamoService.misReclamos().then(reclamos=> this.reclamos = reclamos);
     this.ticketService.misTickets().then(tickets => this.tickets = tickets);
   }
@@ -65,5 +67,13 @@ export class QuejasComponent implements OnInit {
     this.motivo = null
     this.reclamoId = null
     this.detalle = null 
+  }
+
+
+  open(ticket:Ticket) {
+    console.log(ticket)
+    const modalRef = this.modalService.open(NgModalContentComponent)
+    modalRef.componentInstance.status = "respuesta-ticket"
+    modalRef.componentInstance.ticket = ticket
   }
 }

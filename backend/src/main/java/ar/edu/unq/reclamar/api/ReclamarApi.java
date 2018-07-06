@@ -17,6 +17,7 @@ import ar.edu.unq.reclamar.dto.CrearTicketDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
+import ar.edu.unq.reclamar.dto.ResponderTicketDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 
@@ -124,7 +125,15 @@ public interface ReclamarApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response getTickets();
 	
+	@GET
+	@Path("/tickets/todos")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response getTodosLosTickets();
 	
+	@POST
+	@Path("/tickets/respuesta")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response responderTicket(ResponderTicketDTO dto);
 	
 	
 	

@@ -16,6 +16,7 @@ import ar.edu.unq.reclamar.dto.CrearTicketDTO;
 import ar.edu.unq.reclamar.dto.PuntuacionReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReabrirReclamoDTO;
 import ar.edu.unq.reclamar.dto.ReprogramarReclamoDTO;
+import ar.edu.unq.reclamar.dto.ResponderTicketDTO;
 import ar.edu.unq.reclamar.modelo.Cuadrilla;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Ticket;
@@ -233,6 +234,32 @@ public class ReclamarApiImpl implements ReclamarApi {
 		ObjectNode objectNode = new ObjectMapper().createObjectNode();
 		try {
 			return Response.ok(ticketService.getTickets()).build();
+		}catch(Exception e) {
+			e.printStackTrace();
+			objectNode.put("Error", e.getMessage());
+			return Response.status(500).entity(objectNode.toString()).build();
+		}
+	}
+	
+	@Override
+	public Response getTodosLosTickets() {
+		ObjectNode objectNode = new ObjectMapper().createObjectNode();
+		try {
+			return Response.ok(ticketService.getTodosLosTickets()).build();
+		}catch(Exception e) {
+			e.printStackTrace();
+			objectNode.put("Error", e.getMessage());
+			return Response.status(500).entity(objectNode.toString()).build();
+		}
+	}
+	
+	@Override
+	public Response responderTicket(ResponderTicketDTO dto) {
+		securityService.setUsuarioLogueado();
+		ObjectNode objectNode = new ObjectMapper().createObjectNode();
+		try {
+			Ticket ticket = ticketService.responderTicket(dto);
+			return Response.ok(ticket).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			objectNode.put("Error", e.getMessage());

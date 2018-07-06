@@ -27,6 +27,7 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         <crear-cuadrilla-error *ngSwitchCase="'crear-cuadrilla-error'"> </crear-cuadrilla-error>
         <asignar-reclamo-error *ngSwitchCase="'asignar-reclamo-error'"> </asignar-reclamo-error>
         <puntuar-reclamo-error *ngSwitchCase="'puntuar-reclamo-error'"> </puntuar-reclamo-error>
+        <respuesta-ticket   *ngSwitchCase="'respuesta-ticket'"    [ticket]="ticket"></respuesta-ticket>
         <generar-ticket-ok *ngSwitchCase="'generar-ticket-ok'"> </generar-ticket-ok>
         <generar-ticket-error *ngSwitchCase="'generar-ticket-error'"> </generar-ticket-error>
       </div>

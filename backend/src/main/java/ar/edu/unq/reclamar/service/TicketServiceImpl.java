@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.dto.CrearTicketDTO;
+import ar.edu.unq.reclamar.dto.ResponderTicketDTO;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Ticket;
@@ -47,5 +48,23 @@ public class TicketServiceImpl implements TicketService{
 		
 		return tickets;
 	}
+
+	@Override
+	@Transactional
+	public List<Ticket> getTodosLosTickets() {
+		return (List<Ticket>) repository.findAll();
+	}
+
+	@Override
+	@Transactional
+	public Ticket responderTicket(ResponderTicketDTO dto) {
+		Ticket ticket = repository.findOne(dto.getIdTicket());
+		ticket.setRespuesta(dto.getRespuesta());
+		repository.save(ticket);
+		
+		return ticket;
+	}
+	
+	
 	
 }

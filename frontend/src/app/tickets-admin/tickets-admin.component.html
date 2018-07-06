@@ -1,0 +1,58 @@
+<body>
+<div class="bg-gris">
+  <main role="main" class="container">
+
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="http://www.hms.cl/wp-content/uploads/2015/11/reclamo-300x300.png" alt="" width="72" height="72">
+      <h2>Sistema de tickets</h2>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">Todos los tickets</span>
+        </h4>
+
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
+            <div>
+              <button class="btn btn-link my-0" (click)="selectTicket(t)">Ticket sobre reclamo {{t?.reclamo?.id}}</button>
+             <br><small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
+            </div>
+          </li>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </ul>
+
+      </div>
+
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3">Crear ticket de reclamo</h4>
+
+        <div class="input-group mb-3">
+          <h5>Ticket sobre el reclamo numero: {{ticketSeleccionado?.reclamo?.id}}</h5><br>
+        </div>
+        <div class="input-group mb-3">
+          <h5>Motivo: {{ticketSeleccionado?.motivo}}</h5><br>
+        </div>
+        <div class="input-group mb-3">
+          <h5>Detalle: </h5><p class="text-justify"> {{ticketSeleccionado?.detalle}}</p> <br>
+        </div>
+
+        <div class="mb-3">
+          <label for="detalle">Responder:</label>
+          <textarea class="form-control" id="detalle" rows="3" [(ngModel)]="respuesta" name="respuesta" maxlength="250"></textarea>
+          <div id="div_der1" *ngIf="respuesta == null"> 0 / 250 </div>
+          <div id="div_der2" *ngIf="respuesta != null"> {{respuesta.length}} / 250 </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="responderTicket()">Responder Ticket</button>
+
+
+      </div>
+    </div>
+
+  </main>
+
+
+</div>
+</body>
