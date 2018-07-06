@@ -30,6 +30,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
         <respuesta-ticket   *ngSwitchCase="'respuesta-ticket'"    [ticket]="ticket"></respuesta-ticket>
         <generar-ticket-ok *ngSwitchCase="'generar-ticket-ok'"> </generar-ticket-ok>
         <generar-ticket-error *ngSwitchCase="'generar-ticket-error'"> </generar-ticket-error>
+        <responder-ticket-ok *ngSwitchCase="'responder-ticket-ok'"> </responder-ticket-ok>
+        <responder-ticket-error *ngSwitchCase="'responder-ticket-error'"> </responder-ticket-error>
       </div>
     </div>
     <div class="modal-footer">

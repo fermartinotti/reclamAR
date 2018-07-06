@@ -141,11 +141,29 @@ export class GenerarTicketErrorComponent{
 
 export class RespuestaTicketComponent{
   @Input() ticket:Ticket;
-
 }
+
+@Component({
+  selector: 'responder-ticket-ok',
+  template: 'La respuesta se ha enviado satisfactoriamente'
+})
+
+export class ResponderTicketComponent{
+}
+
+
+@Component({
+  selector: 'responder-ticket-error',
+  template: 'No se ha podido enviar la respuesta, por favor intenta mas tarde'
+})
+
+export class ResponderTicketErrorComponent{
+}
+
 
 export const ReclamoMsjComponent =
   [ ReclamoSucessComponent, ReclamoErrorComponent, ErrorBuscandoReclamoComponent, CuadrillaBorrarErrorComponent, 
     ReclamoFinalizadoComponent, ReclamoReabiertoComponent, CuadrillaBorradoExitosoComponent, ReclamoFinalizadoErrorComponent, 
     CuadrillaErrorGenericoComponent, ReabrirReclamoErrorComponent, CrearCuadrillaErrorComponent, AsignarReclamoErrorComponent,
-    PuntuarReclamoErrorComponent, GenerarTicketComponent, GenerarTicketErrorComponent, RespuestaTicketComponent ];
+    PuntuarReclamoErrorComponent, GenerarTicketComponent, GenerarTicketErrorComponent, RespuestaTicketComponent,
+    ResponderTicketComponent, ResponderTicketErrorComponent ];

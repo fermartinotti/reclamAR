@@ -14,7 +14,7 @@
         </h4>
 
         <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets | paginate: { itemsPerPage: 5, currentPage: p }">
+          <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets.reverse() | paginate: { itemsPerPage: 4, currentPage: p }">
             <div>
               <button class="btn btn-link my-0" (click)="selectTicket(t)">Ticket sobre reclamo {{t?.reclamo?.id}}</button>
              <br><small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
@@ -29,7 +29,7 @@
         <h4 class="mb-3">Crear ticket de reclamo</h4>
 
         <div class="input-group mb-3">
-          <h5>Ticket sobre el reclamo numero: {{ticketSeleccionado?.reclamo?.id}}</h5><br>
+          <h5>Ticket del reclamo número: {{ticketSeleccionado?.reclamo?.id}}</h5><br>
         </div>
         <div class="input-group mb-3">
           <h5>Motivo: {{ticketSeleccionado?.motivo}}</h5><br>
@@ -44,8 +44,9 @@
           <div id="div_der1" *ngIf="respuesta == null"> 0 / 250 </div>
           <div id="div_der2" *ngIf="respuesta != null"> {{respuesta.length}} / 250 </div>
         </div>
-
-        <button type="button" class="btn btn-primary btn-lg btn-block" (click)="responderTicket()">Responder Ticket</button>
+        
+        <ng4-loading-spinner></ng4-loading-spinner>
+        <button [disabled] = "respuesta == null || respuesta == '' || ticketSeleccionado == null" type="button" class="btn btn-primary btn-lg btn-block" (click)="responderTicket()">Responder Ticket</button>
 
 
       </div>

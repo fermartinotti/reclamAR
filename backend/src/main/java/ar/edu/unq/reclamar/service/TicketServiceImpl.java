@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unq.reclamar.dto.CrearTicketDTO;
 import ar.edu.unq.reclamar.dto.ResponderTicketDTO;
+import ar.edu.unq.reclamar.modelo.Admin;
 import ar.edu.unq.reclamar.modelo.Operador;
 import ar.edu.unq.reclamar.modelo.Reclamo;
 import ar.edu.unq.reclamar.modelo.Ticket;
 import ar.edu.unq.reclamar.repository.ReclamoRepository;
 import ar.edu.unq.reclamar.repository.TicketRepository;
+import ar.edu.unq.reclamar.repository.UsuarioRepository;
 
 @Service
 public class TicketServiceImpl implements TicketService{
@@ -26,6 +28,9 @@ public class TicketServiceImpl implements TicketService{
 	
 	@Autowired
 	TicketRepository repository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 	
 	@Override
 	@Transactional
@@ -58,9 +63,12 @@ public class TicketServiceImpl implements TicketService{
 	@Override
 	@Transactional
 	public Ticket responderTicket(ResponderTicketDTO dto) {
+		Admin userLogeado = (Admin) securityService.setUsuarioLogueado();
 		Ticket ticket = repository.findOne(dto.getIdTicket());
 		ticket.setRespuesta(dto.getRespuesta());
 		repository.save(ticket);
+		
+		usuarioRepository.save(userLogeado);
 		
 		return ticket;
 	}

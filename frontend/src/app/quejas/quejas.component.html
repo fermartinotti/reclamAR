@@ -16,7 +16,7 @@
       </h4>
 
       <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets">
+        <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let t of tickets.reverse() | paginate: { itemsPerPage: 4, currentPage: p }">
           <div>
             <h6 class="my-0">Ticket sobre reclamo {{t?.reclamo?.id}}</h6>
             <small class="text-muted">Problema: {{t?.motivo}}. {{t?.fechaDeCreacion}}</small>
@@ -24,10 +24,11 @@
             <button class="btn btn-link btn-sm" (click)="open(t)">ver ticket</button>
           </div>
         </li>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </ul>
     </div>
 
-    <div id="crearTicket" *ngIf="!perro" class="col-md-8 order-md-1">
+    <div id="crearTicket" class="col-md-8 order-md-1">
       <h4 class="mb-3">Crear ticket de reclamo</h4>
 
         <div class="input-group mb-3">
