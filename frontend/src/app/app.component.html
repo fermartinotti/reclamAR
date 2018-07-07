@@ -12,18 +12,18 @@
       <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
         <a class="nav-link" routerLink="/mis-reclamos">Ver mis reclamos</a>
       </li>
-      <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
-        <a class="nav-link" routerLink="/tengo-un-problema">Tengo un problema</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/todos-los-reclamos">Ver todos los reclamos</a>
+      </li>
+      <li class="nav-item" *ngIf="auth.isAuthenticated() && !auth.esAdmin()">
+        <a class="nav-link" routerLink="/tengo-un-problema">Informar un problema</a>
       </li>
       <li class="nav-item dropdown" *ngIf="auth.esAdmin()">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Panel Administrador
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/admin-panel">Panel Administrador</a>
+          <a class="dropdown-item" routerLink="/admin-panel">Administrar cuadrillas</a>
           <a class="dropdown-item" href="/tickets">Contestar Tickets</a>
         </div>
       </li>
