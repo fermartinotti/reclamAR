@@ -3,15 +3,15 @@
   <div class="align-items-center bg-white rounded box-shadow head">
     <div class="row" >
       <div class="col-md-4">
-        <app-map #map *ngIf="reclamo.lugarDeIncidente"
-                 [clickableMap]="false" [localizacion]="reclamo.lugarDeIncidente">
+        <app-map #map *ngIf="reclamo?.lugarDeIncidente"
+                 [clickableMap]="false" [localizacion]="reclamo?.lugarDeIncidente">
         </app-map>
       </div>
       <div class="col-md-8">
         <div class="container " *ngIf="reclamo">
           <div class="card-body" >
             <h5 class="card-title" *ngIf="reclamo?.tipoDeReclamo"></h5>
-            <h4>Reclamo numero #{{reclamo.id}}</h4>
+            <h4>Reclamo numero #{{reclamo?.id}}</h4>
             <br><h6>Problema:</h6>
             <div [ngSwitch]="reclamo?.tipoDeReclamo?.type">
               <reverse-checkbox-luminaria    *ngSwitchCase="'Luminaria'"    [reclamo]="reclamo"></reverse-checkbox-luminaria>
@@ -20,7 +20,7 @@
               <reverse-checkbox-semaforo      *ngSwitchCase="'Semaforo'"    [reclamo]="reclamo"></reverse-checkbox-semaforo>
             </div>
             <br><h6>Detalle del reclamo:</h6>
-            <p style="word-wrap: break-word; overflow: auto;" class="card-text">{{reclamo.detalle}}</p>
+            <p style="word-wrap: break-word; overflow: auto;" class="card-text">{{reclamo?.detalle}}</p>
             <div *ngIf="reclamoReAbierto()">
             <h6> Reclamo reabierto con motivo: </h6> <p style="word-wrap: break-word;">{{this.reclamo.estado.comentarioReapertura}}</p>
             </div>
@@ -39,7 +39,7 @@
                   <label for="exampleFormControlTextarea1">Motivo:</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="motivoReapertura" name="detalle" maxlength="250"></textarea>
                   <div id="div_der1" *ngIf="motivoReapertura == null"> 0 / 250 </div>
-                  <div id="div_der2" *ngIf="motivoReapertura != null"> {{motivoReapertura.length}} / 250 </div>
+                  <div id="div_der2" *ngIf="motivoReapertura != null"> {{motivoReapertura?.length}} / 250 </div>
                   <ng4-loading-spinner></ng4-loading-spinner>
                   <button  (click)="ReAbrirReclamo()" class="btn btn-dark btn-sm">Guardar</button>
             </div>
