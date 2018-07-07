@@ -9,11 +9,12 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer;
+import ar.edu.unq.reclamar.utils.MiLocalDateTimeSerializer2;
 
 @Entity
 @JsonIgnoreProperties(value = {"new"})
@@ -34,6 +35,19 @@ public abstract class Estado extends AbstractPersistable<Long>{
 	@Column
 	@JsonSerialize(using= MiLocalDateTimeSerializer.class)
 	public LocalDateTime fechaIninio = LocalDateTime.now();
+	
+	@Column
+	@JsonSerialize(using= MiLocalDateTimeSerializer2.class)
+	public LocalDateTime fechaAgregado = LocalDateTime.now();
+
+	
+	public LocalDateTime getFechaAgregado() {
+		return fechaAgregado;
+	}
+
+	public void setFechaAgregado(LocalDateTime fechaAgregado) {
+		this.fechaAgregado = fechaAgregado;
+	}
 
 	public LocalDateTime getFechaIninio() {
 		return fechaIninio;

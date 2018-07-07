@@ -9,6 +9,7 @@ import { Ng4LoadingSpinnerModule, Ng4LoadingSpinnerService  } from 'ng4-loading-
 import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {ReabrirDTO} from "../model/reabrirDTO";
 import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
+import {Estado} from "../model/estado";
 
 
 
@@ -24,6 +25,7 @@ export class ReclamoComponent implements OnInit {
   @ViewChild('map') map: MapComponent;
   public isCollapsed = true;
 
+  estados: Array<Estado>;
   motivoReapertura:string
   modalOptions: NgbModalOptions;
 
@@ -36,7 +38,13 @@ export class ReclamoComponent implements OnInit {
     this.spinner.show()
     this.ruta.paramMap
       .switchMap( paramMap => this.reclamoService.buscarReclamo(+paramMap.get('id')))
-      .subscribe(data => {this.reclamo = data},
+      .subscribe(data => {
+        this.reclamo = data;
+        this.estados = data.estados.sort((e1, e2): number =>{
+          if(e1.fechaAgregado < e2.fechaAgregado)return -1;
+          if(e1.fechaAgregado > e2.fechaAgregado) return 1;
+          return 0;
+        })},
         err => {
           if(err.status === 404) {
             this.openDlgError("errorBuscando")

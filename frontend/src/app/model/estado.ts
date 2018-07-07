@@ -2,6 +2,7 @@ export class Estado{
   type: string
   fechaIninio: string
   comentarioReapertura: string
+  fechaAgregado: string
 
   constructor(type: string, fechaInicio: string){
     this.type = type

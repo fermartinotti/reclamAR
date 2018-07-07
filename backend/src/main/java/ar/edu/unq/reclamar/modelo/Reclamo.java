@@ -3,6 +3,7 @@ package ar.edu.unq.reclamar.modelo;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -47,7 +48,7 @@ public class Reclamo  extends AbstractPersistable<Long>{
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name="estados")
-	List<Estado> estados = new ArrayList<>();
+	Set<Estado> estados = new HashSet<Estado>();
 	
 	@JoinColumn(name="tipoDeReclamo")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -141,11 +142,11 @@ public class Reclamo  extends AbstractPersistable<Long>{
 		this.lugarDeIncidente = lugarDeIncidente;
 	}
 
-	public List<Estado> getEstados() {
+	public Set<Estado> getEstados() {
 		return estados;
 	}
 
-	public void setEstados(List<Estado> estados) {
+	public void setEstados(Set<Estado> estados) {
 		this.estados = estados;
 	}
 
