@@ -10,6 +10,7 @@ import {NgbModal, NgbModalOptions} from "@ng-bootstrap/ng-bootstrap";
 import {ReabrirDTO} from "../model/reabrirDTO";
 import {ModalConfirmacionComponent} from "../modal-confirmacion/modal-confirmacion.component";
 import {Estado} from "../model/estado";
+import {AuthService} from "../auth/auth.service";
 
 
 
@@ -31,7 +32,7 @@ export class ReclamoComponent implements OnInit {
 
   constructor(private reclamoService: ReclamoService, private ruta: ActivatedRoute,
               public router: Router, private spinner: Ng4LoadingSpinnerService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, public auth: AuthService) {
   }
 
   ngOnInit() {

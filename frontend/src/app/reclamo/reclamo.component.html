@@ -30,7 +30,7 @@
             <li class="list-group-item" *ngIf="reclamo?.estado"><h6>El estado de su reclamo es:</h6> {{reclamo?.estado?.type}}</li>
 
 
-            <div class="card-body" *ngIf="reclamoCerrado()">
+            <div class="card-body" *ngIf="reclamoCerrado() && !auth.esAdmin() && auth.isAuthenticated()">
               <h6>Califica tu reclamo!</h6>
               <ngbd-rating-events [idReclamo]="reclamo?.id" [selected]="reclamo?.puntuacion"></ngbd-rating-events>
               <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" class="btn btn-dark btn-sm">Reabrir reclamo</button>
